@@ -1,2 +1,2 @@
 这是一个基于biu脚手架二次开发的注意力分析系统
-采用springboot和vue框架
+采用springboot和vue框架,前后端分离
