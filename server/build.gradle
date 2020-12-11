@@ -57,6 +57,7 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.47'
     compile 'org.apache.commons:commons-lang3'
     compile 'org.python:jython-standalone:2.7.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 }
 
 //设置后依赖不用写版本号
