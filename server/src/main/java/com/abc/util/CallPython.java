@@ -1,8 +1,16 @@
 package com.abc.util;
 
+import org.python.core.*;
+import org.python.util.PythonInterpreter;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import org.python.core.PyFunction;
+import org.python.core.PyInteger;
+import org.python.core.PyObject;
+import org.python.util.PythonInterpreter;
 
 public class CallPython {
     public static void test() {
@@ -24,21 +32,20 @@ public class CallPython {
             e.printStackTrace();
         }
     }
-    public static String callPython(String dir,String ...parameters){
+    public static String callPython(String dir){
         //"D://runtime.py"
-        String[] arguments = new String[parameters.length+2];
-        arguments[0]="python";
+        String[] arguments = new String[2];
+        arguments[0]="E://Anaconda//envs//ten//python";
         arguments[1]=dir;
-        int i=2;
-        for(String parameter:parameters){
-            arguments[i] = parameter;
-        }
+        StringBuilder sb=new StringBuilder();
+
         try {
             Process process = Runtime.getRuntime().exec(arguments);
             BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream(),
                     "GBK"));
             String line = null;
             while ((line = in.readLine()) != null) {
+                sb.append(line);
                 System.out.println(line);
             }
             in.close();
@@ -49,14 +56,57 @@ public class CallPython {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return sb.toString();
+    }
+
+
+    public static void callPythonByFunction(String dir,String imageDir) {
+            PythonInterpreter interpreter = new PythonInterpreter();
+            interpreter.execfile(dir);
+
+            // 第一个参数为期望获得的函数（变量）的名字，第二个参数为期望返回的对象类型
+            PyFunction pyFunction = interpreter.get("attention_analysis", PyFunction.class);
+
+            //调用函数，如果函数需要参数，在Java中必须先将参数转化为对应的“Python类型”
+            PyObject pyobj = pyFunction.__call__(new PyString(imageDir));
+            System.out.println("the anwser is: " + pyobj);
+    }
+
+
+    public static void test1() {
+            Process proc;
+            try {
+                proc = Runtime.getRuntime().exec("python E://aut//RD//project//attentiveness-detection-master//add.py");
+                BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+                String line = null;
+                while ((line = in.readLine()) != null) {
+                    System.out.println(line);
+                }
+                in.close();
+                proc.waitFor();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
     }
 
 
 
 
-        public static void main(String[] args) {
-            callPython("D://runtime.py");
 
+
+
+
+        public static void main(String[] args) {
+            //无参调用，调用main
+            //callPython("D://runtime//runtime.py");
+            //callPython("E://aut//RD//project//attentiveness-detection-master//AnalysisOfConcentration.py","E:/aut/RD/project/attentiveness-detection-master/2.jpg");
+            //要安装额外的库
+            //callPythonByFunction("E://aut//RD//project//attentiveness-detection-master//AnalysisOfConcentration.py","E:/aut/RD/project/attentiveness-detection-master/2.jpg");
+
+            //暂时考虑直接调用python方法，或最好的就是使用微服务
+            String res=callPython("E://aut//RD//project//attentiveness-detection-master//test1.py");
+            System.out.println(res);
     }
 }
