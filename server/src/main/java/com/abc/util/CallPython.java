@@ -73,22 +73,9 @@ public class CallPython {
     }
 
 
-    public static void test1() {
-            Process proc;
-            try {
-                proc = Runtime.getRuntime().exec("python E://aut//RD//project//attentiveness-detection-master//add.py");
-                BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-                String line = null;
-                while ((line = in.readLine()) != null) {
-                    System.out.println(line);
-                }
-                in.close();
-                proc.waitFor();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public static String callPython() {
+
+        return callPython("E://aut//RD//project//attentiveness-detection-master//test1.py");
     }
 
 

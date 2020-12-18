@@ -1,7 +1,12 @@
 package com.abc.controller.basicController;
 
+import com.abc.annotation.APICallLimiter;
 import com.abc.annotation.PermInfo;
+import com.abc.service.AttentionService;
+import com.abc.service.impl.AttentionServiceImpl;
+import com.abc.util.Assessment;
 import org.apache.shiro.authz.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test")
 public class TestController {
-
+    @Autowired
+    AttentionService attentionService;
     // 由于ShiroConfig中配置了该路径可以匿名访问，所以这接口不需要登录就能访问
     @GetMapping("/hello")
     public String hello() {
@@ -65,6 +71,14 @@ public class TestController {
     @GetMapping("/python")
     public String python() {
         return "python programmer";
+    }
+
+
+    @GetMapping("/testAop")
+    public String testAop(){
+        attentionService.AssessmentByImage(AttentionServiceImpl.FULL_MODE,"1","1");
+
+        return  "hello world";
     }
 
 

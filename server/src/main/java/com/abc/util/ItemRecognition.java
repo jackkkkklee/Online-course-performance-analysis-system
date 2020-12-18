@@ -1,23 +1,26 @@
 package com.abc.util;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import java.net.URLEncoder;
+import java.util.*;
+
+
 public class ItemRecognition {
     public static String APIKEY="GZPbOEikY2NScWMvWEnEy1cY";
     public static String SECRETKEY="h3896eFOLKZffVe6mjBOtjmLlzCICNpo";
+    public static Set nonClassItemsSet =new HashSet();
+    static {
+        nonClassItemsSet.add("商品-食品");
+        nonClassItemsSet.add("人物活动-餐饮娱乐活动");
+    }
 
     /**
      * 通用物体和场景识别
      */
 
 
-        /**
-         * 重要提示代码中所需工具类
-         * FileUtil,Base64Util,HttpUtil,GsonUtils请从
-         * https://ai.baidu.com/file/658A35ABAB2D404FBF903F64D47C1F72
-         * https://ai.baidu.com/file/C8D81F3301E24D2892968F09AE1AD6E2
-         * https://ai.baidu.com/file/544D677F5D4E4F17B4122FBD60DB82B3
-         * https://ai.baidu.com/file/470B3ACCA3FE43788B5A963BF0B625F3
-         * 下载
-         */
+
         public static String advancedGeneral( String filePath, String accessToken) {
             // 请求url
             String url = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
@@ -45,9 +48,52 @@ public class ItemRecognition {
             String token=GetBaiduToken.getAuth(ak,sk);
             return advancedGeneral(filePath,token);
         }
+        public static HashSet<String> NonClassItems(String filePath, String ak,String sk){
+            HashSet<String> resItemsSet=new HashSet();
+
+            String token=GetBaiduToken.getAuth(ak,sk);
+            String res = advancedGeneral(filePath,token);
+            res=test(res,"result");
+            JSONArray json = JSONArray.parseArray(res);
+            Iterator iterator=json.listIterator();
+            while(iterator.hasNext()){
+                JSONObject jsonObject=(JSONObject) iterator.next();
+                double score = Double.parseDouble(jsonObject.getString("score"));
+                System.out.println(score);
+                String root= jsonObject.getString("root");
+                System.out.println(root);
+                String name = jsonObject.getString("keyword");
+
+                //与非学习物品集合比较
+                if (nonClassItemsSet.contains(root)&&score>0.5){
+                    resItemsSet.add(name);
+                }
+
+            }
+
+            return resItemsSet;
+        }
+    public static HashSet<String> NonClassItems(String imagePath){
+        return NonClassItems(imagePath,APIKEY,SECRETKEY);
+    }
+        public static String test(String result,String target){
+
+            JSONObject jsonObject = JSONObject.parseObject(result);
+
+            // 获取到key为shoppingCartItemList的值
+
+            String r = jsonObject.getString(target);
+
+            System.out.println(r);
+            return r;
+        }
+
+
+
 
         public static void main(String[] args) {
-            ItemRecognition.advancedGeneral("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\1.jpg",APIKEY,SECRETKEY);
+            HashSet resItemSet=ItemRecognition.NonClassItems("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\4.jpg",APIKEY,SECRETKEY);
+
         }
     }
 
