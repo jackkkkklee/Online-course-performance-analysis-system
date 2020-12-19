@@ -1,17 +1,282 @@
 <template>
-<div class="login-container">
-    <h1>{{pageName}}</h1>
+  <div class="menu-container">
+    <el-card style="margin: 15px">
+      <div style="margin: auto auto auto 240px">
+        <el-autocomplete
+          class="inline-input"
+          v-model="course"
+          :fetch-suggestions="querySearch"
+          placeholder="Course"
+        ></el-autocomplete>
+        <el-date-picker
+          v-model="date"
+          align="right"
+          type="date"
+          placeholder="Select date"
+          :picker-options="dateOptions"
+          value-format="yyyy-MM-dd"
+        >
+        </el-date-picker>
+        <el-time-select
+          placeholder="Start time"
+          v-model="startTime"
+          :picker-options="{
+            start: '08:00',
+            step: '00:45',
+            end: '17:00',
+          }"
+        >
+        </el-time-select>
+        <el-time-select
+          placeholder="End time"
+          v-model="endTime"
+          :picker-options="{
+            start: '08:45',
+            step: '00:45',
+            end: '17:00',
+            minTime: startTime,
+          }"
+        >
+        </el-time-select>
+        <el-button type="primary" @click="queryCourse"
+          >Search
+        </el-button>
+      </div>
+      <div
+        id="chart"
+        style="width: 600px; margin: 20px auto 20px auto; height: 400px"
+      ></div>
+    </el-card>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'Menu3_2',
-    data() {
-      return {
-        pageName: '菜单3-2'
-      }
-    }
-  }
+import axios from "axios";
+import echarts from "echarts";
+import analysisApi from '@/api/analysis';
+
+export default {
+  name: "Menu3_2",
+  data() {
+    return {
+      pageName: "菜单3-2",
+      courses: [],
+      course: "",
+      date: "",
+      startTime: "",
+      endTime: "",
+      dateOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+        shortcuts: [
+          {
+            text: "today",
+            onClick(picker) {
+              picker.$emit("pick", new Date());
+            },
+          },
+          {
+            text: "yesterday",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit("pick", date);
+            },
+          },
+          {
+            text: "before one week",
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit("pick", date);
+            },
+          },
+        ],
+      },
+    };
+  },
+  mounted() {
+    this.courses = this.queryCourse();
+    var myChart = echarts.init(document.getElementById("chart"));
+    myChart.showLoading();
+
+    myChart.setOption({
+      backgroundColor: "#394056",
+
+      title: {
+        top: 16,
+        text: "Class Concentration Score",
+        textStyle: {
+          fontWeight: "normal",
+          fontSize: 16,
+          color: "#F1F1F3",
+        },
+        left: "1%",
+      },
+      tooltip: {
+        trigger: "axis",
+        axisPointer: {
+          lineStyle: {
+            color: "#57617B",
+          },
+        },
+      },
+      legend: {
+        top: 20,
+        icon: "rect",
+        itemWidth: 14,
+        itemHeight: 5,
+        itemGap: 13,
+        data: ["Whole Class"],
+        right: "4%",
+        textStyle: {
+          fontSize: 12,
+          color: "#F1F1F3",
+        },
+      },
+      grid: {
+        top: 100,
+        left: "3%",
+        right: "4%",
+        bottom: "2%",
+        containLabel: true,
+      },
+      xAxis: {
+        type: "category",
+        boundaryGap: false,
+        axisLine: {
+          lineStyle: {
+            color: "#57617B",
+          },
+        },
+        data: [],
+      },
+      yAxis: [
+        {
+          type: "value",
+          name: "score",
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#57617B",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+            },
+          },
+          splitLine: {
+            lineStyle: {
+              color: "#57617B",
+            },
+          },
+        },
+      ],
+      series: [
+        {
+          name: "Whole Class",
+          type: "line",
+          smooth: true,
+          symbol: "circle",
+          symbolSize: 5,
+          showSymbol: false,
+          lineStyle: {
+            normal: {
+              width: 1,
+            },
+          },
+          areaStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1,
+                [
+                  {
+                    offset: 0,
+                    color: "rgba(137, 189, 27, 0.3)",
+                  },
+                  {
+                    offset: 0.8,
+                    color: "rgba(137, 189, 27, 0)",
+                  },
+                ],
+                false
+              ),
+              shadowColor: "rgba(0, 0, 0, 0.1)",
+              shadowBlur: 10,
+            },
+          },
+          itemStyle: {
+            normal: {
+              color: "rgb(137,189,27)",
+              borderColor: "rgba(137,189,2,0.27)",
+              borderWidth: 12,
+            },
+          },
+          data: [],
+        },
+      ],
+    });
+
+    //模拟数据
+    axios.get("/static/mock/data.json").then((res) => {
+      // console.log(res.data);
+      myChart.hideLoading();
+      myChart.setOption({
+        xAxis: {
+          data: res.data.time,
+        },
+        series: [
+          {
+            data: res.data.attention_value,
+          },
+        ],
+      });
+    });
+  },
+  methods: {
+    querySearch(queryString, cb) {
+      var courses = this.courses;
+      var results = queryString
+        ? courses.filter(this.createFilter(queryString))
+        : courses;
+      // 调用 callback 返回建议列表的数据
+      cb(results);
+    },
+    createFilter(queryString) {
+      return (course) => {
+        return (
+          course.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+        );
+      };
+    },
+    queryCourse() {
+      return [
+        //模拟的数据
+        { value: "english" },
+        { value: "math" },
+        { value: "history" },
+        { value: "pe" },
+        { value: "computer" },
+        { value: "geography" },
+      ];
+    },
+
+    //调用接口方法
+    queryData(course, data, startTime, endTime) {
+      //查询整个班级对应课程专注度
+      analysisApi.queryClassConcentration(course, date, startTime, endTime).then(res => {
+
+      })
+    },
+  },
+};
 </script>
 

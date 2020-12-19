@@ -3,9 +3,7 @@ package com.abc.util;
 
 
 
-import org.json.JSONObject;
-import java.util.List;
-
+import com.alibaba.fastjson.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
 public class GetBaiduToken {
 
 
@@ -78,7 +77,7 @@ public class GetBaiduToken {
                  * 返回结果示例
                  */
                 System.err.println("result:" + result);
-                JSONObject jsonObject = new JSONObject(result);
+                JSONObject jsonObject = new JSONObject();
                 String access_token = jsonObject.getString("access_token");
                 return access_token;
             } catch (Exception e) {

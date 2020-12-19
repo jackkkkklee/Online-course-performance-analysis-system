@@ -71,7 +71,7 @@
           password: '123456'
         },
         loginRules: {
-          username: [{required: true, trigger: 'blur', validator: validateUsername}],
+          username: [{required: true, /*message: '请输入帐号', */ trigger: 'blur', validator: validateUsername}],
           password: [{required: true, trigger: 'blur', validator: validatePassword}]
         },
         passwordType: 'password',

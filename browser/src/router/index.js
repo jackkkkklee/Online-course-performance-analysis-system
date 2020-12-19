@@ -40,7 +40,7 @@ export const constantRouterMap = [
       path: 'dashboard',
       component: _import('dashboard/index'),
       name: 'dashboard',
-      meta: { title: '首页', icon: 'dashboard', noCache: true }
+      meta: { title: 'Home', icon: 'dashboard', noCache: true }
     }]
   },
 ]
@@ -93,7 +93,7 @@ export const asyncRouterMap = [
       path: 'index',
       name: 'menu1',
       component: _import('menu/menu1'),
-      meta: { perm:'m:menu1', title: '菜单1', icon: 'icon' }
+      meta: { perm:'m:menu1', title: 'Start Online Course', icon: 'peoples' }
     }]
   },
 
@@ -105,7 +105,7 @@ export const asyncRouterMap = [
       path: 'index',
       name: 'menu2',
       component: _import('menu/menu2'),
-      meta: { perm:'m:menu2', title: '菜单2', icon: 'icon' }
+      meta: { perm:'m:menu2', title: 'Personal Attention Analysis', icon: 'icon' }
     }]
   },
 
@@ -114,13 +114,13 @@ export const asyncRouterMap = [
     component: Layout,
     meta: {
       perm:'m:menu3',
-      title: '菜单3',
+      title: 'Attention Analysis',
       icon: 'chart'
     },
     children: [
-      { path: 'menu3_1', component: _import('menu/menu3_1'), name: 'menu3_1', meta: { perm:'m:menu3:1', title: '菜单3-1', icon: 'chart', noCache: true }},
-      { path: 'menu3_2', component: _import('menu/menu3_2'), name: 'menu3_2', meta: { perm:'m:menu3:2', title: '菜单3-2', icon: 'chart', noCache: true }},
-      { path: 'menu3_3', component: _import('menu/menu3_3'), name: 'menu3_3', meta: { perm:'m:menu3:3', title: '菜单3-3', icon: 'chart', noCache: true }}
+      { path: 'menu3_1', component: _import('menu/menu3_1'), name: 'menu3_1', meta: { perm:'m:menu3:1', title: 'Student Attention Analysis', icon: 'chart', noCache: true }},
+      { path: 'menu3_2', component: _import('menu/menu3_2'), name: 'menu3_2', meta: { perm:'m:menu3:2', title: 'Class Attention Analysis', icon: 'chart', noCache: true }},
+      { path: 'menu3_3', component: _import('menu/menu3_3'), name: 'menu3_3', meta: { perm:'m:menu3:3', title: 'Class Eomtion', icon: 'chart', noCache: true }}
     ]
   },
 
