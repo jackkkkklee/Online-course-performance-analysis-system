@@ -4,8 +4,17 @@ package com.abc.util;
 import  com.abc.util.Base64Util;
 import  com.abc.util.FileUtil;
 import  com.abc.util.HttpUtil;
+import com.abc.vo.Json;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonObject;
 
 import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 public class BehaviorRecognition {
 
 
@@ -31,6 +40,9 @@ public class BehaviorRecognition {
 
          * 下载
          */
+        public static Boolean isUsingCellPhone=false;
+        public static Boolean isSmoking=false;
+
         public static String body_attr(String filePath,String accessToken) {
             // 请求url
             String url = "https://aip.baidubce.com/rest/2.0/image-classify/v1/body_attr";
@@ -66,8 +78,56 @@ public class BehaviorRecognition {
         return body_attr(filePath,token);
         }
 
+        public static  void jsonIterate(JSONObject jsonObject){
+            for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+                System.out.println("key值="+entry.getKey());
+                System.out.println("对应key值的value="+entry.getValue());
+            }
+        }
+        public static  void getInfoFromJson(JSONObject jsonObject){
+            String res = jsonObject.getString("person_info");
+            JSONArray json = JSONArray.parseArray(res);
+            System.out.println("res"+res);
+            List list=json.toJavaList(String.class);
+
+            Iterator iterator=json.listIterator();
+            while(iterator.hasNext()) {
+                JSONObject js=(JSONObject)iterator.next();
+                String cell=JSONObject.parseObject(js.getString("attributes")).getString("cellphone");
+
+                if(JSONObject.parseObject(cell).getString("name").equals("看手机")){
+                    isUsingCellPhone=true;
+                    System.out.println(JSONObject.parseObject(cell).getString("name"));
+                }
+
+                String smoke=JSONObject.parseObject(js.getString("attributes")).getString("smoke");
+                if(JSONObject.parseObject(smoke).getString("name").equals("吸烟")){
+                    isSmoking=true;
+                }
+
+            }
+
+        }
+        public static void CheckBehaviorInClass(String imagePath){
+            //
+            String res=BehaviorRecognition.body_attr(imagePath);
+            //if(res.contains("cellphone"))
+            JSONObject jsonObject = JSON.parseObject(res);
+            getInfoFromJson(jsonObject);
+            System.out.println("phone: "+isUsingCellPhone);
+            System.out.println("smoke: "+isSmoking);
+        }
+
+
         public static void main(String[] args) {
-            BehaviorRecognition.body_attr("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\1.jpg");
+
+            //
+            String res=BehaviorRecognition.body_attr("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\7.jpg");
+            //if(res.contains("cellphone"))
+            JSONObject jsonObject = JSON.parseObject(res);
+            getInfoFromJson(jsonObject);
+            System.out.println("phone: "+isUsingCellPhone);
+            System.out.println("smoke: "+isSmoking);
         }
     }
 
