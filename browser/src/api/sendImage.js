@@ -6,12 +6,12 @@ import request from '@/utils/request'
 
 export default {
     //发送图片
-    sendImage(imageData, studentName,) {
+    sendImage(imgData, studentName) {
         return request({
             url: '/sys_user/query',
             method: 'post',
             data: {
-                image: imageData,
+                image: imgData,
                 sid: studentName
             }
         })

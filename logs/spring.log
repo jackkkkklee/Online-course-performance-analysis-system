@@ -65,7 +65,7 @@
 2020-12-19 23:39:31.085  INFO 408 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:39:31.086  INFO 408 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:39:31.086  INFO 408 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:39:31.546  INFO 408 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:39:31.546  INFO 408 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:39:31.547  INFO 408 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:39:31.566  INFO 408 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:39:32.304  INFO 408 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -129,13 +129,13 @@
 2020-12-19 23:40:54.947  INFO 408 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 55 ms
 2020-12-19 23:40:55.092  INFO 408 --- [http-nio-8888-exec-2] c.a.c.basicController.AuthController     : get user info, sessionId: FEA570A559F59D40496605E67445B4A4
 2020-12-19 23:41:03.695  INFO 408 --- [http-nio-8888-exec-3] c.a.c.basicController.AuthController     : user login, body: {"uname":"admin","pwd":"123456"}
-2020-12-19 23:41:03.850 DEBUG 408 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : ==>  Preparing: SELECT uid AS `uid`,uname,nick,pwd,salt,`lock`,created,updated FROM sys_user WHERE (uname = ?) 
+2020-12-19 23:41:03.850 DEBUG 408 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : ==>  Preparing: SELECT uid AS `uid`,uname,nick,pwd,salt,`lock`,created,updated FROM sys_user WHERE (uname = ?)
 2020-12-19 23:41:03.898 DEBUG 408 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : ==> Parameters: admin(String)
 2020-12-19 23:41:04.220 DEBUG 408 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : <==      Total: 1
-2020-12-19 23:41:04.236 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : ==>  Preparing: SELECT r.rname,r.rval FROM sys_role r, sys_user_role ur WHERE r.rid = ur.role_id AND ur.user_id = ? 
+2020-12-19 23:41:04.236 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : ==>  Preparing: SELECT r.rname,r.rval FROM sys_role r, sys_user_role ur WHERE r.rid = ur.role_id AND ur.user_id = ?
 2020-12-19 23:41:04.237 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : ==> Parameters: 986177923098808322(String)
 2020-12-19 23:41:04.302 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : <==      Total: 1
-2020-12-19 23:41:04.315 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : ==>  Preparing: SELECT p.pname,p.pval FROM sys_perm p, sys_role_perm rp, sys_user_role ur WHERE p.pval = rp.perm_val AND ur.role_id = rp.role_id AND ur.user_id = ? 
+2020-12-19 23:41:04.315 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : ==>  Preparing: SELECT p.pname,p.pval FROM sys_perm p, sys_role_perm rp, sys_user_role ur WHERE p.pval = rp.perm_val AND ur.role_id = rp.role_id AND ur.user_id = ?
 2020-12-19 23:41:04.316 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : ==> Parameters: 986177923098808322(String)
 2020-12-19 23:41:04.319 DEBUG 408 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : <==      Total: 1
 2020-12-19 23:41:04.332  INFO 408 --- [http-nio-8888-exec-3] c.a.c.basicController.AuthController     : user login: admin, sessionId: FEA570A559F59D40496605E67445B4A4
@@ -215,7 +215,7 @@
 2020-12-19 23:08:28.118  INFO 20376 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:08:28.118  INFO 20376 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:08:28.118  INFO 20376 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:08:28.338  INFO 20376 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:08:28.338  INFO 20376 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:08:28.338  INFO 20376 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:08:28.338  INFO 20376 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:08:28.467  INFO 20376 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -278,13 +278,13 @@
 2020-12-19 23:09:30.010  INFO 20376 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2020-12-19 23:09:30.036  INFO 20376 --- [http-nio-8888-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 26 ms
 2020-12-19 23:09:30.235  INFO 20376 --- [http-nio-8888-exec-3] c.a.c.basicController.AuthController     : user login, body: {"uname":"admin","pwd":"123456"}
-2020-12-19 23:09:30.415 DEBUG 20376 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : ==>  Preparing: SELECT uid AS `uid`,uname,nick,pwd,salt,`lock`,created,updated FROM sys_user WHERE (uname = ?) 
+2020-12-19 23:09:30.415 DEBUG 20376 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : ==>  Preparing: SELECT uid AS `uid`,uname,nick,pwd,salt,`lock`,created,updated FROM sys_user WHERE (uname = ?)
 2020-12-19 23:09:30.435 DEBUG 20376 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : ==> Parameters: admin(String)
 2020-12-19 23:09:31.535 DEBUG 20376 --- [http-nio-8888-exec-3] com.abc.dao.SysUserMapper.selectList     : <==      Total: 1
-2020-12-19 23:09:31.545 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : ==>  Preparing: SELECT r.rname,r.rval FROM sys_role r, sys_user_role ur WHERE r.rid = ur.role_id AND ur.user_id = ? 
+2020-12-19 23:09:31.545 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : ==>  Preparing: SELECT r.rname,r.rval FROM sys_role r, sys_user_role ur WHERE r.rid = ur.role_id AND ur.user_id = ?
 2020-12-19 23:09:31.545 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : ==> Parameters: 986177923098808322(String)
 2020-12-19 23:09:31.645 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysRoleMapper.getRolesByUserId   : <==      Total: 1
-2020-12-19 23:09:31.655 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : ==>  Preparing: SELECT p.pname,p.pval FROM sys_perm p, sys_role_perm rp, sys_user_role ur WHERE p.pval = rp.perm_val AND ur.role_id = rp.role_id AND ur.user_id = ? 
+2020-12-19 23:09:31.655 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : ==>  Preparing: SELECT p.pname,p.pval FROM sys_perm p, sys_role_perm rp, sys_user_role ur WHERE p.pval = rp.perm_val AND ur.role_id = rp.role_id AND ur.user_id = ?
 2020-12-19 23:09:31.655 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : ==> Parameters: 986177923098808322(String)
 2020-12-19 23:09:31.685 DEBUG 20376 --- [http-nio-8888-exec-3] c.a.dao.SysPermMapper.getPermsByUserId   : <==      Total: 1
 2020-12-19 23:09:31.705  INFO 20376 --- [http-nio-8888-exec-3] c.a.c.basicController.AuthController     : user login: admin, sessionId: 84B7AA5202BC6972277E968941ED4190
@@ -356,7 +356,7 @@
 2020-12-19 23:13:13.788  INFO 26328 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:13:13.788  INFO 26328 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:13:13.788  INFO 26328 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:13:13.998  INFO 26328 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:13:13.998  INFO 26328 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:13:13.998  INFO 26328 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:13:13.998  INFO 26328 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:13:14.128  INFO 26328 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -485,7 +485,7 @@
 2020-12-19 23:16:02.211  INFO 7176 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:16:02.211  INFO 7176 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:16:02.211  INFO 7176 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:16:02.630  INFO 7176 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:16:02.630  INFO 7176 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:16:02.630  INFO 7176 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:16:02.650  INFO 7176 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:16:03.110  INFO 7176 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -619,7 +619,7 @@
 2020-12-19 23:22:04.022  INFO 24588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:22:04.022  INFO 24588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:22:04.022  INFO 24588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:22:04.351  INFO 24588 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:22:04.351  INFO 24588 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:22:04.361  INFO 24588 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:22:04.371  INFO 24588 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:22:04.601  INFO 24588 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -753,7 +753,7 @@
 2020-12-19 23:24:04.206  INFO 13488 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:24:04.206  INFO 13488 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:24:04.206  INFO 13488 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:24:04.386  INFO 13488 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:24:04.386  INFO 13488 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:24:04.386  INFO 13488 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:24:04.396  INFO 13488 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:24:04.516  INFO 13488 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -882,7 +882,7 @@
 2020-12-19 23:24:51.730  INFO 12972 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:24:51.730  INFO 12972 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:24:51.730  INFO 12972 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:24:52.020  INFO 12972 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:24:52.020  INFO 12972 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:24:52.020  INFO 12972 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:24:52.030  INFO 12972 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:24:52.260  INFO 12972 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -1016,7 +1016,7 @@
 2020-12-19 23:26:59.759  INFO 26988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:26:59.759  INFO 26988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:26:59.769  INFO 26988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:26:59.949  INFO 26988 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:26:59.949  INFO 26988 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:26:59.949  INFO 26988 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:26:59.959  INFO 26988 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:27:00.108  INFO 26988 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -1096,10 +1096,10 @@
 2020-12-19 23:34:20.862  INFO 26988 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration' of type [org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration$$EnhancerBySpringCGLIB$$d303d750] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 2020-12-19 23:34:20.872  INFO 26988 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAutoConfiguration$$EnhancerBySpringCGLIB$$746718b6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 2020-12-19 23:34:20.882  WARN 26988 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shiroEventBusAwareBeanPostProcessor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroBeanAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authorizationAttributeSourceAdvisor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAnnotationProcessorAutoConfiguration.class]: Unsatisfied dependency expressed through method 'authorizationAttributeSourceAdvisor' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityManager' defined in class path resource [org/apache/shiro/spring/config/web/autoconfigure/ShiroWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'securityManager' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'missingRealm' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.shiro.realm.Realm]: Factory method 'missingRealm' threw exception; nested exception is org.apache.shiro.spring.boot.autoconfigure.exception.NoRealmBeanConfiguredException
-2020-12-19 23:34:20.882  INFO 26988 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+2020-12-19 23:34:20.882  INFO 26988 --- [restartedMain] ConditionEvaluationReportLoggingListener :
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-12-19 23:34:20.882 ERROR 26988 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2020-12-19 23:34:20.882 ERROR 26988 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   :
 
 ***************************
 APPLICATION FAILED TO START
@@ -1125,7 +1125,7 @@ Please create bean of type 'Realm' or add a shiro.ini in the root classpath (src
 2020-12-19 23:34:23.920  INFO 26988 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration' of type [org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration$$EnhancerBySpringCGLIB$$d303d750] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 2020-12-19 23:34:23.930  INFO 26988 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.abc.config.ShiroConfig$$EnhancerBySpringCGLIB$$597bc87b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
 2020-12-19 23:34:23.930  WARN 26988 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'shiroEventBusAwareBeanPostProcessor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroBeanAutoConfiguration.class]: BeanPostProcessor before instantiation of bean failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authorizationAttributeSourceAdvisor' defined in class path resource [org/apache/shiro/spring/boot/autoconfigure/ShiroAnnotationProcessorAutoConfiguration.class]: Unsatisfied dependency expressed through method 'authorizationAttributeSourceAdvisor' parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'securityManager' defined in class path resource [org/apache/shiro/spring/config/web/autoconfigure/ShiroWebAutoConfiguration.class]: Unsatisfied dependency expressed through method 'securityManager' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'realm' defined in class path resource [com/abc/config/ShiroConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.shiro.realm.Realm]: Factory method 'realm' threw exception; nested exception is java.lang.NoClassDefFoundError: com/abc/shiro/UserRealm
-2020-12-19 23:34:23.930  INFO 26988 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+2020-12-19 23:34:23.930  INFO 26988 --- [restartedMain] ConditionEvaluationReportLoggingListener :
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2020-12-19 23:34:24.010 ERROR 26988 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
@@ -1299,7 +1299,7 @@ Caused by: java.lang.ClassNotFoundException: com.abc.shiro.UserRealm
 2020-12-19 23:39:19.666  INFO 14368 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-19 23:39:19.666  INFO 14368 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-19 23:39:19.666  INFO 14368 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-19 23:39:19.896  INFO 14368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-19 23:39:19.896  INFO 14368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-19 23:39:19.896  INFO 14368 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-19 23:39:19.906  INFO 14368 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-19 23:39:20.026  INFO 14368 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -1517,7 +1517,7 @@ java.lang.NumberFormatException: For input string: " "
 2020-12-20 12:25:28.067  INFO 22832 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
 2020-12-20 12:25:28.067  INFO 22832 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
 2020-12-20 12:25:28.067  INFO 22832 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
-2020-12-20 12:25:28.247  INFO 22832 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2020-12-20 12:25:28.247  INFO 22832 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
 2020-12-20 12:25:28.247  INFO 22832 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
 2020-12-20 12:25:28.247  INFO 22832 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
 2020-12-20 12:25:28.377  INFO 22832 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -1549,31 +1549,3 @@ java.lang.NumberFormatException: For input string: " "
 2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.add(java.lang.String)
 2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/info],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.update(java.lang.String)
 2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user],methods=[DELETE]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.delete(java.lang.String)
-2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/query],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.query(java.lang.String)
-2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/info],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.userInfo()
-2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/pwd],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.updatePwd(java.lang.String)
-2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/{uid}/roles],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.findUserRoles(java.lang.String)
-2020-12-20 12:25:28.887  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/role],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.updateUserRole(java.lang.String)
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/user],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.user()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/js],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.js()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/mvnInstall],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.mvnInstall()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/guest],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.guest()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/python],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.python()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/testAop],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.testAop()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/authn],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.authn()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/gradleBuild],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.gradleBuild()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/hello],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.hello()
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_concentration],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryStudentConcentration(java.lang.String)
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
-2020-12-20 12:25:28.897  INFO 22832 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
-2020-12-20 12:25:28.957  INFO 22832 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2020-12-20 12:25:28.957  INFO 22832 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
-2020-12-20 12:25:28.977  INFO 22832 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandler
-2020-12-20 12:25:29.377  INFO 22832 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-12-20 12:25:29.427  INFO 22832 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
-2020-12-20 12:25:29.427  INFO 22832 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
-2020-12-20 12:25:29.427  INFO 22832 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
-2020-12-20 12:25:29.437  INFO 22832 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
-2020-12-20 12:25:29.437  INFO 22832 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
-2020-12-20 12:25:29.467  INFO 22832 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path '/api/v1'
-2020-12-20 12:25:29.467  INFO 22832 --- [restartedMain] com.abc.ServerApplication                : Started ServerApplication in 7.607 seconds (JVM running for 10.219)
