@@ -284,7 +284,7 @@ export default {
     queryData() {
       //查询本学生对应课程专注度
       analysisApi.queryStudentConcentration(this.name, this.course, this.date+" "+this.startTime, this.date+" "+this.endTime).then(res => {
-        myChart.setOption({
+        this.myChart.setOption({
         xAxis: {
           data: res.data.time,
         },

@@ -1,11 +1,8 @@
 package com.abc.service;
 
-import com.abc.entity.Performance;
-
-import java.util.Date;
-import java.util.List;
+import com.abc.vo.StudentClassVo;
 
 public interface StudentService {
-    //返回某个学生的某种课程的一段时间内的专注度
-    List<Performance> queryStudentConcentrationByTimeAndClass(String sid, String cid, Date startTime, Date endTime );
+    // 检查现在是否有课，并返回课程名字
+    StudentClassVo queryStudentCourse(String sid);
 }

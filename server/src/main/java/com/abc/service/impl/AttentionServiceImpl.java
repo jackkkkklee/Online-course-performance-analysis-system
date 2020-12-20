@@ -30,8 +30,8 @@ public class AttentionServiceImpl  implements AttentionService {
      * 此时暂时将图片文件保存下来
      * @return Instantaneous integrated assessment score
      */
-    public  int finalAssessment(String base64,String mode,String sid,String imageName){
-        assessment.storeImage(base64,sid);
+    public  int finalAssessment(String base64,String mode,String sid){
+        String imageName = assessment.storeImage(base64,sid);
         return AssessmentByImage(mode,sid,imageName);
     }
 
@@ -39,7 +39,7 @@ public class AttentionServiceImpl  implements AttentionService {
 
         //after the image is saved,call python script
         String[] res = basicAssessment(sid,imageName);
-        String imagePath = IMAGE_PATH+sid+imageName+".jpg";
+        String imagePath = IMAGE_PATH+imageName+".jpg";
         //对分数进行运算  1.打哈欠 -10 2.睡觉为0
         //mode 1
         Integer basicAttention=(int)Double.parseDouble(res[0]);
@@ -72,7 +72,7 @@ public class AttentionServiceImpl  implements AttentionService {
     public  String[] basicAssessment(String sid, String imageName){
         //Parametric function: CallPython.callPython(path+imageName);
         CallPythonByHTTP callPythonByHTTP=new CallPythonByHTTP();
-        String res=callPythonByHTTP.CallPythonService(IMAGE_PATH+sid+imageName+".jpg");
+        String res=callPythonByHTTP.CallPythonService(IMAGE_PATH+imageName+".jpg");
         // 0:attention 1: direction 2:yawn status 3:sleep chance
         return res.split("\n");
     }

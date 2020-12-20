@@ -2,7 +2,7 @@ package com.abc.controller;
 
 import com.abc.annotation.PermInfo;
 import com.abc.entity.Performance;
-import com.abc.service.StudentService;
+import com.abc.service.TeacherService;
 import com.abc.util.MyTimeUtils;
 import com.abc.vo.Json;
 import com.alibaba.fastjson.JSON;
@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 import java.util.List;
 
-@PermInfo(value = "学生模块", pval = "a:student")
+@PermInfo(value = "老师模块", pval = "a:teacher")
 @RestController
-@RequestMapping("/student")
-public class StudentController {
-    private static final Logger log = LoggerFactory.getLogger(StudentController.class);
+@RequestMapping("/teacher")
+public class TeacherController {
+    private static final Logger log = LoggerFactory.getLogger(TeacherController.class);
     @Autowired
-    StudentService studentService;
+    TeacherService teacherService;
     //queryStudentCourse()
 
     @PostMapping("/query_concentration")
@@ -36,17 +36,17 @@ public class StudentController {
         String cid = jsonObj.getString("cid");
         Date startTime= jsonObj.getDate ("startTime");
         Date endTime = jsonObj.getDate("endTime");
-        List<Performance> performanceList=studentService.queryStudentConcentrationByTimeAndClass(sid,cid,startTime,endTime);
+        List<Performance> performanceList= teacherService.queryStudentConcentrationByTimeAndCourse(sid,cid,startTime,endTime);
         // 以 前端需要的格式返回json
-        Json json=new Json();
+
         String[] time = new String[performanceList.size()];
-        Integer[] attention_value = new Integer[performanceList.size()];
+        int[] attention_value = new int[performanceList.size()];
         for(int i=0;i<performanceList.size();i++){
             time[i] = MyTimeUtils.convertToHHmmFormat(performanceList.get(i).getTimeOffset());
             attention_value[i] = performanceList.get(i).getAttention_value();
         }
-
-
-        return Json.succ(oper, "time", time).data("attention_value",attention_value);
+        Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
+        System.out.println(json);
+        return json;
     }
 }
