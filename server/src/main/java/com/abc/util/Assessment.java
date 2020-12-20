@@ -26,7 +26,7 @@ public class Assessment {
       */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-    public final static String IMAGE_PATH="E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\";
+    public final static String IMAGE_PATH="E:/testImageForOnlineClass/";
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;
@@ -55,7 +55,7 @@ public class Assessment {
 
     public static String storeImage(String base64, String sid){
         Long time=Calendar.getInstance().getTimeInMillis();
-        String path="E:/git/biu-master/server/src/main/resources/studentImage";
+        String path="E:/testImageForOnlineClass/";
         //Name the picture with student ID and time
         String imageName = sid+time;
         Base64ToImage.decodeBase64ToImage(base64,path,sid+time);

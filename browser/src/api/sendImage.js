@@ -8,7 +8,7 @@ export default {
     //发送图片
     sendImage(imgData, studentName) {
         return request({
-            url: '/sys_user/query',
+            url: '/analysis',
             method: 'post',
             data: {
                 image: imgData,

@@ -20,7 +20,7 @@ public class AttentionServiceImpl  implements AttentionService {
      */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-    public final static String IMAGE_PATH="E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\";
+    public final static String IMAGE_PATH="E:/testImageForOnlineClass/";
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;

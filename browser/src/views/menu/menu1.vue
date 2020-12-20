@@ -25,9 +25,9 @@
 
 
 <script>
-import analysisApi from '@/api/analysis'
-import sendImageApi from '@/api/sendImage'
-import { mapGetters } from "vuex"
+import analysisApi from "@/api/analysis";
+import sendImageApi from "@/api/sendImage";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Menu1",
@@ -35,6 +35,7 @@ export default {
     return {
       pageName: "Online Course",
       isShow: true,
+      onCourse: false,
     };
   },
   computed: {
@@ -84,7 +85,8 @@ export default {
           this.error
         );
         this.isShow = !this.isShow;
-        this.timer = setInterval(this.uploadImage, 1000);  //拍照间隔设置
+        this.onCourse = !this.onCourse;
+        this.timer = setInterval(this.uploadImage, 1000); //拍照间隔设置
       } else {
         alert("不支持访问用户媒体");
       }
@@ -94,7 +96,9 @@ export default {
         var video = document.getElementById("camera");
         video.srcObject.getTracks()[0].stop();
         this.isShow = !this.isShow;
-      }else{
+        this.onCourse = !this.onCourse;
+        clearInterval(this.timer);
+      } else {
         alert("You have not started course!");
       }
     },
@@ -102,21 +106,20 @@ export default {
     //调用接口方法
     checkCourse() {
       //查询该学生当前是否有课
-      queryStudentCourse(studentName, time).then(res => {
-
-      })
+      queryStudentCourse(studentName, time).then((res) => {});
     },
     //图片上传到服务器
     //获取Canvas的编码。
-    uploadImage(){
+    uploadImage() {
       var video = document.getElementById("camera");
       var canvas = document.getElementById("canvas");
       var context = canvas.getContext("2d");
       context.drawImage(video, 0, 0, 300, 300);
       var imgData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
-        //上传到后台。
+      //上传到后台。
       sendImageApi.sendImage(imgData, this.name);
+      console.log(imgData);
     },
   },
 };
