@@ -38,9 +38,7 @@
           }"
         >
         </el-time-select>
-        <el-button type="primary" @click="queryData"
-          >Search
-        </el-button>
+        <el-button type="primary" @click="queryData">Search </el-button>
       </div>
       <div
         id="chart"
@@ -53,14 +51,15 @@
 <script>
 import axios from "axios";
 import echarts from "echarts";
-import analysisApi from '@/api/analysis'
-import { mapGetters } from 'vuex'
+import analysisApi from "@/api/analysis";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Menu3_2",
   data() {
     return {
       pageName: "菜单3-2",
+      myChart: null,
       courses: [],
       course: "",
       date: "",
@@ -99,160 +98,159 @@ export default {
   },
   //获取用户（学生）名字
   computed: {
-    ...mapGetters([
-      'name',
-    ])
+    ...mapGetters(["name"]),
   },
   mounted() {
     this.courses = this.queryCourse();
-    var myChart = echarts.init(document.getElementById("chart"));
-    myChart.showLoading();
+    this.initChart();
+    //模拟数据
+    // axios.get("/static/mock/data.json").then((res) => {
+    //   // console.log(res.data);
+    //
+    //   this.myChart.setOption({
+    //     xAxis: {
+    //       data: res.data.time,
+    //     },
+    //     legend: {
+    //       data: res.data.name,
+    //     },
+    //     series: [
+    //       {
+    //         name: res.data.name,
+    //         data: res.data.attention_value,
+    //       },
+    //     ],
+    //   });
+    // });
+  },
+  methods: {
+    initChart() {
+      this.myChart = echarts.init(document.getElementById("chart"));
+      this.myChart.showLoading();
+      this.myChart.setOption({
+        backgroundColor: "#394056",
 
-    myChart.setOption({
-      backgroundColor: "#394056",
-
-      title: {
-        top: 16,
-        text: "Concentration Score",
-        textStyle: {
-          fontWeight: "normal",
-          fontSize: 16,
-          color: "#F1F1F3",
+        title: {
+          top: 16,
+          text: "Concentration Score",
+          textStyle: {
+            fontWeight: "normal",
+            fontSize: 16,
+            color: "#F1F1F3",
+          },
+          left: "1%",
         },
-        left: "1%",
-      },
-      tooltip: {
-        trigger: "axis",
-        axisPointer: {
-          lineStyle: {
-            color: "#57617B",
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "#57617B",
+            },
           },
         },
-      },
-      legend: {
-        top: 20,
-        icon: "rect",
-        itemWidth: 14,
-        itemHeight: 5,
-        itemGap: 13,
-        data: [],
-        right: "4%",
-        textStyle: {
-          fontSize: 12,
-          color: "#F1F1F3",
-        },
-      },
-      grid: {
-        top: 100,
-        left: "3%",
-        right: "4%",
-        bottom: "2%",
-        containLabel: true,
-      },
-      xAxis: {
-        type: "category",
-        boundaryGap: false,
-        axisLine: {
-          lineStyle: {
-            color: "#57617B",
+        legend: {
+          top: 20,
+          icon: "rect",
+          itemWidth: 14,
+          itemHeight: 5,
+          itemGap: 13,
+          data: [],
+          right: "4%",
+          textStyle: {
+            fontSize: 12,
+            color: "#F1F1F3",
           },
         },
-        data: [],
-      },
-      yAxis: [
-        {
-          type: "value",
-          name: "score",
-          axisTick: {
-            show: false,
-          },
+        grid: {
+          top: 100,
+          left: "3%",
+          right: "4%",
+          bottom: "2%",
+          containLabel: true,
+        },
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
           axisLine: {
             lineStyle: {
               color: "#57617B",
             },
           },
-          axisLabel: {
-            margin: 10,
-            textStyle: {
-              fontSize: 14,
-            },
-          },
-          splitLine: {
-            lineStyle: {
-              color: "#57617B",
-            },
-          },
-        },
-      ],
-      series: [
-        {
-          name: "",
-          type: "line",
-          smooth: true,
-          symbol: "circle",
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1,
-            },
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(
-                0,
-                0,
-                0,
-                1,
-                [
-                  {
-                    offset: 0,
-                    color: "rgba(137, 189, 27, 0.3)",
-                  },
-                  {
-                    offset: 0.8,
-                    color: "rgba(137, 189, 27, 0)",
-                  },
-                ],
-                false
-              ),
-              shadowColor: "rgba(0, 0, 0, 0.1)",
-              shadowBlur: 10,
-            },
-          },
-          itemStyle: {
-            normal: {
-              color: "rgb(137,189,27)",
-              borderColor: "rgba(137,189,2,0.27)",
-              borderWidth: 12,
-            },
-          },
           data: [],
         },
-      ],
-    });
-
-    //模拟数据
-    axios.get("/static/mock/data.json").then((res) => {
-      // console.log(res.data);
-      myChart.hideLoading();
-      myChart.setOption({
-        xAxis: {
-          data: res.data.time,
-        },
-        legend: {
-          data: res.data.name,
-        },
+        yAxis: [
+          {
+            type: "value",
+            name: "score",
+            axisTick: {
+              show: false,
+            },
+            axisLine: {
+              lineStyle: {
+                color: "#57617B",
+              },
+            },
+            axisLabel: {
+              margin: 10,
+              textStyle: {
+                fontSize: 14,
+              },
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#57617B",
+              },
+            },
+          },
+        ],
         series: [
           {
-            name: res.data.name,
-            data: res.data.attention_value,
+            name: "",
+            type: "line",
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 5,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                width: 1,
+              },
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0,
+                  0,
+                  0,
+                  1,
+                  [
+                    {
+                      offset: 0,
+                      color: "rgba(137, 189, 27, 0.3)",
+                    },
+                    {
+                      offset: 0.8,
+                      color: "rgba(137, 189, 27, 0)",
+                    },
+                  ],
+                  false
+                ),
+                shadowColor: "rgba(0, 0, 0, 0.1)",
+                shadowBlur: 10,
+              },
+            },
+            itemStyle: {
+              normal: {
+                color: "rgb(137,189,27)",
+                borderColor: "rgba(137,189,2,0.27)",
+                borderWidth: 12,
+              },
+            },
+            data: [],
           },
         ],
       });
-    });
-  },
-  methods: {
+    },
     querySearch(queryString, cb) {
       var courses = this.courses;
       var results = queryString
@@ -269,48 +267,55 @@ export default {
       };
     },
     queryCourse() {
-      return [
-        //模拟的数据
-        { value: "english" },
-        { value: "math" },
-        { value: "history" },
-        { value: "pe" },
-        { value: "computer" },
-        { value: "geography" },
-      ];
+      // return [
+      //   //模拟的数据
+      //   { value: "english" },
+      //   { value: "math" },
+      //   { value: "history" },
+      //   { value: "pe" },
+      //   { value: "computer" },
+      //   { value: "geography" },
+      // ];
     },
-
     //调用接口方法
     queryData() {
       //查询本学生对应课程专注度
-      analysisApi.queryStudentConcentration(this.name, this.course, this.date+" "+this.startTime, this.date+" "+this.endTime).then(res => {
-        myChart.setOption({
-        xAxis: {
-          data: res.data.time,
-        },
-        legend: {
-          data: res.data.name,
-        },
-        series: [
-          {
-            name: res.data.name,
-            data: res.data.attention_value,
-          },
-        ],
-      });
-      })
+      analysisApi
+        .queryStudentConcentration(
+          this.name,
+          this.course,
+          this.date + " " + this.startTime,
+          this.date + " " + this.endTime
+        )
+        .then((res) => {
+          this.myChart.hideLoading();
+          this.myChart.setOption({
+            xAxis: {
+              data: res.data.time,
+            },
+            legend: {
+              data: res.data.name,
+            },
+            series: [
+              {
+                name: res.data.name,
+                data: res.data.attention_value,
+              },
+            ],
+          });
+        });
     },
 
     //测试日期和时间
-    test() {
-      console.log(this.startTime);
-      console.log(this.endTime);
-      console.log(this.date);
-      console.log(this.name);
-      console.log(this.nick);
-      console.log(this.roles);
-      console.log(this.token);
-    }
+    // test() {
+    //   console.log(this.startTime);
+    //   console.log(this.endTime);
+    //   console.log(this.date);
+    //   console.log(this.name);
+    //   console.log(this.nick);
+    //   console.log(this.roles);
+    //   console.log(this.token);
+    // }
   },
 };
 </script>

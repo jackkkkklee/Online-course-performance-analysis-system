@@ -4,7 +4,7 @@
 import request from '@/utils/request'
 
 export default {
-    
+
     //查询学生当前是否有课
     queryStudentCourse(studentName) {
         return request({
@@ -26,7 +26,7 @@ export default {
     //老师查询单个学生专注度
     queryStudentConcentration(studentName, course, startTime, endTime) {
         return request({
-            url: '/student/query_concentration',
+            url: '/teacher/query_concentration',
             method: 'post',
             data: {
                 sid: studentName,

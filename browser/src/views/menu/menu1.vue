@@ -26,6 +26,8 @@
 
 <script>
 import analysisApi from '@/api/analysis'
+import sendImageApi from '@/api/sendImage'
+import { mapGetters } from "vuex"
 
 export default {
   name: "Menu1",
@@ -34,6 +36,9 @@ export default {
       pageName: "Online Course",
       isShow: true,
     };
+  },
+  computed: {
+    ...mapGetters(["name"]),
   },
   methods: {
     getUserMedia(constraints, success, error) {
@@ -79,17 +84,12 @@ export default {
           this.error
         );
         this.isShow = !this.isShow;
-        this.timer = setInterval(this.takePhoto, 1000);  //拍照间隔设置
+        this.timer = setInterval(this.uploadImage, 1000);  //拍照间隔设置
       } else {
         alert("不支持访问用户媒体");
       }
     },
     takePhoto() {
-      var video = document.getElementById("camera");
-      var canvas = document.getElementById("canvas");
-      var context = canvas.getContext("2d");
-      context.drawImage(video, 0, 0, 300, 300);
-      var imgData = canvas.toDataURL("image/png");
       //Canvas2Image.saveAsImage(canvas,300,300,"png","image1");
     },
     stopNavigator() {
@@ -108,47 +108,19 @@ export default {
       queryStudentCourse(studentName, time).then(res => {
 
       })
-    }
-    // //图片上传到服务器
-    // //获取Canvas的编码。
-    // function uploadImage(){
-    //     canvas.width = 300;
-    //     canvas.height = 300;
-    //     context.drawImage(video, 0, 0, 300, 300);
-    //     var imgData = canvas.toDataURL();
-    //     //上传到后台。
-    //     var uploadAjax = $.ajax({
-    //         type: "post",
-    //         //后端需要调用的地址
-    //         url:"test",
-    //         data: JSON.stringify({"imgData": imgData}),
-    // 		contentType:"json/application",
-    // 		//设置超时
-    //         timeout:10000,
-    //         async: true,
-    //         success: function (htmlVal) {
-    //         	//成功后回调
-    // 		},
-    //         error: function(data) {
-    //         },
-    //         //调用执行后调用的函数
-    //         complete: function (XMLHttpRequest, textStatus) {
-    //             if(textStatus == 'timeout'){
-    //                 uploadAjax.abort(); //取消请求
-    //                 //超时提示：请求超时，请重试
-    //                 alert("请求超时，请重试")
-    //                 //请求超时返回首页
-    //                 closeCard();
-    //             }
-    //         }
-    //     });
-    // }
-    // 	$(function(){     --需要导入jquery包
-    // 		$("#photo").click(function(){
-    // 			uploadImage()
-    // 		})
-    // 	})
-  },
+    },
+    //图片上传到服务器
+    //获取Canvas的编码。
+    uploadImage(){
+      var video = document.getElementById("camera");
+      var canvas = document.getElementById("canvas");
+      var context = canvas.getContext("2d");
+      context.drawImage(video, 0, 0, 300, 300);
+      var imgData = canvas.toDataURL();
+      // var imgData = canvas.toDataURL();
+        //上传到后台。
+      sendImageApi.sendImage(imgData, name);
+    },
 };
 </script>
 
