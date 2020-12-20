@@ -116,10 +116,10 @@ export default {
       var canvas = document.getElementById("canvas");
       var context = canvas.getContext("2d");
       context.drawImage(video, 0, 0, 300, 300);
-      var imgData = canvas.toDataURL();
+      var imageData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
         //上传到后台。
-      sendImageApi.sendImage(imgData, name);
+      sendImageApi.sendImage(imageData, this.name);
     },
 };
 </script>

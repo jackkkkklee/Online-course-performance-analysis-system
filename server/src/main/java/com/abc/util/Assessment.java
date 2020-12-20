@@ -53,12 +53,13 @@ public class Assessment {
     }
 
 
-    public static void storeImage(String base64, String sid){
+    public static String storeImage(String base64, String sid){
         Long time=Calendar.getInstance().getTimeInMillis();
         String path="E:/git/biu-master/server/src/main/resources/studentImage";
         //Name the picture with student ID and time
         String imageName = sid+time;
         Base64ToImage.decodeBase64ToImage(base64,path,sid+time);
+        return imageName;
     }
 
     public  boolean sleepDetection(String sid, String[] res){
