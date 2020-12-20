@@ -280,7 +280,6 @@ export default {
     //调用接口方法
     queryData() {
       //查询本学生对应课程专注度
-<<<<<<< HEAD
       analysisApi
         .queryStudentConcentration(
           this.name,
@@ -305,24 +304,6 @@ export default {
             ],
           });
         });
-=======
-      analysisApi.queryStudentConcentration(this.name, this.course, this.date+" "+this.startTime, this.date+" "+this.endTime).then(res => {
-        this.myChart.setOption({
-        xAxis: {
-          data: res.data.time,
-        },
-        legend: {
-          data: res.data.name,
-        },
-        series: [
-          {
-            name: res.data.name,
-            data: res.data.attention_value,
-          },
-        ],
-      });
-      })
->>>>>>> bfc1ddf3dbbc5130fa58a087d9bddbac6e19a5eb
     },
 
     //测试日期和时间

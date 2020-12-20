@@ -89,9 +89,6 @@ export default {
         alert("不支持访问用户媒体");
       }
     },
-    takePhoto() {
-      //Canvas2Image.saveAsImage(canvas,300,300,"png","image1");
-    },
     stopNavigator() {
       if (this.isShow == false) {
         var video = document.getElementById("camera");
@@ -116,11 +113,12 @@ export default {
       var canvas = document.getElementById("canvas");
       var context = canvas.getContext("2d");
       context.drawImage(video, 0, 0, 300, 300);
-      var imageData = canvas.toDataURL();
+      var imgData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
         //上传到后台。
-      sendImageApi.sendImage(imageData, this.name);
+      sendImageApi.sendImage(imgData, this.name);
     },
+  },
 };
 </script>
 
