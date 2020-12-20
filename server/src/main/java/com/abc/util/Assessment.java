@@ -55,7 +55,7 @@ public class Assessment {
 
     public static String storeImage(String base64, String sid){
         Long time=Calendar.getInstance().getTimeInMillis();
-        String path="E:/git/biu-master/server/src/main/resources/studentImage";
+        String path="E:/testImageForOnlineClass";
         //Name the picture with student ID and time
         String imageName = sid+time;
         Base64ToImage.decodeBase64ToImage(base64,path,sid+time);
