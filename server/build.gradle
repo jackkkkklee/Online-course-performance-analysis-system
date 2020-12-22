@@ -53,6 +53,9 @@ dependencies {
     compile 'org.apache.shiro:shiro-spring-boot-web-starter:1.4.0'
 //    compile 'org.crazycake:shiro-redis:2.8.24'
 
+    //lombok
+    compile "org.projectlombok:lombok:1.18.4"
+
     //其他库
     compile 'com.alibaba:fastjson:1.2.47'
     compile 'org.apache.commons:commons-lang3'

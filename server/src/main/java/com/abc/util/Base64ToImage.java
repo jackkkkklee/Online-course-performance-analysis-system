@@ -1,60 +1,81 @@
 package com.abc.util;
 
+import sun.misc.BASE64Encoder;
 import sun.misc.BASE64Decoder;
 
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import sun.misc.BASE64Decoder;
 import java.io.*;
-public class Base64ToImage {
 
-        public static String Readfile2Str(String filePath){
-            String fileIOstr;
+public class Base64ToImage {
+    /**
+     * 图片转化成base64字符串
+     * @param imgPath
+     * @return
+     */
+    public static String GetImageStr(String imgPath) {// 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+        String imgFile = imgPath;// 待处理的图片
+        InputStream in = null;
+        byte[] data = null;
+        String encode = null; // 返回Base64编码过的字节数组字符串
+        // 对字节数组Base64编码
+        BASE64Encoder encoder = new BASE64Encoder();
+        try {
+            // 读取图片字节数组
+            in = new FileInputStream(imgFile);
+            data = new byte[in.available()];
+            in.read(data);
+            encode = encoder.encode(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                BufferedReader in = new BufferedReader(new FileReader(filePath));
-                while ((fileIOstr = in.readLine()) != null) {
-                    break;
-                }
+                in.close();
             } catch (IOException e) {
-                System.out.println(e);
-                fileIOstr = "";
-            }
-            return fileIOstr;
-        }
-        public static void Base64ToImg(String filePath,String fileNmae,String fileType){
-            String fileIOstr = Readfile2Str(filePath);
-            //对内容进行base64解码
-            BASE64Decoder decoder = new BASE64Decoder();
-            try {
-                FileOutputStream write = new FileOutputStream(new File(fileNmae+"."+fileType));
-                byte[] decodeBytes = decoder.decodeBuffer(fileIOstr);
-                write.write(decodeBytes);
-                write.close();
-            } catch (IOException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
+        return encode;
+    }
+
     /**
-     * 将Base64位编码的图片进行解码，并保存到指定目录
+     * base64字符串转化成图片
      *
-     * @param base64
-     *            base64编码的图片信息
+     * @param imgData
+     *            图片编码
+     * @param imgFilePath
+     *            存放到本地路径
      * @return
+     * @throws IOException
      */
-    public static void decodeBase64ToImage(String base64, String path,
-                                           String imgName) {
+    @SuppressWarnings("finally")
+    public static boolean GenerateImage(String imgData, String imgFilePath) throws IOException { // 对字节数组字符串进行Base64解码并生成图片
+        if (imgData == null) // 图像数据为空
+            return false;
         BASE64Decoder decoder = new BASE64Decoder();
+        OutputStream out = null;
         try {
-            FileOutputStream write = new FileOutputStream(new File(path
-                    + imgName));
-            byte[] decoderBytes = decoder.decodeBuffer(base64);
-            write.write(decoderBytes);
-            write.close();
-        } catch (IOException e) {
+            out = new FileOutputStream(imgFilePath);
+            // Base64解码
+            byte[] b = decoder.decodeBuffer(imgData);
+            for (int i = 0; i < b.length; ++i) {
+                if (b[i] < 0) {// 调整异常数据
+                    b[i] += 256;
+                }
+            }
+            out.write(b);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            out.flush();
+            out.close();
+            return true;
         }
     }
 }
+
 
 

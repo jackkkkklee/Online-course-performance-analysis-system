@@ -50,26 +50,30 @@ public class ItemRecognition {
         }
         public static HashSet<String> NonClassItems(String filePath, String ak,String sk){
             HashSet<String> resItemsSet=new HashSet();
+            try{
+                String token=GetBaiduToken.getAuth(ak,sk);
+                String res = advancedGeneral(filePath,token);
+                res=test(res,"result");
+                JSONArray json = JSONArray.parseArray(res);
+                Iterator iterator=json.listIterator();
+                while(iterator.hasNext()){
+                    JSONObject jsonObject=(JSONObject) iterator.next();
+                    double score = Double.parseDouble(jsonObject.getString("score"));
+                    System.out.println(score);
+                    String root= jsonObject.getString("root");
+                    System.out.println(root);
+                    String name = jsonObject.getString("keyword");
 
-            String token=GetBaiduToken.getAuth(ak,sk);
-            String res = advancedGeneral(filePath,token);
-            res=test(res,"result");
-            JSONArray json = JSONArray.parseArray(res);
-            Iterator iterator=json.listIterator();
-            while(iterator.hasNext()){
-                JSONObject jsonObject=(JSONObject) iterator.next();
-                double score = Double.parseDouble(jsonObject.getString("score"));
-                System.out.println(score);
-                String root= jsonObject.getString("root");
-                System.out.println(root);
-                String name = jsonObject.getString("keyword");
+                    //与非学习物品集合比较
+                    if (nonClassItemsSet.contains(root)&&score>0.5){
+                        resItemsSet.add(name);
+                    }
 
-                //与非学习物品集合比较
-                if (nonClassItemsSet.contains(root)&&score>0.5){
-                    resItemsSet.add(name);
                 }
-
+            }catch (Exception e){
+                System.out.println("NonClassItems 调用异常");
             }
+
 
             return resItemsSet;
         }

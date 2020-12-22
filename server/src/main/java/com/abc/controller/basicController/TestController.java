@@ -2,6 +2,9 @@ package com.abc.controller.basicController;
 
 import com.abc.annotation.APICallLimiter;
 import com.abc.annotation.PermInfo;
+import com.abc.dao.TeacherDao;
+import com.abc.entity.Course;
+import com.abc.entity.Teacher;
 import com.abc.service.AttentionService;
 import com.abc.service.impl.AttentionServiceImpl;
 import com.abc.util.Assessment;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * created by CaiBaoHong at 2018/4/17 14:16<br>
@@ -73,11 +78,17 @@ public class TestController {
         return "python programmer";
     }
 
-
+    @Autowired
+    TeacherDao teacherDao;
     @GetMapping("/testAop")
     public String testAop(){
-        attentionService.AssessmentByImage(AttentionServiceImpl.FULL_MODE,"1","1");
+//        attentionService.basicAssessment("1","1");
+//        Teacher te = teacherDao.selectOne("tea001");
+//
+//        System.out.println(te.getTeacherName());
+       List<Course>  courseList=teacherDao.selectCourseByTeacher("tea001");
 
+        System.out.println(courseList.get(0).getCourse());
         return  "hello world";
     }
 

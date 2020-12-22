@@ -22,3 +22,5 @@ logging:
   path: ./logs
   level:
     com.abc.dao: debug
+imageDir:
+  path: E:/testImageForOnlineClass/

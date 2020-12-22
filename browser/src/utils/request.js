@@ -55,11 +55,11 @@ service.interceptors.response.use(
   /**
    * 请求发生错误，一般都是服务器抛异常了
    */
-  err => {
-    console.error('request err: %o', err)// for debug
-    Message({message: error.message,type: 'error',duration: 5000})
-    return Promise.reject(error)
-  }
+  // err => {
+  //   console.error('request err: %o', err)// for debug
+  //   Message({message: error.message,type: 'error',duration: 5000})
+  //   return Promise.reject(error)
+  // }
 
 )
 

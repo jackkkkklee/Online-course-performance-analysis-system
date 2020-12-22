@@ -1,6 +1,13 @@
 package com.abc.vo;
 
 public class StudentClassVo {
+    boolean hasCourse;
+    String CourseName;
+    public StudentClassVo(boolean hasCourse, String courseName) {
+        this.hasCourse = hasCourse;
+        CourseName = courseName;
+    }
+
     public boolean isHasCourse() {
         return hasCourse;
     }
@@ -17,6 +24,4 @@ public class StudentClassVo {
         CourseName = courseName;
     }
 
-    boolean hasCourse;
-    String CourseName;
 }

@@ -94,6 +94,7 @@ export default {
         var video = document.getElementById("camera");
         video.srcObject.getTracks()[0].stop();
         this.isShow = !this.isShow;
+        clearInterval(this.timer);
       }else{
         alert("You have not started course!");
       }
@@ -116,7 +117,9 @@ export default {
       var imgData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
         //上传到后台。
-      sendImageApi.sendImage(imgData, this.name);
+      sendImageApi.sendImage(imgData, this.name).then((res)=>{
+        console.log(res.data);
+      });
     },
   },
 };

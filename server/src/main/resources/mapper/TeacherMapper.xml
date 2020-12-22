@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.TeacherDao">
+    <!--添加老师-->
+    <insert id="add" parameterType="com.abc.entity.Teacher">
+        insert into sys_teacher (tid,teacherName,tsex,tage) values (#{tid},#{teacherName},#{tsex},#{tage})
+    </insert>
+    <!--删除老师-->
+    <delete id="delete" parameterType="String">
+        delete from sys_teacher where tid=#{tid}
+    </delete>
+    <!-- 修改老师   -->
+    <update id="update" parameterType="com.abc.entity.Teacher">
+        update sys_teacher set teacherName=#{teacherName},tsex=#{tsex},tage=#{tage} where tid=#{tid}
+    </update>
+    <!-- 查单个老师   -->
+    <select id="selectOne" parameterType="String" resultType="com.abc.entity.Teacher">
+        select * from sys_teacher where tid=#{tid}
+    </select>
+    <!-- 查所有老师-->
+    <select id="selectAll" resultType="com.abc.entity.Teacher">
+        select * from sys_teacher
+    </select>
+    <!-- 查单个老师的所有课程   -->
+    <select id="selectCourseByTeacher" parameterType="String" resultType="com.abc.entity.Course">
+        select * from sys_course c,sys_teacher t where c.tid=#{tid} and t.tid=c.tid;
+    </select>
+
+
+
+</mapper>

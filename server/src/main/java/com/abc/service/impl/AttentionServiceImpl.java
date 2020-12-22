@@ -4,9 +4,11 @@ import com.abc.annotation.APICallLimiter;
 import com.abc.service.AttentionService;
 import com.abc.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,7 +22,8 @@ public class AttentionServiceImpl  implements AttentionService {
      */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-    public final static String IMAGE_PATH="E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\";
+    @Value("${imageDir.path}")
+    public  String IMAGE_PATH;
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;
@@ -30,7 +33,7 @@ public class AttentionServiceImpl  implements AttentionService {
      * 此时暂时将图片文件保存下来
      * @return Instantaneous integrated assessment score
      */
-    public  int finalAssessment(String base64,String mode,String sid){
+    public  int finalAssessment(String base64,String mode,String sid) throws IOException {
         String imageName = assessment.storeImage(base64,sid);
         return AssessmentByImage(mode,sid,imageName);
     }
@@ -40,6 +43,15 @@ public class AttentionServiceImpl  implements AttentionService {
         //after the image is saved,call python script
         String[] res = basicAssessment(sid,imageName);
         String imagePath = IMAGE_PATH+imageName+".jpg";
+        //调用python服务异常
+        if(res[0].equals("500")){
+            System.out.println("python server 500");
+            return 0;
+        }else if(res[0].equals("no face")){
+            //检测无人脸
+            return -1;
+        }
+
         //对分数进行运算  1.打哈欠 -10 2.睡觉为0
         //mode 1
         Integer basicAttention=(int)Double.parseDouble(res[0]);
@@ -71,6 +83,8 @@ public class AttentionServiceImpl  implements AttentionService {
 
     public  String[] basicAssessment(String sid, String imageName){
         //Parametric function: CallPython.callPython(path+imageName);
+//        System.out.println(IMAGE_PATH);
+
         CallPythonByHTTP callPythonByHTTP=new CallPythonByHTTP();
         String res=callPythonByHTTP.CallPythonService(IMAGE_PATH+imageName+".jpg");
         // 0:attention 1: direction 2:yawn status 3:sleep chance
