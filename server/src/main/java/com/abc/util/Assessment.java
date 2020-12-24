@@ -28,12 +28,10 @@ public class Assessment {
       */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-<<<<<<< HEAD
-    public final static String IMAGE_PATH="E:/testImageForOnlineClass/";
-=======
+
     @Value("${imageDir.path}")
     public  String IMAGE_PATH;
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;
@@ -65,11 +63,9 @@ public class Assessment {
         base64 = base64.substring(22,base64.length());
         System.out.println(base64);
         Long time=Calendar.getInstance().getTimeInMillis();
-<<<<<<< HEAD
-        String path="E:/testImageForOnlineClass/";
-=======
+
         String path = IMAGE_PATH;
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+
         //Name the picture with student ID and time
         String imageName = sid+time;
         Base64ToImage.GenerateImage(base64,path+sid+time+".jpg");

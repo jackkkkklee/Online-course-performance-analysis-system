@@ -31,12 +31,10 @@ public class AttentionServiceImpl  implements AttentionService {
      */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-<<<<<<< HEAD
-    public final static String IMAGE_PATH="E:/testImageForOnlineClass/";
-=======
+
     @Value("${imageDir.path}")
     public  String IMAGE_PATH;
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;
