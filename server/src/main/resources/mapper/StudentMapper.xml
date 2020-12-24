@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.StudentDao">
+    <!--添加学生-->
+    <insert id="add" parameterType="com.abc.entity.Student">
+        insert into sys_student (sid,studentName,ssex,sage) values (#{sid},#{studentName},#{ssex},#{sage})
+    </insert>
+    <!--删除学生-->
+    <delete id="delete" parameterType="String">
+        delete from sys_student where sid=#{sid}
+    </delete>
+    <!-- 修改学生   -->
+    <update id="update" parameterType="com.abc.entity.Student">
+        update sys_student set studentName=#{studentName},ssex=#{ssex},sage=#{sage} where sid=#{sid}
+    </update>
+    <!-- 查单个学生   -->
+    <select id="selectOne" parameterType="String" resultType="com.abc.entity.Student">
+        select * from sys_student where sid=#{sid}
+    </select>
+    <!-- 查所有学生-->
+    <select id="selectAll" resultType="com.abc.entity.Student">
+        select * from sys_student
+    </select>
+    <!-- 查询学生的所有课程-->
+    <select id="selectStudentCourse" parameterType="String" resultType="com.abc.entity.Course">
+        select * from sys_course c,sys_course_student cs,sys_student s where s.sid=#{sid} and c.cid=cs.cid and s.sid=cs.sid
+    </select>
+    <!--通过时间 查询学生课程-->
+    <select id="selectStudentCourse"  resultType="com.abc.entity.Course">
+        select * from sys_course c,sys_course_student cs,sys_student s where s.sid=#{sid} and c.cid=cs.cid and s.sid=cs.sid
+        and c.startTime between #{startTime} and #{endTime}
+    </select>
+
+</mapper>
