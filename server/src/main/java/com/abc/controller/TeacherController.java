@@ -65,6 +65,7 @@ public class TeacherController {
 
         String[] time = new String[classAttentionVos.size()];
         int[] attention_value = new int[classAttentionVos.size()];
+
         for(int i=0;i<classAttentionVos.size();i++){
             time[i] = MyTimeUtils.convertToHHmmFormat(classAttentionVos.get(i).getTimeOffset());
             attention_value[i] = classAttentionVos.get(i).getAttention_value();

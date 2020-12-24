@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -23,6 +24,12 @@ public class StudentServiceImpl implements StudentService {
             return  new StudentClassVo(false,null);
         }
         return new StudentClassVo(true,course.getCourse());
+
+    }
+
+    @Override
+    public List<Course> queryAllCourse(String sid) {
+        return studentDao.selectStudentCourse(sid);
 
     }
 

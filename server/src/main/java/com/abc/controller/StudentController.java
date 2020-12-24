@@ -1,6 +1,7 @@
 package com.abc.controller;
 
 import com.abc.annotation.PermInfo;
+import com.abc.entity.Course;
 import com.abc.service.StudentService;
 import com.abc.vo.Json;
 import com.abc.vo.StudentClassVo;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @PermInfo(value = "学生模块", pval = "a:student")
 @RestController
@@ -30,4 +33,14 @@ public class StudentController {
         StudentClassVo studentClassVo=studentService.queryOngoingStudentCourse(sid);
         return Json.succ(oper,"result",studentClassVo);
     }
+    @PostMapping("/query_all_course")
+    public Json queryStudentAllCourse(@RequestBody String body){
+        String oper = "queryStudentAllCourse";
+        log.info("{}, body: {}",oper,body);
+        JSONObject jsonObj = JSON.parseObject(body);
+        String sid  = jsonObj.getString("sid");
+        List<Course> courseList=studentService.queryAllCourse(sid);
+        return Json.succ(oper,"courses",courseList);
+    }
+
 }
