@@ -102,15 +102,9 @@ export default {
         clearInterval(this.timer);
         var video = document.getElementById("camera");
         video.srcObject.getTracks()[0].stop();
-<<<<<<< HEAD
         this.hasCourse = !this.hasCourse;
         this.onCourse = !this.onCourse;
       } else {
-=======
-        this.isShow = !this.isShow;
-        clearInterval(this.timer);
-      }else{
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
         alert("You have not started course!");
       }
     },
@@ -135,15 +129,8 @@ export default {
       context.drawImage(video, 0, 0, 300, 300);
       var imgData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
-<<<<<<< HEAD
       //上传到后台。
       sendImageApi.sendImage(imgData, this.name, this.course);
-=======
-        //上传到后台。
-      sendImageApi.sendImage(imgData, this.name).then((res)=>{
-        console.log(res.data);
-      });
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
     },
   },
 };
