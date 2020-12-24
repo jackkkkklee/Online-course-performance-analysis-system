@@ -3,20 +3,20 @@
     <h1 style="text-align: center">{{ pageName }}</h1>
     <div style="margin: auto">
       <!--使用video标签调用摄像头-->
-      <video id="camera" ref="camera" width="300" height="300" autoplay></video>
+      <video style="margin: auto" id="camera" ref="camera" width="300" height="300" autoplay></video>
       <!--创建一个cavas  用来存放图片-->
       <canvas id="canvas" width="300" height="300"></canvas>
     </div>
-    <div class="button-box" style="margin: auto">
+    <div style="margin: auto">
       <el-button
         type="primary"
         style="margin: auto"
         @click="openCamera"
-        v-show="isShow"
+        :disabled="!hasCourse"
       >
         Start Course</el-button
       >
-      <el-button type="primary" style="margin: auto" @click="stopNavigator"
+      <el-button type="primary" style="margin: auto" @click="stopNavigator" :disabled="!onCourse"
         >Finish Course</el-button
       >
     </div>
@@ -34,12 +34,16 @@ export default {
   data() {
     return {
       pageName: "Online Course",
-      isShow: true,
+      hasCourse: false,
       onCourse: false,
+      course: null
     };
   },
   computed: {
     ...mapGetters(["name"]),
+  },
+  mounted() {
+    // this.checkCourse();
   },
   methods: {
     getUserMedia(constraints, success, error) {
@@ -72,6 +76,7 @@ export default {
     error(error) {
       console.log("访问用户媒体设备失败${error.name}, ${error.message}");
     },
+
     openCamera() {
       if (
         navigator.mediaDevices.getUserMedia ||
@@ -84,20 +89,21 @@ export default {
           this.success,
           this.error
         );
-        this.isShow = !this.isShow;
+        this.hasCourse = !this.hasCourse;
         this.onCourse = !this.onCourse;
         this.timer = setInterval(this.uploadImage, 1000); //拍照间隔设置
       } else {
         alert("不支持访问用户媒体");
       }
     },
+
     stopNavigator() {
-      if (this.isShow == false) {
+      if (this.hasCourse == false) {
+        clearInterval(this.timer);
         var video = document.getElementById("camera");
         video.srcObject.getTracks()[0].stop();
-        this.isShow = !this.isShow;
+        this.hasCourse = !this.hasCourse;
         this.onCourse = !this.onCourse;
-        clearInterval(this.timer);
       } else {
         alert("You have not started course!");
       }
@@ -106,7 +112,13 @@ export default {
     //调用接口方法
     checkCourse() {
       //查询该学生当前是否有课
-      queryStudentCourse(studentName, time).then((res) => {});
+      analysisApi.queryStudentHasCourse(this.name).then((res) => {
+        this.hasCourse = res.data.StudentClassVo.hasCourse;
+        if(hasCourse){
+          this.course = res.data.StudentClassVo.CourseName;
+          alert("You have " + this.course + " course right now!");
+        }
+      });
     },
     //图片上传到服务器
     //获取Canvas的编码。
@@ -118,8 +130,7 @@ export default {
       var imgData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
       //上传到后台。
-      sendImageApi.sendImage(imgData, this.name);
-      console.log(imgData);
+      sendImageApi.sendImage(imgData, this.name, this.course);
     },
   },
 };

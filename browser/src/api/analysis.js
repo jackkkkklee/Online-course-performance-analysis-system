@@ -5,21 +5,47 @@ import request from '@/utils/request'
 
 export default {
 
-    //查询学生当前是否有课
-    queryStudentCourse(studentName) {
+    //查询学生当前是否有课和课程名
+    queryStudentHasCourse(studentName) {
         return request({
-            // url: '/sys_user/query',
-            // method: 'post',
-            // data
+            url: '/student/has_course',
+            method: 'post',
+            data: {
+                sid: studentName
+            }
         })
     },
 
-    //查询老师课程和对应学生
-    queryCourseAndStudent(teacherName) {
+    //查询学生所有课程
+    queryStudentCourse(studentName) {
         return request({
-            // url: '/sys_user/query',
-            // method: 'post',
-            // data
+            url: '/student/query_all_course',
+            method: 'post',
+            data: {
+                sid: studentName
+            }
+        })
+    },
+
+    //老师查询课程
+    queryTeacherCourse(teacherName) {
+        return request({
+            url: '/teacher/query_courses',
+            method: 'post',
+            data: {
+                tid: teacherName
+            }
+        })
+    },
+
+    //老师查询对应学生
+    queryTeacherStudent(teacherName) {
+        return request({
+            url: '/teacher/query_student',
+            method: 'post',
+            data: {
+                tid: teacherName
+            }
         })
     },
 
@@ -38,11 +64,15 @@ export default {
     },
 
     //老师查询班级整体专注度
-    queryClassConcentration(coucidrse, startTime, endTime) {
+    queryClassConcentration(course, startTime, endTime) {
         return request({
-            // url: '/sys_user/query',
-            // method: 'post',
-            // data
+            url: '/teacher/query_class_concentration',
+            method: 'post',
+            data: {
+                cid: course,
+                startTime: startTime,
+                endTime: endTime
+            }
         })
     },
 

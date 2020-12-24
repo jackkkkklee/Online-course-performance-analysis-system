@@ -38,9 +38,7 @@
           }"
         >
         </el-time-select>
-        <el-button type="primary" @click="queryCourse"
-          >Search
-        </el-button>
+        <el-button type="primary" @click="queryCourse">Search </el-button>
       </div>
       <div
         id="chart"
@@ -53,13 +51,15 @@
 <script>
 import axios from "axios";
 import echarts from "echarts";
-import analysisApi from '@/api/analysis';
+import analysisApi from "@/api/analysis";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Menu3_2",
   data() {
     return {
       pageName: "菜单3-2",
+      myChart: null,
       courses: [],
       course: "",
       date: "",
@@ -96,12 +96,13 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(["name"]),
+  },
   mounted() {
-    this.courses = this.queryCourse();
-    var myChart = echarts.init(document.getElementById("chart"));
-    myChart.showLoading();
-
-    myChart.setOption({
+    this.queryCourse();
+    this.myChart = echarts.init(document.getElementById("chart"));
+    this.myChart.setOption({
       backgroundColor: "#394056",
 
       title: {
@@ -224,22 +225,21 @@ export default {
         },
       ],
     });
-
     //模拟数据
-    axios.get("/static/mock/data.json").then((res) => {
-      // console.log(res.data);
-      myChart.hideLoading();
-      myChart.setOption({
-        xAxis: {
-          data: res.data.time,
-        },
-        series: [
-          {
-            data: res.data.attention_value,
-          },
-        ],
-      });
-    });
+    // axios.get("/static/mock/data.json").then((res) => {
+    //   // console.log(res.data);
+    //   myChart.hideLoading();
+    //   myChart.setOption({
+    //     xAxis: {
+    //       data: res.data.time,
+    //     },
+    //     series: [
+    //       {
+    //         data: res.data.attention_value,
+    //       },
+    //     ],
+    //   });
+    // });
   },
   methods: {
     querySearch(queryString, cb) {
@@ -257,24 +257,42 @@ export default {
         );
       };
     },
+    
     queryCourse() {
-      return [
-        //模拟的数据
-        { value: "english" },
-        { value: "math" },
-        { value: "history" },
-        { value: "pe" },
-        { value: "computer" },
-        { value: "geography" },
-      ];
+      analysisApi.queryTeacherCourse(this.name).then((res) => {
+        for (item of res.data.courses) {
+          this.courses.push({ value: item });
+        }
+      });
     },
 
     //调用接口方法
-    queryData(course, data, startTime, endTime) {
+    queryData() {
       //查询整个班级对应课程专注度
-      analysisApi.queryClassConcentration(course, date, startTime, endTime).then(res => {
-
-      })
+      analysisApi
+        .queryClassConcentration(
+          this.course,
+          this.date + " " + this.startTime,
+          this.date + " " + this.endTime
+        )
+        .then((res) => {
+          this.myChart.showLoading();
+          this.myChart.setOption({
+            xAxis: {
+              data: res.data.time,
+            },
+            legend: {
+              data: this.course,
+            },
+            series: [
+              {
+                name: this.course,
+                data: res.data.attention_value,
+              },
+            ],
+          });
+          this.myChart.hideLoading();
+        });
     },
   },
 };

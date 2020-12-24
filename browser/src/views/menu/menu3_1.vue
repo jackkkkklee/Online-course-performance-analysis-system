@@ -8,6 +8,12 @@
           :fetch-suggestions="queryCourseSearch"
           placeholder="Course"
         ></el-autocomplete>
+        <el-autocomplete
+          class="inline-input"
+          v-model="studentName"
+          :fetch-suggestions="queryStudentSearch"
+          placeholder="Student"
+        ></el-autocomplete>
         <el-date-picker
           v-model="date"
           align="right"
@@ -38,12 +44,6 @@
           }"
         >
         </el-time-select>
-        <el-autocomplete
-          class="inline-input"
-          v-model="studentName"
-          :fetch-suggestions="queryStudentSearch"
-          placeholder="Student"
-        ></el-autocomplete>
         <el-button type="primary" @click="queryCourse">Search </el-button>
       </div>
       <div
@@ -57,13 +57,15 @@
 <script>
 import echarts from "echarts";
 import axios from "axios";
-import analysisApi from '@/api/analysis';
+import analysisApi from "@/api/analysis";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Menu3_1",
   data() {
     return {
       pageName: "菜单3-1",
+      myChart: null,
       courses: [],
       course: "",
       students: [],
@@ -102,13 +104,14 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(["name"]),
+  },
   mounted() {
-    this.courses = this.queryCourse();
-    this.students = this.queryStudent();
-    var myChart = echarts.init(document.getElementById("chart"));
-    myChart.showLoading();
-
-    myChart.setOption({
+    this.queryCourse();
+    this.queryStudent();
+    this.myChart = echarts.init(document.getElementById("chart"));
+    this.myChart.setOption({
       backgroundColor: "#394056",
 
       title: {
@@ -231,26 +234,25 @@ export default {
         },
       ],
     });
-
     //模拟数据
-    axios.get("/static/mock/data.json").then((res) => {
-      // console.log(res.data);
-      myChart.hideLoading();
-      myChart.setOption({
-        xAxis: {
-          data: res.data.time,
-        },
-        legend: {
-          data: res.data.name,
-        },
-        series: [
-          {
-            name: res.data.name,
-            data: res.data.attention_value,
-          },
-        ],
-      });
-    });
+    // axios.get("/static/mock/data.json").then((res) => {
+    //   // console.log(res.data);
+    //   myChart.hideLoading();
+    //   myChart.setOption({
+    //     xAxis: {
+    //       data: res.data.time,
+    //     },
+    //     legend: {
+    //       data: res.data.name,
+    //     },
+    //     series: [
+    //       {
+    //         name: res.data.name,
+    //         data: res.data.attention_value,
+    //       },
+    //     ],
+    //   });
+    // });
   },
   methods: {
     queryCourseSearch(queryString, cb) {
@@ -286,34 +288,48 @@ export default {
 
     //需要调用接口
     queryCourse() {
-      return [
-        //模拟的数据
-        { value: "english" },
-        { value: "math" },
-        { value: "history" },
-        { value: "pe" },
-        { value: "computer" },
-        { value: "geography" },
-      ];
+      analysisApi.queryTeacherCourse(this.name).then((res) => {
+        for (let item of res.data.courses) {
+          this.courses.push({ value: item });
+        }
+      });
     },
     queryStudent() {
-      return [
-        //模拟的数据
-        { value: "adam" },
-        { value: "rose" },
-        { value: "jack" },
-        { value: "mike" },
-        { value: "alice" },
-        { value: "bob" },
-      ];
+      analysisApi.queryTeacherStudent(this.name).then((res) => {
+        for (let item of res.data.studentNames) {
+          this.students.push({ value: item });
+        }
+      });
     },
 
     //调用接口方法
-    queryData(course, data, startTime, endTime, studentName) {
-      //查询指定学生对应课程专注度
-      analysisApi.queryStudentConcentration(studentName, course, data, startTime, endTime).then(res => {
-
-      })
+    queryData() {
+      //查询单个学生对应课程专注度
+      analysisApi
+        .queryStudentConcentration(
+          this.studentName,
+          this.course,
+          this.date + " " + this.startTime,
+          this.date + " " + this.endTime
+        )
+        .then((res) => {
+          this.myChart.showLoading();
+          this.myChart.setOption({
+            xAxis: {
+              data: res.data.time,
+            },
+            legend: {
+              data: this.studentName,
+            },
+            series: [
+              {
+                name: this.studentName,
+                data: res.data.attention_value,
+              },
+            ],
+          });
+          this.myChart.hideLoading();
+        });
     },
   },
 };

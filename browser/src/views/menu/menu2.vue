@@ -101,8 +101,131 @@ export default {
     ...mapGetters(["name"]),
   },
   mounted() {
-    this.courses = this.queryCourse();
-    this.initChart();
+    this.queryCourse();
+    this.myChart = echarts.init(document.getElementById("chart"));
+    this.myChart.setOption({
+      backgroundColor: "#394056",
+
+      title: {
+        top: 16,
+        text: "Concentration Score",
+        textStyle: {
+          fontWeight: "normal",
+          fontSize: 16,
+          color: "#F1F1F3",
+        },
+        left: "1%",
+      },
+      tooltip: {
+        trigger: "axis",
+        axisPointer: {
+          lineStyle: {
+            color: "#57617B",
+          },
+        },
+      },
+      legend: {
+        top: 20,
+        icon: "rect",
+        itemWidth: 14,
+        itemHeight: 5,
+        itemGap: 13,
+        data: [],
+        right: "4%",
+        textStyle: {
+          fontSize: 12,
+          color: "#F1F1F3",
+        },
+      },
+      grid: {
+        top: 100,
+        left: "3%",
+        right: "4%",
+        bottom: "2%",
+        containLabel: true,
+      },
+      xAxis: {
+        type: "category",
+        boundaryGap: false,
+        axisLine: {
+          lineStyle: {
+            color: "#57617B",
+          },
+        },
+        data: [],
+      },
+      yAxis: [
+        {
+          type: "value",
+          name: "score",
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#57617B",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+            },
+          },
+          splitLine: {
+            lineStyle: {
+              color: "#57617B",
+            },
+          },
+        },
+      ],
+      series: [
+        {
+          name: "",
+          type: "line",
+          smooth: true,
+          symbol: "circle",
+          symbolSize: 5,
+          showSymbol: false,
+          lineStyle: {
+            normal: {
+              width: 1,
+            },
+          },
+          areaStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1,
+                [
+                  {
+                    offset: 0,
+                    color: "rgba(137, 189, 27, 0.3)",
+                  },
+                  {
+                    offset: 0.8,
+                    color: "rgba(137, 189, 27, 0)",
+                  },
+                ],
+                false
+              ),
+              shadowColor: "rgba(0, 0, 0, 0.1)",
+              shadowBlur: 10,
+            },
+          },
+          itemStyle: {
+            normal: {
+              color: "rgb(137,189,27)",
+              borderColor: "rgba(137,189,2,0.27)",
+              borderWidth: 12,
+            },
+          },
+          data: [],
+        },
+      ],
+    });
     //模拟数据
     // axios.get("/static/mock/data.json").then((res) => {
     //   // console.log(res.data);
@@ -124,133 +247,6 @@ export default {
     // });
   },
   methods: {
-    initChart() {
-      this.myChart = echarts.init(document.getElementById("chart"));
-      this.myChart.showLoading();
-      this.myChart.setOption({
-        backgroundColor: "#394056",
-
-        title: {
-          top: 16,
-          text: "Concentration Score",
-          textStyle: {
-            fontWeight: "normal",
-            fontSize: 16,
-            color: "#F1F1F3",
-          },
-          left: "1%",
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            lineStyle: {
-              color: "#57617B",
-            },
-          },
-        },
-        legend: {
-          top: 20,
-          icon: "rect",
-          itemWidth: 14,
-          itemHeight: 5,
-          itemGap: 13,
-          data: [],
-          right: "4%",
-          textStyle: {
-            fontSize: 12,
-            color: "#F1F1F3",
-          },
-        },
-        grid: {
-          top: 100,
-          left: "3%",
-          right: "4%",
-          bottom: "2%",
-          containLabel: true,
-        },
-        xAxis: {
-          type: "category",
-          boundaryGap: false,
-          axisLine: {
-            lineStyle: {
-              color: "#57617B",
-            },
-          },
-          data: [],
-        },
-        yAxis: [
-          {
-            type: "value",
-            name: "score",
-            axisTick: {
-              show: false,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#57617B",
-              },
-            },
-            axisLabel: {
-              margin: 10,
-              textStyle: {
-                fontSize: 14,
-              },
-            },
-            splitLine: {
-              lineStyle: {
-                color: "#57617B",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            name: "",
-            type: "line",
-            smooth: true,
-            symbol: "circle",
-            symbolSize: 5,
-            showSymbol: false,
-            lineStyle: {
-              normal: {
-                width: 1,
-              },
-            },
-            areaStyle: {
-              normal: {
-                color: new echarts.graphic.LinearGradient(
-                  0,
-                  0,
-                  0,
-                  1,
-                  [
-                    {
-                      offset: 0,
-                      color: "rgba(137, 189, 27, 0.3)",
-                    },
-                    {
-                      offset: 0.8,
-                      color: "rgba(137, 189, 27, 0)",
-                    },
-                  ],
-                  false
-                ),
-                shadowColor: "rgba(0, 0, 0, 0.1)",
-                shadowBlur: 10,
-              },
-            },
-            itemStyle: {
-              normal: {
-                color: "rgb(137,189,27)",
-                borderColor: "rgba(137,189,2,0.27)",
-                borderWidth: 12,
-              },
-            },
-            data: [],
-          },
-        ],
-      });
-    },
     querySearch(queryString, cb) {
       var courses = this.courses;
       var results = queryString
@@ -267,15 +263,11 @@ export default {
       };
     },
     queryCourse() {
-      // return [
-      //   //模拟的数据
-      //   { value: "english" },
-      //   { value: "math" },
-      //   { value: "history" },
-      //   { value: "pe" },
-      //   { value: "computer" },
-      //   { value: "geography" },
-      // ];
+      analysisApi.queryStudentCourse(this.name).then((res) => {
+        for (let item of res.data.courses) {
+          this.courses.push({ value: item });
+        }
+      });
     },
     //调用接口方法
     queryData() {
@@ -288,21 +280,22 @@ export default {
           this.date + " " + this.endTime
         )
         .then((res) => {
-          this.myChart.hideLoading();
+          this.myChart.showLoading();
           this.myChart.setOption({
             xAxis: {
               data: res.data.time,
             },
             legend: {
-              data: res.data.name,
+              data: this.name,
             },
             series: [
               {
-                name: res.data.name,
+                name: this.name,
                 data: res.data.attention_value,
               },
             ],
           });
+          this.myChart.hideLoading();
         });
     },
 
