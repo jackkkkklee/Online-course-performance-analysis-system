@@ -1,20 +1,29 @@
 package com.abc.service.impl;
 
 import com.abc.annotation.APICallLimiter;
+import com.abc.dao.CourseDao;
+import com.abc.dao.PerformanceDao;
+import com.abc.entity.Performance;
+import com.abc.entity.Student;
 import com.abc.service.AttentionService;
 import com.abc.util.*;
+import com.abc.vo.ClassAttentionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+
 @Service
 public class AttentionServiceImpl  implements AttentionService {
-    @Autowired Assessment assessment;
+    @Autowired
+    Assessment assessment;
+    @Autowired
+    PerformanceDao performancedao;
+    @Autowired
+    CourseDao courseDao;
     /**
      * 1 means basic attention(head orientation ,gaze,sleepy,yawn detection)
      * 2 means behaviour detection
@@ -90,6 +99,42 @@ public class AttentionServiceImpl  implements AttentionService {
         // 0:attention 1: direction 2:yawn status 3:sleep chance
         return res.split("\n");
     }
+
+    @Override
+    public List<ClassAttentionVo> selectAllAverageByCourseAndTime(String cid, Date startTime, Date endTime) throws CloneNotSupportedException {
+        //查出学这个课的所有学生   （上同一种课的学生不一定是同一个班级的！！！这里有问题，需要创建一个班级表）
+        List<Student> studentList = courseDao.selectStudentByCourse(cid);
+        List<Date> dateList = MyTimeUtils.getDateListInHHmmAndDate(startTime,endTime,1);
+        List<ClassAttentionVo> result =new ArrayList<>();
+        //可以使用模板方法
+        ClassAttentionVo classAttentionVo=new ClassAttentionVo();
+        int tempAttention=0;
+        int stuNumber = studentList.size();
+        for(Date date:dateList){
+            for(Student student:studentList){
+                tempAttention+=performancedao.selectOne(cid,student.getSid(),date).getAttention_value();
+            }
+            //计算平均值
+            int averageAttentionValue = tempAttention/stuNumber;
+            ClassAttentionVo tempVo= classAttentionVo.clone();
+            tempVo.setAttention_value(averageAttentionValue);
+            tempVo.setCid(cid);
+            tempVo.setTimeOffset(date);
+            result.add(tempVo);
+            //clean
+            tempAttention=0;
+
+        }
+        return result;
+    }
+    @APICallLimiter(limitTimes = 60)
+    @Override
+    public void add(String cid, String sid, int attention_value, Date startTime, Date endTime) {
+        List<Date> dateList = MyTimeUtils.getDateListInHHmmAndDate(startTime,endTime,1);
+        for(Date date:dateList)
+            performancedao.add(cid,sid,attention_value,date);
+    }
+
 
     //@Async("asyncPromiseExecutor")
     @APICallLimiter

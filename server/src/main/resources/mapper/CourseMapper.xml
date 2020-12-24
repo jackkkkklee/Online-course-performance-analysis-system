@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.CourseDao">
+    <resultMap id="courseMap" type="Course">
+        <id property="cid" column="cid"/>
+        <id property="tid" column="tid"/>
+        <id property="startTime" column="startTime" jdbcType="DATE" />
+        <id property="endTime" column="endTime" jdbcType="DATE" />
+        <result property="course"  column="course" />
+    </resultMap>
+
+    <!--添加课程-->
+    <insert id="add" parameterType="com.abc.entity.Course">
+        insert into sys_course (tid,course,cid,startTime,endTime) values (#{tid},#{course},#{cid},#{startTime},#{endTime})
+    </insert>
+    <!--删除课程-->
+    <delete id="delete" parameterType="com.abc.entity.Course">
+        delete from sys_course where tid=#{tid} and cid=#{cid} and startTime=#{startTime} and endTime=#{endTime}
+    </delete>
+    <!-- 修改课程   -->
+    <update id="update" parameterType="com.abc.entity.Course">
+        update sys_course set course=#{course},startTime=#{startTime},endTime=#{endTime} where tid=#{tid} and cid=#{cid} and startTime=#{startTime} and endTime=#{endTime}
+    </update>
+    <!-- 查单个课程   -->
+    <select id="selectOne" parameterType="String" resultType="com.abc.entity.Course">
+        select * from sys_course where tid=#{tid} and cid=#{cid} and startTime=#{startTime} and endTime=#{endTime}
+    </select>
+    <!-- 查所有课程-->
+    <select id="selectAll" resultType="com.abc.entity.Course">
+        select * from sys_course
+    </select>
+    <!-- 根据课程id查询所有学生-->
+    <select id="selectStudentByCourse" parameterType="String" resultType="com.abc.entity.Student">
+        select * from sys_course c,sys_course_student cs,sys_student s where c.cid=#{cid} and cs.cid=c.cid and cs.sid=s.sid
+    </select>
+
+
+
+</mapper>

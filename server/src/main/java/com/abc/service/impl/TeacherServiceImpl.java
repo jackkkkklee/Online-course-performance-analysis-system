@@ -43,12 +43,13 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<ClassAttentionVo> queryAverageClassConcentrationByTimeAndCourse(String cid, Date startTime, Date endTime) {
-        List<Performance> performanceList = performanceDao.selectAllAverageByCourseAndTime(cid,startTime,endTime);
-        List<ClassAttentionVo> classAttentionVoList=new ArrayList<>();
-        for(Performance performance :performanceList){
-            classAttentionVoList.add(new ClassAttentionVo(performance.getAttention_value(),performance.getTimeOffset(),performance.getCid()));
-        }
-        return classAttentionVoList;
+//        List<Performance> performanceList = performanceDao.selectAllAverageByCourseAndTime(cid,startTime,endTime);
+//        List<ClassAttentionVo> classAttentionVoList=new ArrayList<>();
+//        for(Performance performance :performanceList){
+//            classAttentionVoList.add(new ClassAttentionVo(performance.getAttention_value(),performance.getTimeOffset(),performance.getCid()));
+//        }
+//        return classAttentionVoList;
+        return null;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<String> queryCourseByTeacherId(String tid) {
-        List<Course> courseList=courseDao.selectByTeacherId(tid);
+        List<Course> courseList=teacherDao.selectCourseByTeacher(tid);
         List<String> coursesName=new ArrayList<>();
         for(Course course:courseList){
             coursesName.add(course.getCourse());

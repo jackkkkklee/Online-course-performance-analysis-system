@@ -23,5 +23,7 @@ public class StudentServiceImpl implements StudentService {
             return  new StudentClassVo(false,null);
         }
         return new StudentClassVo(true,course.getCourse());
+
     }
+
 }

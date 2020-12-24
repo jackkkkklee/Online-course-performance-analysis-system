@@ -24,6 +24,7 @@ public interface StudentDao
     public List<Student> selectAll();
     //查询学生的所有课程
     List<Course> selectStudentCourse(String sid);
-    //查询学生正在上的课程
+    //查询学生课程by date
     Course selectStudentCourseByDate(String sid, Date date);
+
 }

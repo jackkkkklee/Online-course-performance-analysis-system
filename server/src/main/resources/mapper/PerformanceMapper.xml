@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.abc.dao.PerformanceDao">
+<!--    &lt;!&ndash;添加课堂表现&ndash;&gt;-->
+<!--    <insert id="add" parameterType="com.abc.entity.Teacher">-->
+<!--        insert into sys_teacher (tid,teacherName,tsex,tage) values (#{tid},#{teacherName},#{tsex},#{tage})-->
+<!--    </insert>-->
+<!--    &lt;!&ndash;删除课堂表现&ndash;&gt;-->
+<!--    <delete id="delete" parameterType="String">-->
+<!--        delete from sys_teacher where tid=#{tid}-->
+<!--    </delete>-->
+<!--    &lt;!&ndash; 修改课堂表现   &ndash;&gt;-->
+<!--    <update id="update" parameterType="com.abc.entity.Teacher">-->
+<!--        update sys_teacher set teacherName=#{teacherName},tsex=#{tsex},tage=#{tage} where tid=#{tid}-->
+<!--    </update>-->
+
+
+    <!-- 添加课堂表现   -->
+    <select id="add"  resultType="com.abc.entity.Performance">
+        insert into sys_performance (sid,cid,attention_value,timeOffset) values (#{sid},#{cid},#{attention_value},#{timeOffset})
+    </select>
+    <!-- 查单个学生某种课的所有表现   -->
+    <select id="selectOne"  resultType="com.abc.entity.Performance">
+        select * from sys_performance where cid=#{cid} and sid=#{sid} and timeOffset=#{timeOffset}
+    </select>
+    <!-- 查所有课堂表现-->
+    <select id="selectAll" resultType="com.abc.entity.Performance" >
+        select * from sys_performance where cid=#{cid} and sid=#{sid}
+    </select>
+
+
+</mapper>
