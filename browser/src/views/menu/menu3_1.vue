@@ -44,7 +44,7 @@
           }"
         >
         </el-time-select>
-        <el-button type="primary" @click="queryCourse">Search </el-button>
+        <el-button type="primary" @click="queryData">Search </el-button>
       </div>
       <div
         id="chart"

@@ -8,11 +8,15 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+
 public class ClassAttentionVo implements Cloneable {
     private int attention_value;
     private Date timeOffset;
     private String cid;
+
+    public ClassAttentionVo() {
+        this.timeOffset=new Date();
+    }
 
     @Override
     public ClassAttentionVo clone() throws CloneNotSupportedException {

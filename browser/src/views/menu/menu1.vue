@@ -43,7 +43,7 @@ export default {
     ...mapGetters(["name"]),
   },
   mounted() {
-    // this.checkCourse();
+     this.checkCourse();
   },
   methods: {
     getUserMedia(constraints, success, error) {
@@ -97,29 +97,22 @@ export default {
       }
     },
 
-    stopNavigator() {
-      if (this.hasCourse == false) {
-        clearInterval(this.timer);
-        var video = document.getElementById("camera");
-        video.srcObject.getTracks()[0].stop();
-
-        this.hasCourse = !this.hasCourse;
-        this.onCourse = !this.onCourse;
-      } else {
-        clearInterval(this.timer);
-      }else{
-
-        alert("You have not started course!");
-      }
+    stopNavigator() {
+      clearInterval(this.timer);
+      var video = document.getElementById("camera");
+      video.srcObject.getTracks()[0].stop();
+      this.hasCourse = !this.hasCourse;
+      this.onCourse = !this.onCourse;
     },
 
     //调用接口方法
     checkCourse() {
       //查询该学生当前是否有课
       analysisApi.queryStudentHasCourse(this.name).then((res) => {
-        this.hasCourse = res.data.StudentClassVo.hasCourse;
-        if(hasCourse){
-          this.course = res.data.StudentClassVo.CourseName;
+        this.hasCourse = res.data.result.hasCourse;
+        if(this.hasCourse){
+          this.course = res.data.result.courseName;
+          console.log(this.course);
           alert("You have " + this.course + " course right now!");
         }
       });
@@ -133,15 +126,9 @@ export default {
       context.drawImage(video, 0, 0, 300, 300);
       var imgData = canvas.toDataURL();
       // var imgData = canvas.toDataURL();
-<<<<<<< HEAD
       //上传到后台。
-      sendImageApi.sendImage(imgData, this.name, this.course);
-=======
-        //上传到后台。
-      sendImageApi.sendImage(imgData, this.name).then((res)=>{
-        console.log(res.data);
-      });
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+      sendImageApi.sendImage(imgData, this.name, this.course, new Date());
+      console.log(this.course);
     },
   },
 };

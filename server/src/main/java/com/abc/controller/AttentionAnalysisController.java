@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @PermInfo(value = "注意力分析模块", pval = "a:analysis")
@@ -33,10 +34,10 @@ public class AttentionAnalysisController {
         String sid = jsonObj.getString("sid");
         String cid = jsonObj.getString("cid");
         //时间命名
-        String imageName = jsonObj.getString("image_name");
+        Date image_date = jsonObj.getDate("image_name");
         int attention=0;
         try{
-             attention = attentionService.finalAssessment(image, AttentionServiceImpl.FULL_MODE, sid);
+             attention = attentionService.finalAssessment(image, AttentionServiceImpl.FULL_MODE, sid,image_date);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -44,9 +45,10 @@ public class AttentionAnalysisController {
 
 
         System.out.println(attention);
+        System.out.println("cid"+cid);
         // 存到数据库
 
-        attentionService.add(cid,sid,attention, MyTimeUtils.StringToDate(image),MyTimeUtils.StringToDate(image));
+        attentionService.add(cid,sid,attention,image_date,image_date);
         return Json.succ(oper);
     }
     @PostMapping("/emotion")

@@ -38,7 +38,7 @@
           }"
         >
         </el-time-select>
-        <el-button type="primary" @click="queryCourse">Search </el-button>
+        <el-button type="primary" @click="queryData">Search </el-button>
       </div>
       <div
         id="chart"
@@ -257,10 +257,10 @@ export default {
         );
       };
     },
-    
+
     queryCourse() {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
-        for (item of res.data.courses) {
+        for (let item of res.data.courses) {
           this.courses.push({ value: item });
         }
       });

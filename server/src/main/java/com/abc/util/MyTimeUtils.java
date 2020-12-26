@@ -12,7 +12,7 @@ public class MyTimeUtils {
     public static  String convertToHHmmFormat(Date target)  {
         SimpleDateFormat df=null;
      try {
-         df = new SimpleDateFormat("HH:mm");//设置日期格式,这里只取出小时和分钟
+         df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式,这里只取出小时和分钟
      }catch (Exception e){
          e.printStackTrace();
      }
@@ -23,7 +23,7 @@ public class MyTimeUtils {
         SimpleDateFormat df=null;
         Date date = null;
         try {
-            df = new SimpleDateFormat("HH:mm");//设置日期格式,这里只取出小时和分钟
+            df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式,这里只取出小时和分钟
             date = df.parse(df.format(target));
         }catch (Exception e){
             e.printStackTrace();
@@ -38,8 +38,11 @@ public class MyTimeUtils {
         //有多少时刻需要表示(包含首尾)
         int num = min/interval+1;
         int intervalToMin = interval*60*1000;
+        Long timestamp=startTime.getTime();
         for(int i=0;i<num;i++){
-            dateList.add(new Date(startTime.getTime()+intervalToMin));
+
+            dateList.add(new Date(timestamp));
+            timestamp+=intervalToMin;
         }
         return dateList;
     }
@@ -50,8 +53,11 @@ public class MyTimeUtils {
         //有多少时刻需要表示(包含首尾)
         int num = min/interval+1;
         int intervalToMin = interval*60*1000;
+        Long timestamp=startTime.getTime();
         for(int i=0;i<num;i++){
-            dateList.add(convertToHHmmFormat(new Date(startTime.getTime()+intervalToMin)));
+
+            dateList.add(convertToHHmmFormat(new Date(timestamp)));
+            timestamp+=intervalToMin;
         }
         return dateList;
     }
@@ -62,8 +68,12 @@ public class MyTimeUtils {
         //有多少时刻需要表示(包含首尾)
         int num = min/interval+1;
         int intervalToMin = interval*60*1000;
+        Long timestamp = startTime.getTime();
         for(int i=0;i<num;i++){
-            dateList.add(convertToHHmmFormatInDate(new Date(startTime.getTime()+intervalToMin)));
+
+            Date temp = new Date(timestamp);
+            timestamp+=intervalToMin;
+            dateList.add(convertToHHmmFormatInDate(temp));
         }
         return dateList;
     }
@@ -97,14 +107,22 @@ public class MyTimeUtils {
         return simpleDateFormat.parse(simpleDateFormat.format(target));
 
     }
+    public static Date getSystemTime(Date target,String format) throws ParseException {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+
+        return simpleDateFormat.parse(simpleDateFormat.format(target));
+
+    }
 
     public static void main(String[] args) throws ParseException {
 
 
 //        Date date=createTime(new Date());
 //        System.out.println(date);
-       StringToDate("2020-12-24 12:04");
-       StringToDate("2020-12-23 22:20");
+//       StringToDate("2020-12-24 12:04");
+//       StringToDate("2020-12-23 22:20");
+        //List<Date> dateList = getDateList(StringToDate("2020-12-24 12:00"),StringToDate("2020-12-24 13:00"),1);
 
     }
 }

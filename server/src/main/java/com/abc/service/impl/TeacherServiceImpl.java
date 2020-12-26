@@ -27,30 +27,30 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<Performance> queryStudentConcentrationByTimeAndCourse(String sid, String cid, Date startTime, Date endTime) {
         //mock 模拟
-//          List<Performance> performanceList =new ArrayList<>();
-//        Performance performance=new Performance();
-//        performance.setTimeOffset(new Date());
-//        performance.setAttention_value(100);
-//        performanceList.add(performance);
-//        return performanceList;
+
         List<Performance> performanceList =new ArrayList<>();
         List<Date> dateList=MyTimeUtils.getDateList(startTime,endTime,1);
         for(int i=0;i<dateList.size();i++){
-            performanceList.add(performanceDao.selectOne(cid,sid,dateList.get(i)));
+            Performance performance =performanceDao.selectOne(cid,sid,dateList.get(i));
+            //bug 可能是时间格式不对，时间没有时分
+            if(performance!=null){
+                performance.setTimeOffset(dateList.get(i));
+                performanceList.add(performance);
+            }
         }
         return  performanceList;
     }
 
-    @Override
-    public List<ClassAttentionVo> queryAverageClassConcentrationByTimeAndCourse(String cid, Date startTime, Date endTime) {
-//        List<Performance> performanceList = performanceDao.selectAllAverageByCourseAndTime(cid,startTime,endTime);
+//    @Override
+//    public List<ClassAttentionVo> queryAverageClassConcentrationByTimeAndCourse(String cid, Date startTime, Date endTime) {
+//        List<Performance> performanceList = (cid,startTime,endTime);
 //        List<ClassAttentionVo> classAttentionVoList=new ArrayList<>();
 //        for(Performance performance :performanceList){
 //            classAttentionVoList.add(new ClassAttentionVo(performance.getAttention_value(),performance.getTimeOffset(),performance.getCid()));
 //        }
 //        return classAttentionVoList;
-        return null;
-    }
+//        return null;
+//    }
 
     @Override
     public List<Performance> queryClassEmotionInRealTime(String cid) {
@@ -59,7 +59,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public List<String> queryCourseByTeacherId(String tid) {
-        List<Course> courseList=teacherDao.selectCourseByTeacher(tid);
+        List<Course> courseList=teacherDao.selectEveryCourseByTeacher(tid);
         List<String> coursesName=new ArrayList<>();
         for(Course course:courseList){
             coursesName.add(course.getCourse());
@@ -68,17 +68,26 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<String> queryStudentNameByTeacher(String tid) {
-//        List<Student> studentList;
-//        List<String> studentName=new ArrayList<>();
-//        for(Student student:studentList){
-//            studentName.add(student.getStudentName());
-//        }
-//        return  studentName;
-return null;
+    public List<Student> queryStudentByTeacher(String tid) {
+        List<Student> studentList =new ArrayList<>();
+        //先查出老师教的所有课(这里以课程名相同的要排除)
+        List<Course> courseList = teacherDao.selectEveryCourseByTeacher(tid);
+        //查找学习每个课的学生
+        for(Course course:courseList){
+            List<Student> s=courseDao.selectStudentByCourse(course.getCid());
+            if(s!=null)
+                studentList.addAll(s);
+        }
+
+        return  studentList;
+
     }
 
+    @Override
+    public List<String> queryStudentIdByTeacher(String tid) {
 
+        List<String> studentList = teacherDao.selectCourseByTeacher(tid);
 
-
+        return studentList;
+    }
 }

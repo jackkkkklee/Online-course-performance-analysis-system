@@ -9,7 +9,7 @@ server:
 spring:
   profiles:
     active: dev
-    include: druid,mybatisplus,shiro
+    include: druid,mybatisplus,shiro,swagger
   redis:
     host: localhost
     port: 6379

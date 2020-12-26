@@ -20,6 +20,8 @@ public interface TeacherDao
     public Teacher selectOne(String tid);
     //查所有老师
     public List<Teacher> selectAll();
-    //查询老师所教的所有学生
-    List<Course> selectCourseByTeacher(String tid);
+    //查询老师所教的所有课程
+    List<String> selectCourseByTeacher(String tid);
+    //查询老师上的每一节课
+    List<Course> selectEveryCourseByTeacher(String tid);
 }

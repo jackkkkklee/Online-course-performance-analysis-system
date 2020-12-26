@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
@@ -58,11 +59,11 @@ public class Assessment {
     }
 
 
-    public  String storeImage(String base64, String sid) throws IOException {
+    public  String storeImage(String base64, String sid, Date image_date) throws IOException {
         System.out.println(base64);
         base64 = base64.substring(22,base64.length());
         System.out.println(base64);
-        Long time=Calendar.getInstance().getTimeInMillis();
+        Long time=image_date.getTime();
 
         String path = IMAGE_PATH;
 

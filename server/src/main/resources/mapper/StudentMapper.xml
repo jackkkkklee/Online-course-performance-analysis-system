@@ -28,9 +28,9 @@
         select * from sys_course c,sys_course_student cs,sys_student s where s.sid=#{sid} and c.cid=cs.cid and s.sid=cs.sid
     </select>
     <!--通过时间 查询学生课程-->
-    <select id="selectStudentCourse"  resultType="com.abc.entity.Course">
+    <select id="selectStudentCourseByDate"  resultType="com.abc.entity.Course">
         select * from sys_course c,sys_course_student cs,sys_student s where s.sid=#{sid} and c.cid=cs.cid and s.sid=cs.sid
-        and c.startTime between #{startTime} and #{endTime}
+        and #{date} between c.startTime and c.endTime
     </select>
 
 </mapper>

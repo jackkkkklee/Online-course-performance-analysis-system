@@ -12,9 +12,12 @@ import com.abc.service.AttentionService;
 import com.abc.service.impl.AttentionServiceImpl;
 import com.abc.util.Assessment;
 import com.abc.util.MyTimeUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.shiro.authz.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -92,7 +95,9 @@ public class TestController {
     @Autowired
     StudentDao studentDao;
     @GetMapping("/testAop")
-    public String testAop(){
+    public String testAop(@RequestBody String body){
+        JSONObject jsonObj = JSON.parseObject(body);
+        Date date = jsonObj.getDate("startTime");
 //        attentionService.basicAssessment("1","1");
 //        Teacher te = teacherDao.selectOne("tea001");
 //
@@ -104,6 +109,9 @@ public class TestController {
 //        courseDao.selectAll();
 //        performanceDao.selectOne("class001","stu001",MyTimeUtils.StringToDate("2020-12-19 20:00:00"));
 //        performanceDao.selectAll("class001","stu001");
+            performanceDao.selectOne("class001","stu001",MyTimeUtils.StringToDate("2020-12-19 10:00:00"));
+            performanceDao.selectOne("class001","stu001",date);
+
           System.out.println(studentDao.selectStudentCourse("stu001"));
     }catch (Exception e){
          e.printStackTrace();

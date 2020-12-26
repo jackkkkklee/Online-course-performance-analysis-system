@@ -31,10 +31,11 @@
     <select id="selectAll" resultType="com.abc.entity.Course">
         select * from sys_course
     </select>
-    <!-- 根据课程id查询所有学生-->
+    <!-- 根据课程id查询课程-->
     <select id="selectStudentByCourse" parameterType="String" resultType="com.abc.entity.Student">
         select * from sys_course c,sys_course_student cs,sys_student s where c.cid=#{cid} and cs.cid=c.cid and cs.sid=s.sid
     </select>
+
 
 
 

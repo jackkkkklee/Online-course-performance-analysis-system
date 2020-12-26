@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -44,8 +45,8 @@ public class AttentionServiceImpl  implements AttentionService {
      * 此时暂时将图片文件保存下来
      * @return Instantaneous integrated assessment score
      */
-    public  int finalAssessment(String base64,String mode,String sid) throws IOException {
-        String imageName = assessment.storeImage(base64,sid);
+    public  int finalAssessment(String base64,String mode,String sid,Date image_date) throws IOException {
+       String imageName = assessment.storeImage(base64,sid,image_date);
         return AssessmentByImage(mode,sid,imageName);
     }
 
@@ -103,18 +104,34 @@ public class AttentionServiceImpl  implements AttentionService {
     }
 
     @Override
-    public List<ClassAttentionVo> selectAllAverageByCourseAndTime(String cid, Date startTime, Date endTime) throws CloneNotSupportedException {
+    public List<ClassAttentionVo> selectAllAverageByCourseAndTime(String cid, Date startTime, Date endTime) throws CloneNotSupportedException, ParseException {
         //查出学这个课的所有学生   （上同一种课的学生不一定是同一个班级的！！！这里有问题，需要创建一个班级表）
         List<Student> studentList = courseDao.selectStudentByCourse(cid);
+        //由头尾时间 获取所有时间片
         List<Date> dateList = MyTimeUtils.getDateListInHHmmAndDate(startTime,endTime,1);
         List<ClassAttentionVo> result =new ArrayList<>();
         //可以使用模板方法
         ClassAttentionVo classAttentionVo=new ClassAttentionVo();
         int tempAttention=0;
         int stuNumber = studentList.size();
+        //学生人数为0
+        if(stuNumber==0){
+
+            return null;
+        }
+
+
+        // 遍历所有人 的所有时间 O（n^2）
         for(Date date:dateList){
             for(Student student:studentList){
-                tempAttention+=performancedao.selectOne(cid,student.getSid(),date).getAttention_value();
+                Performance performance=performancedao.selectOne(cid,student.getSid(),date);
+                //查询的时间不匹配会返回null
+                if(performance!=null){
+                    System.out.println("原来的date "+date);
+                    System.out.println("改变后的的date "+MyTimeUtils.getSystemTime(date));
+                    tempAttention+=performance.getAttention_value();
+                    System.out.println("tempAttention"+ tempAttention);
+                }
             }
             //计算平均值
             int averageAttentionValue = tempAttention/stuNumber;

@@ -4,6 +4,7 @@ import com.abc.entity.Course;
 import com.abc.entity.Student;
 import com.abc.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -25,6 +26,6 @@ public interface StudentDao
     //查询学生的所有课程
     List<Course> selectStudentCourse(String sid);
     //查询学生课程by date
-    Course selectStudentCourseByDate(String sid, Date date);
+    Course selectStudentCourseByDate(@Param("sid") String sid, @Param("date") Date date);
 
 }
