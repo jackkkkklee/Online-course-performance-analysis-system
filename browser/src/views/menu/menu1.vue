@@ -14,7 +14,7 @@
           style="margin: auto; width: 300px; height: 300px"
         ></canvas>
         <span>
-            <p>Attention Value: {{ attention_value }}</p>
+            <p>Attention Value: {{ attentionValue }}</p>
             <p>Yawn Status: {{ yawnStatus }}</p>
             <p>Sleep Chance: {{ sleepChance }}</p>
             <p>Has Face: {{ hasFace }}</p>
