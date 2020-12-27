@@ -1,25 +1,54 @@
 <template>
   <div class="menu-container">
-    <h1 style="text-align: center">{{ pageName }}</h1>
-    <div style="margin: auto">
-      <!--使用video标签调用摄像头-->
-      <video style="margin: auto" id="camera" ref="camera" width="300" height="300" autoplay></video>
-      <!--创建一个cavas  用来存放图片-->
-      <canvas id="canvas" width="300" height="300"></canvas>
-    </div>
-    <div style="margin: auto">
-      <el-button
-        type="primary"
-        style="margin: auto"
-        @click="openCamera"
-        :disabled="!hasCourse"
-      >
-        Start Course</el-button
-      >
-      <el-button type="primary" style="margin: auto" @click="stopNavigator" :disabled="!onCourse"
-        >Finish Course</el-button
-      >
-    </div>
+    <el-card style="margin: 15px">
+      <div style="margin: auto">
+        <!--使用video标签调用摄像头-->
+        <video
+          id="camera"
+          style="margin: auto; width: 300px; height: 300px"
+          autoplay
+        ></video>
+        <!--创建一个cavas  用来存放图片-->
+        <canvas
+          id="canvas"
+          style="margin: auto; width: 300px; height: 300px"
+        ></canvas>
+        <span>
+            <p>Attention Value: {{ attention_value }}</p>
+            <p>Yawn Status: {{ yawnStatus }}</p>
+            <p>Sleep Chance: {{ sleepChance }}</p>
+            <p>Has Face: {{ hasFace }}</p>
+            <p>Is Smoking: {{ isSmoking }}</p>
+            <p>Is using phone: {{ isUsingPhone }}</p>
+            <p>Non-learning item: {{ prohibitItem }}</p>
+        </span>
+      </div>
+      <div class="button_container" style="margin: auto">
+        <el-button
+          type="primary"
+          style="margin: auto"
+          @click="openCamera"
+          :disabled="!hasCourse"
+        >
+          Start Course</el-button
+        >
+        <el-button
+          type="primary"
+          style="margin: auto"
+          @click="stopNavigator"
+          :disabled="!onCourse"
+          >Finish Course</el-button
+        >
+        <el-button
+          type="primary"
+          style="margin: auto"
+          @click="changeModel"
+          :disabled="!onCourse"
+          >Change model</el-button
+        >
+
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -33,17 +62,25 @@ export default {
   name: "Menu1",
   data() {
     return {
-      pageName: "Online Course",
       hasCourse: false,
       onCourse: false,
-      course: null
+      course: null,
+      showData: true,
+      attentionValue: null,
+      yawnStatus: null,
+      sleepChance: null,
+      isSmoking: null,
+      isUsingPhone: null,
+      prohibitItem: null,
+      hasFace: null,
+      model: 1
     };
   },
   computed: {
     ...mapGetters(["name"]),
   },
   mounted() {
-    // this.checkCourse();
+    this.checkCourse();
   },
   methods: {
     getUserMedia(constraints, success, error) {
@@ -98,24 +135,20 @@ export default {
     },
 
     stopNavigator() {
-      if (this.hasCourse == false) {
-        clearInterval(this.timer);
-        var video = document.getElementById("camera");
-        video.srcObject.getTracks()[0].stop();
-        this.hasCourse = !this.hasCourse;
-        this.onCourse = !this.onCourse;
-      } else {
-        alert("You have not started course!");
-      }
+      clearInterval(this.timer);
+      var video = document.getElementById("camera");
+      video.srcObject.getTracks()[0].stop();
+      this.hasCourse = !this.hasCourse;
+      this.onCourse = !this.onCourse;
     },
 
     //调用接口方法
     checkCourse() {
       //查询该学生当前是否有课
       analysisApi.queryStudentHasCourse(this.name).then((res) => {
-        this.hasCourse = res.data.StudentClassVo.hasCourse;
-        if(hasCourse){
-          this.course = res.data.StudentClassVo.CourseName;
+        this.hasCourse = res.data.result.hasCourse;
+        if (this.hasCourse) {
+          this.course = res.data.result.courseName;
           alert("You have " + this.course + " course right now!");
         }
       });
@@ -128,9 +161,15 @@ export default {
       var context = canvas.getContext("2d");
       context.drawImage(video, 0, 0, 300, 300);
       var imgData = canvas.toDataURL();
-      // var imgData = canvas.toDataURL();
+
       //上传到后台。
-      sendImageApi.sendImage(imgData, this.name, this.course);
+      sendImageApi.sendImage(imgData, this.name, this.course, new Date(), this.showData).then((res) => {
+        this.attentionValue = res.data.AttentionDetailVo.attentiveness;
+        this.yawnStatus = res.data.AttentionDetailVo.yawn_status;
+        this.sleepChance = res.data.AttentionDetailVo.sleep_chance;
+        this.prohibitItem = res.data.AttentionDetailVo.;
+        this.hasFace = res.data.AttentionDetailVo.;
+      });
     },
   },
 };
@@ -140,6 +179,11 @@ export default {
 .menu-container {
   position: absolute;
   left: 30%;
+}
+.button_container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
