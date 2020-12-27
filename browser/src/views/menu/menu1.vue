@@ -18,9 +18,9 @@
             <p>Yawn Status: {{ yawnStatus }}</p>
             <p>Sleep Chance: {{ sleepChance }}</p>
             <p>Has Face: {{ hasFace }}</p>
-            <p>Is Smoking: {{ isSmoking }}</p>
-            <p>Is using phone: {{ isUsingPhone }}</p>
-            <p>Non-learning item: {{ prohibitItem }}</p>
+            <p v-show="mode=='123'">Is Smoking: {{ isSmoking }}</p>
+            <p v-show="mode=='123'">Is using phone: {{ isUsingPhone }}</p>
+            <p v-show="mode=='123'">Non-learning item: {{ prohibitItem }}</p>
         </span>
       </div>
       <div class="button_container" style="margin: auto">
@@ -42,11 +42,10 @@
         <el-button
           type="primary"
           style="margin: auto"
-          @click="changeModel"
+          @click="changeMode"
           :disabled="!onCourse"
-          >Change model</el-button
+          >Change Mode</el-button
         >
-
       </div>
     </el-card>
   </div>
@@ -73,7 +72,7 @@ export default {
       isUsingPhone: null,
       prohibitItem: null,
       hasFace: null,
-      model: 1
+      mode: "1"
     };
   },
   computed: {
@@ -163,14 +162,25 @@ export default {
       var imgData = canvas.toDataURL();
 
       //上传到后台。
-      sendImageApi.sendImage(imgData, this.name, this.course, new Date(), this.showData).then((res) => {
+      sendImageApi.sendImage(imgData, this.name, this.course, new Date(), this.showData, this.mode).then((res) => {
         this.attentionValue = res.data.AttentionDetailVo.attentiveness;
-        this.yawnStatus = res.data.AttentionDetailVo.yawn_status;
-        this.sleepChance = res.data.AttentionDetailVo.sleep_chance;
-        this.prohibitItem = res.data.AttentionDetailVo.;
-        this.hasFace = res.data.AttentionDetailVo.;
+        this.yawnStatus = res.data.AttentionDetailVo.yawnStatus;
+        this.sleepChance = res.data.AttentionDetailVo.sleepChance;
+        this.hasFace = res.data.AttentionDetailVo.hasFace;
+        this.isSmoking = res.data.AttentionDetailVo.isSmoking;
+        this.isUsingPhone = res.data.AttentionDetailVo.isUsingPhone;
+        this.prohibitItem = res.data.AttentionDetailVo.unClassRelatedItem;
       });
     },
+
+    changeMode() {
+      if(this.mode == "1") {
+        this.mode = "123";
+      }
+      else{
+        this.mode = "1"
+      }
+    }
   },
 };
 </script>

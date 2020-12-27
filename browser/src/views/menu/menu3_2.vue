@@ -257,7 +257,7 @@ export default {
         );
       };
     },
-    
+
     queryCourse() {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
         for (let item of res.data.courses) {

@@ -23,9 +23,13 @@
     <select id="selectAll" resultType="com.abc.entity.Teacher">
         select * from sys_teacher
     </select>
-    <!-- 查单个老师的所有课程   -->
-    <select id="selectCourseByTeacher" parameterType="String" resultType="com.abc.entity.Course">
+    <!-- 查单个老师的每一堂课程   -->
+    <select id="selectEveryCourseByTeacher" parameterType="String" resultType="com.abc.entity.Course">
         select * from sys_course c,sys_teacher t where c.tid=#{tid} and t.tid=c.tid;
+    </select>
+    <!-- 查单个老师的教授的每门课程ID -->
+    <select id="selectCourseByTeacher" parameterType="String" resultType="String">
+        select distinct cid from sys_course c,sys_teacher t where c.tid=#{tid} and t.tid=c.tid;
     </select>
 
 

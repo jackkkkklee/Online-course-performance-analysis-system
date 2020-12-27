@@ -7,6 +7,7 @@ import com.abc.entity.Performance;
 import com.abc.entity.Student;
 import com.abc.service.AttentionService;
 import com.abc.util.*;
+import com.abc.vo.AttentionDetailVo;
 import com.abc.vo.ClassAttentionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,6 +15,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -31,12 +33,10 @@ public class AttentionServiceImpl  implements AttentionService {
      */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-<<<<<<< HEAD
-    public final static String IMAGE_PATH="E:/testImageForOnlineClass/";
-=======
+
     @Value("${imageDir.path}")
     public  String IMAGE_PATH;
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;
@@ -46,24 +46,28 @@ public class AttentionServiceImpl  implements AttentionService {
      * 此时暂时将图片文件保存下来
      * @return Instantaneous integrated assessment score
      */
-    public  int finalAssessment(String base64,String mode,String sid) throws IOException {
-        String imageName = assessment.storeImage(base64,sid);
+    public  AttentionDetailVo finalAssessment(String base64,String mode,String sid,Date image_date) throws IOException {
+       String imageName = assessment.storeImage(base64,sid,image_date);
         return AssessmentByImage(mode,sid,imageName);
     }
 
-    public  int AssessmentByImage(String mode,String sid,String imageName){
+    public  AttentionDetailVo AssessmentByImage(String mode,String sid,String imageName){
 
         //after the image is saved,call python script
         String[] res = basicAssessment(sid,imageName);
         String imagePath = IMAGE_PATH+imageName+".jpg";
+        AttentionDetailVo attentionDetailVo=new AttentionDetailVo();
         //调用python服务异常
         if(res[0].equals("500")){
             System.out.println("python server 500");
-            return 0;
+            return attentionDetailVo;
         }else if(res[0].equals("no face")){
             //检测无人脸
-            return -1;
+            attentionDetailVo.setHasFace(false);
+            return attentionDetailVo;
         }
+        //有人脸
+        attentionDetailVo.setHasFace(true);
 
         //对分数进行运算  1.打哈欠 -10 2.睡觉为0
         //mode 1
@@ -71,10 +75,15 @@ public class AttentionServiceImpl  implements AttentionService {
         String direction=res[1];
         String yawn=res[2];
         Boolean isSleep=assessment.sleepDetection(sid,res);
-        if(isSleep)
-            return 0;
-        else if(yawn.equals("True"))
+        if(isSleep){
+            attentionDetailVo.setSleepChance(isSleep);
+            attentionDetailVo.setAttentionValue(0);
+        }
+        else if(yawn.equals("True")){
             basicAttention-=10;
+            attentionDetailVo.setYawnStatus(true);
+        }
+
 
         //mode2 行为识别
         //默认是顺序执行，但是api的调用主要是网络时延；并发调用可以加快时间
@@ -84,14 +93,21 @@ public class AttentionServiceImpl  implements AttentionService {
         //要再另一个注入类中进行方法调用才会触发AOP
         if(mode.contains("2")){
             assessment.CheckBehaviorInClass(basicAttention,imagePath,sid);
+
+            attentionDetailVo.setSmoking(BehaviorRecognition.isSmoking);
+            attentionDetailVo.setUsingPhone(BehaviorRecognition.isUsingCellPhone);
         }
 
         //mode3 非学习物品识别
         if(mode.contains("3")){
-            assessment.nonClassItemChecking(basicAttention,imagePath,sid);
+            int num = assessment.nonClassItemChecking(basicAttention,imagePath,sid);
+            attentionDetailVo.setUnClassRelatedItem(num);
         }
         //返回的是瞬时的分数
-        return basicAttention>0?basicAttention:0;
+        basicAttention= basicAttention>0?basicAttention:0;
+        attentionDetailVo.setAttentionValue(Math.min(attentionDetailVo.getAttentionValue(),basicAttention));
+
+        return attentionDetailVo;
     }
 
     public  String[] basicAssessment(String sid, String imageName){
@@ -104,19 +120,34 @@ public class AttentionServiceImpl  implements AttentionService {
         return res.split("\n");
     }
 
+
     @Override
-    public List<ClassAttentionVo> selectAllAverageByCourseAndTime(String cid, Date startTime, Date endTime) throws CloneNotSupportedException {
+    public List<ClassAttentionVo> selectAllAverageByCourseAndTime(String cid, Date startTime, Date endTime) throws CloneNotSupportedException, ParseException {
         //查出学这个课的所有学生   （上同一种课的学生不一定是同一个班级的！！！这里有问题，需要创建一个班级表）
         List<Student> studentList = courseDao.selectStudentByCourse(cid);
+        //由头尾时间 获取所有时间片
         List<Date> dateList = MyTimeUtils.getDateListInHHmmAndDate(startTime,endTime,1);
         List<ClassAttentionVo> result =new ArrayList<>();
         //可以使用模板方法
         ClassAttentionVo classAttentionVo=new ClassAttentionVo();
         int tempAttention=0;
         int stuNumber = studentList.size();
+        //学生人数为0
+        if(stuNumber==0){
+
+            return null;
+        }
+        // 遍历所有人 的所有时间 O（n^2）
         for(Date date:dateList){
             for(Student student:studentList){
-                tempAttention+=performancedao.selectOne(cid,student.getSid(),date).getAttention_value();
+                Performance performance=performancedao.selectOne(cid,student.getSid(),date);
+                //查询的时间不匹配会返回null
+                if(performance!=null){
+                    System.out.println("原来的date "+date);
+                    System.out.println("改变后的的date "+MyTimeUtils.getSystemTime(date));
+                    tempAttention+=performance.getAttention_value();
+                    System.out.println("tempAttention"+ tempAttention);
+                }
             }
             //计算平均值
             int averageAttentionValue = tempAttention/stuNumber;

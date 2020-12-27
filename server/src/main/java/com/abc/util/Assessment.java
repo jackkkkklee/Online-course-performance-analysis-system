@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
@@ -28,12 +29,10 @@ public class Assessment {
       */
     static HashMap<String,Integer> sleepCountMap = new HashMap<>();
     //改到配置文件中
-<<<<<<< HEAD
-    public final static String IMAGE_PATH="E:/testImageForOnlineClass/";
-=======
+
     @Value("${imageDir.path}")
     public  String IMAGE_PATH;
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
     public final static Integer SLEEP_ARRANGE=90;
@@ -53,23 +52,22 @@ public class Assessment {
     }
     //@Async("asyncPromiseExecutor")
     @APICallLimiter
-    public void nonClassItemChecking(int basicAttention, String imagePath,String sid ){
+    public int nonClassItemChecking(int basicAttention, String imagePath,String sid ){
 
         HashSet<String> nonClassItemsSet=ItemRecognition.NonClassItems(imagePath);
         basicAttention -= nonClassItemsSet.size()*10;
+        return nonClassItemsSet.size();
     }
 
 
-    public  String storeImage(String base64, String sid) throws IOException {
+    public  String storeImage(String base64, String sid, Date image_date) throws IOException {
         System.out.println(base64);
         base64 = base64.substring(22,base64.length());
         System.out.println(base64);
-        Long time=Calendar.getInstance().getTimeInMillis();
-<<<<<<< HEAD
-        String path="E:/testImageForOnlineClass/";
-=======
+        Long time=image_date.getTime();
+
         String path = IMAGE_PATH;
->>>>>>> d0591055ecacba84f5baab825b0860dfbcb011ed
+
         //Name the picture with student ID and time
         String imageName = sid+time;
         Base64ToImage.GenerateImage(base64,path+sid+time+".jpg");

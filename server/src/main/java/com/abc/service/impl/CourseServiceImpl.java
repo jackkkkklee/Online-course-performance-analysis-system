@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class CourseService implements com.abc.service.CourseService {
+public class CourseServiceImpl implements com.abc.service.CourseService {
     @Autowired
     CourseDao courseDao;
     @Override
