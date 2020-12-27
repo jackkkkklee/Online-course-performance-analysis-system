@@ -5,6 +5,7 @@ import com.abc.annotation.PermInfo;
 import com.abc.service.AttentionService;
 import com.abc.service.impl.AttentionServiceImpl;
 import com.abc.util.MyTimeUtils;
+import com.abc.vo.AttentionDetailVo;
 import com.abc.vo.Json;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -33,11 +34,17 @@ public class AttentionAnalysisController {
         String image = jsonObj.getString("image");
         String sid = jsonObj.getString("sid");
         String cid = jsonObj.getString("cid");
+        Boolean showData = jsonObj.getBoolean("show_data");
+        String mode = jsonObj.getString("mode");
         //时间命名
         Date image_date = jsonObj.getDate("image_name");
+        AttentionDetailVo attentionDetailVo=null;
         int attention=0;
         try{
-             attention = attentionService.finalAssessment(image, AttentionServiceImpl.FULL_MODE, sid,image_date);
+             attentionDetailVo= attentionService.finalAssessment(image, mode, sid,image_date);
+             if (attentionDetailVo==null)
+                 return Json.fail(oper);
+             attention=attentionDetailVo.getAttentionValue();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -49,6 +56,11 @@ public class AttentionAnalysisController {
         // 存到数据库
 
         attentionService.add(cid,sid,attention,image_date,image_date);
+        if(showData){
+
+            return Json.succ(oper,"attentionDetailVo",attentionDetailVo);
+        }
+
         return Json.succ(oper);
     }
     @PostMapping("/emotion")

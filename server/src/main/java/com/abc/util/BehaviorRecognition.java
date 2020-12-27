@@ -98,11 +98,15 @@ public class BehaviorRecognition {
                 if(JSONObject.parseObject(cell).getString("name").equals("看手机")){
                     isUsingCellPhone=true;
                     System.out.println(JSONObject.parseObject(cell).getString("name"));
+                }else{
+                    isUsingCellPhone=false;
                 }
 
                 String smoke=JSONObject.parseObject(js.getString("attributes")).getString("smoke");
                 if(JSONObject.parseObject(smoke).getString("name").equals("吸烟")){
                     isSmoking=true;
+                }else{
+                    isSmoking=false;
                 }
 
             }

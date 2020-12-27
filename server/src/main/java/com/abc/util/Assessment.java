@@ -52,10 +52,11 @@ public class Assessment {
     }
     //@Async("asyncPromiseExecutor")
     @APICallLimiter
-    public void nonClassItemChecking(int basicAttention, String imagePath,String sid ){
+    public int nonClassItemChecking(int basicAttention, String imagePath,String sid ){
 
         HashSet<String> nonClassItemsSet=ItemRecognition.NonClassItems(imagePath);
         basicAttention -= nonClassItemsSet.size()*10;
+        return nonClassItemsSet.size();
     }
 
 

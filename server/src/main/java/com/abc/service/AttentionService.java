@@ -1,6 +1,7 @@
 package com.abc.service;
 
 import com.abc.entity.Performance;
+import com.abc.vo.AttentionDetailVo;
 import com.abc.vo.ClassAttentionVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,8 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface AttentionService {
-    int finalAssessment(String base64,String mode,String sid,Date image_date) throws IOException;
-    int AssessmentByImage(String mode,String sid,String imageName);
+    AttentionDetailVo finalAssessment(String base64,String mode,String sid,Date image_date) throws IOException;
+    AttentionDetailVo AssessmentByImage(String mode, String sid, String imageName);
     String[] basicAssessment(String sid, String imageName);
 
     //查询某节课所有学生的平均注意力
