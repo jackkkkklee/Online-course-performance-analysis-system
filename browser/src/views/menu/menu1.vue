@@ -5,22 +5,26 @@
         <!--使用video标签调用摄像头-->
         <video
           id="camera"
-          style="margin: auto; width: 300px; height: 300px"
+          style="margin: auto"
+          width="300"
+          height="300"
           autoplay
         ></video>
         <!--创建一个cavas  用来存放图片-->
         <canvas
           id="canvas"
-          style="margin: auto; width: 300px; height: 300px"
+          style="margin: auto"
+          width="300"
+          height="300"
         ></canvas>
         <span>
-            <p>Attention Value: {{ attentionValue }}</p>
-            <p>Yawn Status: {{ yawnStatus }}</p>
-            <p>Sleep Chance: {{ sleepChance }}</p>
-            <p>Has Face: {{ hasFace }}</p>
-            <p v-show="mode=='123'">Is Smoking: {{ isSmoking }}</p>
-            <p v-show="mode=='123'">Is using phone: {{ isUsingPhone }}</p>
-            <p v-show="mode=='123'">Non-learning item: {{ prohibitItem }}</p>
+          <p>Attention Value: {{ attentionValue }}</p>
+          <p>Yawn Status: {{ yawnStatus }}</p>
+          <p>Sleep Chance: {{ sleepChance }}</p>
+          <p>Has Face: {{ hasFace }}</p>
+          <p v-show="mode == '123'">Is Smoking: {{ isSmoking }}</p>
+          <p v-show="mode == '123'">Is using phone: {{ isUsingPhone }}</p>
+          <p v-show="mode == '123'">Non-learning item: {{ prohibitItem }}</p>
         </span>
       </div>
       <div class="button_container" style="margin: auto">
@@ -65,14 +69,14 @@ export default {
       onCourse: false,
       course: null,
       showData: true,
-      attentionValue: null,
+      attentionValue: 0,
       yawnStatus: null,
       sleepChance: null,
       isSmoking: null,
       isUsingPhone: null,
       prohibitItem: null,
       hasFace: null,
-      mode: "1"
+      mode: "1",
     };
   },
   computed: {
@@ -127,7 +131,7 @@ export default {
         );
         this.hasCourse = !this.hasCourse;
         this.onCourse = !this.onCourse;
-        this.timer = setInterval(this.uploadImage, 1000); //拍照间隔设置
+        this.timer = setInterval(this.uploadImage, 2000); //拍照间隔设置
       } else {
         alert("不支持访问用户媒体");
       }
@@ -162,25 +166,35 @@ export default {
       var imgData = canvas.toDataURL();
 
       //上传到后台。
-      sendImageApi.sendImage(imgData, this.name, this.course, new Date(), this.showData, this.mode).then((res) => {
-        this.attentionValue = res.data.AttentionDetailVo.attentiveness;
-        this.yawnStatus = res.data.AttentionDetailVo.yawnStatus;
-        this.sleepChance = res.data.AttentionDetailVo.sleepChance;
-        this.hasFace = res.data.AttentionDetailVo.hasFace;
-        this.isSmoking = res.data.AttentionDetailVo.isSmoking;
-        this.isUsingPhone = res.data.AttentionDetailVo.isUsingPhone;
-        this.prohibitItem = res.data.AttentionDetailVo.unClassRelatedItem;
-      });
+      sendImageApi
+        .sendImage(
+          imgData,
+          this.name,
+          this.course,
+          new Date(),
+          this.showData,
+          this.mode
+        )
+        .then((res) => {
+          this.attentionValue = res.data.attentionDetailVo.attentiveness;
+          this.yawnStatus = res.data.attentionDetailVo.yawnStatus;
+          this.sleepChance = res.data.attentionDetailVo.sleepChance;
+          this.hasFace = res.data.attentionDetailVo.hasFace;
+          if (this.mode == "123") {
+            this.isSmoking = res.data.attentionDetailVo.isSmoking;
+            this.isUsingPhone = res.data.attentionDetailVo.isUsingPhone;
+            this.prohibitItem = res.data.attentionDetailVo.unClassRelatedItem;
+          }
+        });
     },
 
     changeMode() {
-      if(this.mode == "1") {
+      if (this.mode == "1") {
         this.mode = "123";
+      } else {
+        this.mode = "1";
       }
-      else{
-        this.mode = "1"
-      }
-    }
+    },
   },
 };
 </script>
