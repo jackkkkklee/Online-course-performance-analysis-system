@@ -50,6 +50,12 @@
           :disabled="!onCourse"
           >Change Mode</el-button
         >
+        <el-switch
+          v-model="value1"
+          active-text="Normal Mode"
+          inactive-text="Netwrok Traffic Saving Mode"
+        >
+        </el-switch>
       </div>
     </el-card>
   </div>
