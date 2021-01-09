@@ -96,7 +96,7 @@ public class ItemRecognition {
 
 
         public static void main(String[] args) {
-            HashSet resItemSet=ItemRecognition.NonClassItems("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\4.jpg",APIKEY,SECRETKEY);
+            HashSet resItemSet=ItemRecognition.NonClassItems("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\8.jpg",APIKEY,SECRETKEY);
 
         }
     }

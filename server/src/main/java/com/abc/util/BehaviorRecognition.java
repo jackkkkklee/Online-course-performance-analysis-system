@@ -59,7 +59,8 @@ public class BehaviorRecognition {
 
 
                 String result = HttpUtil.post(url, accessToken, param);
-                System.out.println(result);
+                System.out.println("result:"+result);
+                System.out.println("token:"+accessToken);
                 return result;
 
             } catch (Exception e) {
@@ -70,11 +71,13 @@ public class BehaviorRecognition {
 
         public static String body_attr(String filePath,String ak, String sk) {
             String token=GetBaiduToken.getAuth(ak,sk);
+            System.out.println("token!!:"+token);
             return body_attr(filePath,token);
         }
 
         public static String body_attr(String filePath) {
-        String token=GetBaiduToken.getAuth();
+            String token=GetBaiduToken.getAuth();
+            System.out.println("token!!:"+token);
         return body_attr(filePath,token);
         }
 
@@ -88,13 +91,21 @@ public class BehaviorRecognition {
             String res = jsonObject.getString("person_info");
             JSONArray json = JSONArray.parseArray(res);
             System.out.println("res"+res);
+            if(json==null){
+                System.out.println("api方法调用失败");
+                return ;
+            }
             List list=json.toJavaList(String.class);
 
             Iterator iterator=json.listIterator();
             while(iterator.hasNext()) {
                 JSONObject js=(JSONObject)iterator.next();
+                JSONObject tempJs= JSONObject.parseObject(js.getString("attributes"));
+                if(tempJs == null)
+                    continue;
                 String cell=JSONObject.parseObject(js.getString("attributes")).getString("cellphone");
-
+                if(cell==null)
+                    continue;
                 if(JSONObject.parseObject(cell).getString("name").equals("看手机")){
                     isUsingCellPhone=true;
                     System.out.println(JSONObject.parseObject(cell).getString("name"));
@@ -126,7 +137,7 @@ public class BehaviorRecognition {
         public static void main(String[] args) {
 
             //
-            String res=BehaviorRecognition.body_attr("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\7.jpg");
+            String res=BehaviorRecognition.body_attr("E:\\git\\biu-master\\server\\src\\main\\resources\\testImage\\1.jpg");
             //if(res.contains("cellphone"))
             JSONObject jsonObject = JSON.parseObject(res);
             getInfoFromJson(jsonObject);

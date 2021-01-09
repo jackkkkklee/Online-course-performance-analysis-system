@@ -5,26 +5,22 @@
         <!--使用video标签调用摄像头-->
         <video
           id="camera"
-          style="margin: auto"
-          width="300"
-          height="300"
+          style="margin: auto" width="300" height="300"
           autoplay
         ></video>
         <!--创建一个cavas  用来存放图片-->
         <canvas
           id="canvas"
-          style="margin: auto"
-          width="300"
-          height="300"
+          style="  margin: auto" width="300" height="300"
         ></canvas>
         <span>
-          <p>Attention Value: {{ attentionValue }}</p>
-          <p>Yawn Status: {{ yawnStatus }}</p>
-          <p>Sleep Chance: {{ sleepChance }}</p>
-          <p>Has Face: {{ hasFace }}</p>
-          <p v-show="mode == '123'">Is Smoking: {{ isSmoking }}</p>
-          <p v-show="mode == '123'">Is using phone: {{ isUsingPhone }}</p>
-          <p v-show="mode == '123'">Non-learning item: {{ prohibitItem }}</p>
+            <p>Attention Value: {{ attention_Value }}</p>
+            <p>Yawn Status: {{ yawnStatus }}</p>
+            <p>Sleep Chance: {{ sleepChance }}</p>
+            <p>Has Face: {{ hasFace }}</p>
+            <p v-show="mode=='123'">Is Smoking: {{ isSmoking }}</p>
+            <p v-show="mode=='123'">Is using phone: {{ isUsingPhone }}</p>
+            <p v-show="mode=='123'">Non-learning item: {{ prohibitItem }}</p>
         </span>
       </div>
       <div class="button_container" style="margin: auto">
@@ -50,12 +46,6 @@
           :disabled="!onCourse"
           >Change Mode</el-button
         >
-        <el-switch
-          v-model="value1"
-          active-text="Normal Mode"
-          inactive-text="Netwrok Traffic Saving Mode"
-        >
-        </el-switch>
       </div>
     </el-card>
   </div>
@@ -75,13 +65,13 @@ export default {
       onCourse: false,
       course: null,
       showData: true,
-      attentionValue: 0,
-      yawnStatus: null,
-      sleepChance: null,
-      isSmoking: null,
-      isUsingPhone: null,
-      prohibitItem: null,
-      hasFace: null,
+      attention_Value: 0,
+      yawnStatus: '',
+      sleepChance: '',
+      isSmoking: '',
+      isUsingPhone: '',
+      prohibitItem: '',
+      hasFace: '',
       mode: "1",
     };
   },
@@ -168,39 +158,43 @@ export default {
       var video = document.getElementById("camera");
       var canvas = document.getElementById("canvas");
       var context = canvas.getContext("2d");
-      context.drawImage(video, 0, 0, 300, 300);
+      context.drawImage(video, 0, 0);
       var imgData = canvas.toDataURL();
 
       //上传到后台。
-      sendImageApi
-        .sendImage(
-          imgData,
-          this.name,
-          this.course,
-          new Date(),
-          this.showData,
-          this.mode
-        )
-        .then((res) => {
-          this.attentionValue = res.data.attentionDetailVo.attentiveness;
-          this.yawnStatus = res.data.attentionDetailVo.yawnStatus;
-          this.sleepChance = res.data.attentionDetailVo.sleepChance;
-          this.hasFace = res.data.attentionDetailVo.hasFace;
-          if (this.mode == "123") {
-            this.isSmoking = res.data.attentionDetailVo.isSmoking;
-            this.isUsingPhone = res.data.attentionDetailVo.isUsingPhone;
-            this.prohibitItem = res.data.attentionDetailVo.unClassRelatedItem;
-          }
-        });
+      sendImageApi.sendImage(imgData, this.name, this.course, new Date(), this.showData, this.mode).then((res) => {
+        this.attention_Value = res.data.attentionDetailVo.attentionValue;
+        this.yawnStatus = res.data.attentionDetailVo.yawnStatus;
+        this.sleepChance = res.data.attentionDetailVo.sleepChance;
+        this.hasFace = res.data.attentionDetailVo.hasFace;
+        if(this.mode=='123') {
+          this.isSmoking = res.data.attentionDetailVo.smoking;
+          this.isUsingPhone = res.data.attentionDetailVo.usingPhone;
+          this.prohibitItem = res.data.attentionDetailVo.unClassRelatedItem;
+        }
+      });
     },
 
+    // test(){
+    //   axios.get("/static/mock/test.json").then((res) => {
+    //     // console.log(res.data);
+    //     this.attention_Value = res.data.attentionDetailVo.attentionValue;
+    //     this.yawnStatus = res.data.attentionDetailVo.yawnStatus;
+    //     this.sleepChance = res.data.attentionDetailVo.sleepChance;
+    //     this.hasFace = res.data.attentionDetailVo.hasFace;
+    //     this.isSmoking = res.data.attentionDetailVo.isSmoking;
+    //     // console.log(res.data.attentionDetailVo.isSmoking);
+    //     this.isTest = res.data.attentionDetailVo.isTest;
+    //   });
+    // },
     changeMode() {
-      if (this.mode == "1") {
+      if(this.mode == "1") {
         this.mode = "123";
-      } else {
-        this.mode = "1";
       }
-    },
+      else{
+        this.mode = "1"
+      }
+    }
   },
 };
 </script>

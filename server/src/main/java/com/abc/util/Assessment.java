@@ -52,18 +52,21 @@ public class Assessment {
     }
     //@Async("asyncPromiseExecutor")
     @APICallLimiter
-    public int nonClassItemChecking(int basicAttention, String imagePath,String sid ){
+    public Integer nonClassItemChecking(int basicAttention, String imagePath,String sid ){
 
         HashSet<String> nonClassItemsSet=ItemRecognition.NonClassItems(imagePath);
         basicAttention -= nonClassItemsSet.size()*10;
-        return nonClassItemsSet.size();
+        if(nonClassItemsSet == null)
+            return 0;
+        else
+            return nonClassItemsSet.size();
     }
 
 
     public  String storeImage(String base64, String sid, Date image_date) throws IOException {
         System.out.println(base64);
         base64 = base64.substring(22,base64.length());
-        System.out.println(base64);
+        //System.out.println(base64);
         Long time=image_date.getTime();
 
         String path = IMAGE_PATH;

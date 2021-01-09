@@ -51,12 +51,14 @@ public class AttentionAnalysisController {
         //用hashmap存储1分钟以内的attention_value
 
 
-        System.out.println(attention);
+        System.out.println("专注度:"+attention);
         System.out.println("cid"+cid);
         // 存到数据库
 
         attentionService.add(cid,sid,attention,image_date,image_date);
         if(showData){
+
+
 
             return Json.succ(oper,"attentionDetailVo",attentionDetailVo);
         }
