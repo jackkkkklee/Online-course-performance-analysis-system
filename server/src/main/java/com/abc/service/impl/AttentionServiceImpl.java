@@ -52,11 +52,13 @@ public class AttentionServiceImpl  implements AttentionService {
     }
 
     public  AttentionDetailVo AssessmentByImage(String mode,String sid,String imageName){
-
+        AttentionDetailVo attentionDetailVo=new AttentionDetailVo();
         //after the image is saved,call python script
         String[] res = basicAssessment(sid,imageName);
+        if(res == null)
+            return attentionDetailVo;
         String imagePath = IMAGE_PATH+imageName+".jpg";
-        AttentionDetailVo attentionDetailVo=new AttentionDetailVo();
+
         //调用python服务异常
         if(res[0].equals("500")){
             System.out.println("python server 500");
@@ -77,7 +79,7 @@ public class AttentionServiceImpl  implements AttentionService {
         Boolean isSleep=assessment.sleepDetection(sid,res);
         if(isSleep){
             attentionDetailVo.setSleepChance(isSleep);
-            attentionDetailVo.setAttentionValue(0);
+            basicAttention=0;
         }
         else if(yawn.equals("True")){
             basicAttention-=10;
@@ -93,20 +95,24 @@ public class AttentionServiceImpl  implements AttentionService {
         //要再另一个注入类中进行方法调用才会触发AOP
         if(mode.contains("2")){
             assessment.CheckBehaviorInClass(basicAttention,imagePath,sid);
-
             attentionDetailVo.setSmoking(BehaviorRecognition.isSmoking);
             attentionDetailVo.setUsingPhone(BehaviorRecognition.isUsingCellPhone);
+            System.out.println("进行了行为监测！！！抽烟"+BehaviorRecognition.isSmoking+"玩手机"+BehaviorRecognition.isUsingCellPhone);
         }
 
         //mode3 非学习物品识别
         if(mode.contains("3")){
-            int num = assessment.nonClassItemChecking(basicAttention,imagePath,sid);
-            attentionDetailVo.setUnClassRelatedItem(num);
+            Integer num = assessment.nonClassItemChecking(basicAttention,imagePath,sid);
+            if(num!=null)
+                attentionDetailVo.setUnClassRelatedItem((int)num);
         }
         //返回的是瞬时的分数
         basicAttention= basicAttention>0?basicAttention:0;
-        attentionDetailVo.setAttentionValue(Math.min(attentionDetailVo.getAttentionValue(),basicAttention));
+        attentionDetailVo.setAttentionValue(basicAttention);
 
+
+        if(mode.equals("123"))
+            System.out.println("attentionDetailVo.isSmoking()"+attentionDetailVo.isSmoking());
         return attentionDetailVo;
     }
 

@@ -3,6 +3,8 @@ package com.abc.util;
 
 
 
+
+
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.BufferedReader;
@@ -56,6 +58,7 @@ public class GetBaiduToken {
                     + "&client_secret=" + sk;
             try {
                 URL realUrl = new URL(getAccessTokenUrl);
+                System.out.println("url:"+realUrl);
                 // 打开和URL之间的连接
                 HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
                 connection.setRequestMethod("GET");
@@ -77,8 +80,9 @@ public class GetBaiduToken {
                  * 返回结果示例
                  */
                 System.err.println("result:" + result);
-                JSONObject jsonObject = new JSONObject();
+                JSONObject jsonObject = JSONObject.parseObject(result);
                 String access_token = jsonObject.getString("access_token");
+                System.out.println("access_token"+access_token);
                 return access_token;
             } catch (Exception e) {
                 System.err.printf("获取token失败！");
@@ -86,6 +90,11 @@ public class GetBaiduToken {
             }
             return null;
         }
+
+    public static void main(String[] args) {
+        System.out.println(getAuth());
+    }
+
 
     }
 

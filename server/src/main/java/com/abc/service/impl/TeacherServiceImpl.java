@@ -86,8 +86,12 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<String> queryStudentIdByTeacher(String tid) {
 
-        List<String> studentList = teacherDao.selectCourseByTeacher(tid);
+        List<Student> studentList = queryStudentByTeacher(tid);
+        List<String> studentIdList=new ArrayList<>();
+        for(Student student:studentList){
+            studentIdList.add(student.getSid());
+        }
 
-        return studentList;
+        return studentIdList;
     }
 }
