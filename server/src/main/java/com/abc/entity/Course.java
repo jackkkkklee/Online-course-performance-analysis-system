@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-@Data
+
 @NoArgsConstructor
 public class Course
 {
@@ -22,7 +22,43 @@ public class Course
     }
 
 
+    public String getTid() {
+        return tid;
+    }
 
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
 
+    public String getCid() {
+        return cid;
+    }
 
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 }

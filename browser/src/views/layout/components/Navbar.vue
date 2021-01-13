@@ -7,9 +7,9 @@
     <div class="right-menu">
       <error-log class="errLog-container right-menu-item"></error-log>
       <div style="display: inline-block;">
-        <span>帐号：</span><el-tag style="margin-right: 20px;">{{name}}</el-tag>
-        <span>角色：</span>
-        <el-tag style="margin-right: 5px;" type="danger" v-if="roles.length==0" >游客（未配置任何角色）</el-tag>
+        <span>Account: </span><el-tag style="margin-right: 20px;">{{name}}</el-tag>
+        <span>Role: </span>
+        <el-tag style="margin-right: 5px;" type="danger" v-if="roles.length==0" >visitor (No role)</el-tag>
         <el-tag style="margin-right: 5px;" type="success" v-else v-for="r in roles" :key="r.val">{{r.name}}</el-tag>
       </div>
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
@@ -20,14 +20,14 @@
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              首页
+              Home
             </el-dropdown-item>
           </router-link>
           <el-dropdown-item>
-            <span @click="handleUpdatePwd" style="display:block;">修改密码</span>
+            <span @click="handleUpdatePwd" style="display:block;">Change Password</span>
           </el-dropdown-item>
           <el-dropdown-item divided>
-            <span @click="logout" style="display:block;">退出</span>
+            <span @click="logout" style="display:block;">Exit</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>

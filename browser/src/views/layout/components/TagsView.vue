@@ -8,9 +8,9 @@
       </router-link>
     </scroll-pane>
     <ul class='contextmenu' v-show="visible" :style="{left:left+'px',top:top+'px'}">
-      <li @click="closeSelectedTag(selectedTag)">关闭</li>
-      <li @click="closeOthersTags">关闭其他</li>
-      <li @click="closeAllTags">关闭所有</li>
+      <li @click="closeSelectedTag(selectedTag)">Close</li>
+      <li @click="closeOthersTags">Close the other</li>
+      <li @click="closeAllTags">Close all</li>
     </ul>
   </div>
 </template>

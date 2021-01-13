@@ -1,7 +1,6 @@
 <template>
   <div class="login-container">
-    <h1 style="text-align: center">{{ pageName }}</h1>
-    <el-card style="margin: 10px">
+    <el-card style="margin: 15px">
       <div id="chart" style="width: 600px; height: 400px; margin: auto"></div>
       <div style="width: 80px; height: 50px; margin: auto">
         <el-button type="primary" style="margin: auto" @click="refreshData"
@@ -23,7 +22,7 @@ export default {
   data() {
     return {
       pageName: "菜单3-3",
-      myChart: null
+      myChart: null,
     };
   },
   computed: {
@@ -73,12 +72,60 @@ export default {
     //   });
     // });
     this.refreshData();
+
+    // let chartData = new Array();
+    // let chartMap = new Map();
+    // chartMap.set('happy',50)
+    // chartMap.set('aa',50)
+    // chartMap.set('bb',25)
+    // chartMap.set('cc',60)
+    // chartMap.set('dd',30)
+    // for (var [key, mapValue] of chartMap) {
+    //   chartData.push({ name: key, value: mapValue });
+    // }
+    // this.myChart.setOption({
+    //   series: [
+    //     {
+    //       data: chartData,
+    //     },
+    //   ],
+    // });
   },
   methods: {
     //调用接口方法
     refreshData() {
       analysisApi.queryClassEmotion(this.name).then((res) => {
         this.myChart.showLoading();
+        let chartData = [];
+        let chartMap = new Map();
+        chartMap = res.data.emotion.emotionVoMap;
+        for (let [key, mapValue] of chartMap) {
+          chartData.push({ name: key, value: mapValue });
+        }
+        myChart.setOption({
+          series: [
+            {
+              data: chartData,
+            },
+          ],
+        });
+        this.myChart.hideLoading();
+      });
+      this.tip();
+    },
+    tip() {
+      this.$message({
+        message: "Now the students emotions are poor, please make adjustment!",
+        type: "warning",
+        duration: 5000,
+        showClose: true
+      });
+      this.$notify({
+        title: "Notice",
+        message: "Now the students emotions are poor, please make adjustment!",
+        type: "warning",
+        duration: 5000,
+        offset: 100
       });
     },
   },
