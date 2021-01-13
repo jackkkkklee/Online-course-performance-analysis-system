@@ -6,6 +6,7 @@ import com.abc.dao.PerformanceDao;
 import com.abc.entity.Performance;
 import com.abc.entity.Student;
 import com.abc.service.AttentionService;
+import com.abc.service.EmotionService;
 import com.abc.util.*;
 import com.abc.vo.AttentionDetailVo;
 import com.abc.vo.ClassAttentionVo;
@@ -26,6 +27,8 @@ public class AttentionServiceImpl  implements AttentionService {
     PerformanceDao performancedao;
     @Autowired
     CourseDao courseDao;
+    @Autowired
+    EmotionService emotionService;
     /**
      * 1 means basic attention(head orientation ,gaze,sleepy,yawn detection)
      * 2 means behaviour detection
@@ -39,6 +42,7 @@ public class AttentionServiceImpl  implements AttentionService {
 
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
+    public final static String Emotion_MODE="1234";
     public final static Integer SLEEP_ARRANGE=90;
 
 
@@ -106,6 +110,13 @@ public class AttentionServiceImpl  implements AttentionService {
             if(num!=null)
                 attentionDetailVo.setUnClassRelatedItem((int)num);
         }
+
+        //mode4 表情识别
+        if(mode.contains("4")){
+            String emotionRes=emotionService.detectEmotion(sid, imageName);
+            attentionDetailVo.setExpressValue(emotionRes);
+        }
+
         //返回的是瞬时的分数
         basicAttention= basicAttention>0?basicAttention:0;
         attentionDetailVo.setAttentionValue(basicAttention);
@@ -121,7 +132,7 @@ public class AttentionServiceImpl  implements AttentionService {
 //        System.out.println(IMAGE_PATH);
 
         CallPythonByHTTP callPythonByHTTP=new CallPythonByHTTP();
-        String res=callPythonByHTTP.CallPythonService(IMAGE_PATH+imageName+".jpg");
+        String res=callPythonByHTTP.CallPythonService(IMAGE_PATH+imageName+".jpg",12345);
         // 0:attention 1: direction 2:yawn status 3:sleep chance
         return res.split("\n");
     }
@@ -175,6 +186,7 @@ public class AttentionServiceImpl  implements AttentionService {
         for(Date date:dateList)
             performancedao.add(cid,sid,attention_value,date);
     }
+
 
 
     //@Async("asyncPromiseExecutor")
