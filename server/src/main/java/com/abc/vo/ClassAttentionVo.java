@@ -6,11 +6,35 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Data
 @AllArgsConstructor
 
 public class ClassAttentionVo implements Cloneable {
     private int attention_value;
+
+    public int getAttention_value() {
+        return attention_value;
+    }
+
+    public void setAttention_value(int attention_value) {
+        this.attention_value = attention_value;
+    }
+
+    public Date getTimeOffset() {
+        return timeOffset;
+    }
+
+    public void setTimeOffset(Date timeOffset) {
+        this.timeOffset = timeOffset;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
     private Date timeOffset;
     private String cid;
 

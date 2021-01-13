@@ -55,10 +55,10 @@ import analysisApi from "@/api/analysis";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "Menu3_2",
+  name: "Menu2",
   data() {
     return {
-      pageName: "菜单3-2",
+      pageName: "菜单2",
       myChart: null,
       courses: [],
       course: "",

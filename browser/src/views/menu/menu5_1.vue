@@ -44,12 +44,23 @@
           }"
         >
         </el-time-select>
-        <el-button type="primary" @click="queryData">Search </el-button>
+        <el-button type="primary" style="margin: auto" @click="clearData"
+          >Clear</el-button
+        >
       </div>
-      <div
-        id="chart"
-        style="width: 600px; margin: 20px auto 20px auto; height: 400px"
-      ></div>
+      <div style="margin: 20px auto">
+        <exportExcel
+          ref="myChild"
+          :exportExcelInfo="exportExcelInfo"
+          :tableData="tableData"
+          :exportExcelArr="exportExcelArr"
+        ></exportExcel>
+      </div>
+      <div style="width: 100px; height: 40px; margin: auto">
+        <el-button style="margin: auto" type="primary" @click="exportExcel"
+          >Export</el-button
+        >
+      </div>
     </el-card>
   </div>
 </template>
@@ -59,12 +70,13 @@ import echarts from "echarts";
 import axios from "axios";
 import analysisApi from "@/api/analysis";
 import { mapGetters } from "vuex";
+import exportExcel from "@/components/ExportExcel/index";
 
 export default {
-  name: "Menu3_1",
+  name: "Menu5_1",
   data() {
     return {
-      pageName: "菜单3-1",
+      pageName: "菜单5-1",
       myChart: null,
       courses: [],
       course: "",
@@ -102,7 +114,67 @@ export default {
           },
         ],
       },
+
+      exportExcelArr: [
+        {
+          prop: "time",
+          label: "Time",
+        },
+        {
+          prop: "studentName",
+          label: "Student Name",
+        },
+        {
+          prop: "className",
+          label: "Class Name",
+        },
+        {
+          prop: "score",
+          label: "Concenstration Score",
+        },
+      ],
+      //导出excel表格id及excel名称
+      exportExcelInfo: {
+        excelId: "record-table",
+        excelName: "Concenstration Score.xlsx",
+      },
+      //需要导出的table数据
+      tableData: [
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+      ],
     };
+  },
+  components: {
+    exportExcel
   },
   computed: {
     ...mapGetters(["name"]),
@@ -110,130 +182,7 @@ export default {
   mounted() {
     this.queryCourse();
     this.queryStudent();
-    this.myChart = echarts.init(document.getElementById("chart"));
-    this.myChart.setOption({
-      backgroundColor: "#394056",
 
-      title: {
-        top: 16,
-        text: "Student Concentration Score",
-        textStyle: {
-          fontWeight: "normal",
-          fontSize: 16,
-          color: "#F1F1F3",
-        },
-        left: "1%",
-      },
-      tooltip: {
-        trigger: "axis",
-        axisPointer: {
-          lineStyle: {
-            color: "#57617B",
-          },
-        },
-      },
-      legend: {
-        top: 20,
-        icon: "rect",
-        itemWidth: 14,
-        itemHeight: 5,
-        itemGap: 13,
-        data: [],
-        right: "4%",
-        textStyle: {
-          fontSize: 12,
-          color: "#F1F1F3",
-        },
-      },
-      grid: {
-        top: 100,
-        left: "3%",
-        right: "4%",
-        bottom: "2%",
-        containLabel: true,
-      },
-      xAxis: {
-        type: "category",
-        boundaryGap: false,
-        axisLine: {
-          lineStyle: {
-            color: "#57617B",
-          },
-        },
-        data: [],
-      },
-      yAxis: [
-        {
-          type: "value",
-          name: "score",
-          axisTick: {
-            show: false,
-          },
-          axisLine: {
-            lineStyle: {
-              color: "#57617B",
-            },
-          },
-          axisLabel: {
-            margin: 10,
-            textStyle: {
-              fontSize: 14,
-            },
-          },
-          splitLine: {
-            lineStyle: {
-              color: "#57617B",
-            },
-          },
-        },
-      ],
-      series: [
-        {
-          name: "",
-          type: "line",
-          smooth: true,
-          symbol: "circle",
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1,
-            },
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(
-                0,
-                0,
-                0,
-                1,
-                [
-                  {
-                    offset: 0,
-                    color: "rgba(137, 189, 27, 0.3)",
-                  },
-                  {
-                    offset: 0.8,
-                    color: "rgba(137, 189, 27, 0)",
-                  },
-                ],
-                false
-              ),
-              shadowColor: "rgba(0, 0, 0, 0.1)",
-              shadowBlur: 10,
-            },
-          },
-          itemStyle: {
-            normal: {
-              color: "rgb(137,189,27)",
-              borderColor: "rgba(137,189,2,0.27)",
-              borderWidth: 12,
-            },
-          },
-          data: [],
-        },
-      ],
-    });
     //模拟数据
     // axios.get("/static/mock/data.json").then((res) => {
     //   // console.log(res.data);
@@ -312,25 +261,15 @@ export default {
           this.date + " " + this.startTime,
           this.date + " " + this.endTime
         )
-        .then((res) => {
-          this.myChart.showLoading();
-          this.myChart.setOption({
-            xAxis: {
-              data: res.data.time,
-            },
-            legend: {
-              data: this.studentName,
-            },
-            series: [
-              {
-                name: this.studentName,
-                data: res.data.attention_value,
-              },
-            ],
-          });
-          this.myChart.hideLoading();
-        });
+        .then((res) => {});
     },
+
+    exportExcel() {
+      this.$refs.myChild.exportExcel();
+    },
+    clearData() {
+      this.tableData=[];
+    }
   },
 };
 </script>
