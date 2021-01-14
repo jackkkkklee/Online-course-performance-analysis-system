@@ -79,9 +79,11 @@ export default {
     //老师实时查询班级情绪
     queryClassEmotion(teacherName) {
         return request({
-            // url: '/sys_user/query',
-            // method: 'post',
-            // data
+            url: '/emotion/query_class_emotion',
+            method: 'post',
+            data: {
+                
+            }
         })
     },
 
