@@ -25,6 +25,9 @@
           <p v-show="mode == '123'">Is Smoking: {{ isSmoking }}</p>
           <p v-show="mode == '123'">Is using phone: {{ isUsingPhone }}</p>
           <p v-show="mode == '123'">Non-learning item: {{ prohibitItem }}</p>
+          <p :class="emotionClass" v-show="mode.indexOf('4') != -1">
+            Emotion: {{ emotion }}
+          </p>
         </span>
       </div>
       <div class="button_container" style="margin: auto">
@@ -55,7 +58,9 @@
           style="margin: auto"
           @click="emotionMode"
           :disabled="!onCourse"
-        >Emotion Mode</el-button
+
+          >Emotion Mode</el-button
+
         >
         <el-switch
           v-model="switchState"
@@ -84,15 +89,17 @@ export default {
       course: null,
       showData: true,
       attentionValue: 0,
-      yawnStatus: '',
-      sleepChance: '',
-      isSmoking: '',
-      isUsingPhone: '',
-      prohibitItem: '',
-      hasFace: '',
+      yawnStatus: "",
+      sleepChance: "",
+      isSmoking: "",
+      isUsingPhone: "",
+      prohibitItem: "",
+      hasFace: "",
       mode: "1",
       sendInterval: 2000,
-      switchState: false
+      switchState: false,
+      emotion: "",
+      emotionClass: ""
     };
   },
   computed: {
@@ -182,17 +189,30 @@ export default {
       var imgData = canvas.toDataURL();
 
       //上传到后台。
-      sendImageApi.sendImage(imgData, this.name, this.course, new Date(), this.showData, this.mode).then((res) => {
-        this.attentionValue = res.data.attentionDetailVo.attentionValue;
-        this.yawnStatus = res.data.attentionDetailVo.yawnStatus;
-        this.sleepChance = res.data.attentionDetailVo.sleepChance;
-        this.hasFace = res.data.attentionDetailVo.hasFace;
-        if(this.mode=='123') {
-          this.isSmoking = res.data.attentionDetailVo.smoking;
-          this.isUsingPhone = res.data.attentionDetailVo.usingPhone;
-          this.prohibitItem = res.data.attentionDetailVo.unClassRelatedItem;
-        }
-      });
+      sendImageApi
+        .sendImage(
+          imgData,
+          this.name,
+          this.course,
+          new Date(),
+          this.showData,
+          this.mode
+        )
+        .then((res) => {
+          this.attentionValue = res.data.attentionDetailVo.attentionValue;
+          this.yawnStatus = res.data.attentionDetailVo.yawnStatus;
+          this.sleepChance = res.data.attentionDetailVo.sleepChance;
+          this.hasFace = res.data.attentionDetailVo.hasFace;
+          if (this.mode == "123") {
+            this.isSmoking = res.data.attentionDetailVo.smoking;
+            this.isUsingPhone = res.data.attentionDetailVo.usingPhone;
+            this.prohibitItem = res.data.attentionDetailVo.unClassRelatedItem;
+          }
+          if (this.mode.indexOf("4") != -1) {
+            this.emotion = res.data.attentionDetailVo.expressValue;
+            this.emotionClass = this.emotion;
+          }
+        });
     },
 
     // test(){
@@ -215,16 +235,25 @@ export default {
       }
     },
     changeSendMode(callback) {
-      if(this.switchState) {
-        this.sendInterval=5000;
-      }else {
-        this.sendInterval=2000;
+      if (this.switchState) {
+        this.sendInterval = 5000;
+      } else {
+        this.sendInterval = 2000;
       }
       // console.log(this.sendInterval);
     },
     emotionMode() {
+<<<<<<< HEAD
       this.mode += "4";
     }
+=======
+      if (this.mode.indexOf("4") == -1) {
+        this.mode += "4";
+      } else {
+        this.mode.replace("4", "");
+      }
+    },
+>>>>>>> bf240c9dd7f79d2a3583cbe00780748082e5c431
   },
 };
 </script>
@@ -233,5 +262,23 @@ export default {
 .menu-container {
   position: absolute;
   left: 25%;
+}
+.unsure {
+  color: blue;
+}
+.listening {
+  color: green;
+}
+.confusing {
+  color: brown;
+}
+.understanding {
+  color: orange;
+}
+.disdain {
+  color: gold;
+}
+.resist {
+  color: red;
 }
 </style>
