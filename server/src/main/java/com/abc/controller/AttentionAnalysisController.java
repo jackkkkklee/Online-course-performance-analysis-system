@@ -59,8 +59,12 @@ public class AttentionAnalysisController {
         // 将专注度存到数据库
         attentionService.add(cid,sid,attention,image_date,image_date);
         //将表情存到数据库
-        if(attentionDetailVo.getExpressValue()!=null)
+        if(attentionDetailVo.getExpressValue()!=null){
+            EmotionVo emotionVo=new EmotionVo();
+            System.out.println(attentionDetailVo.getExpressValue());
             emotionService.addEmotion(cid,sid, EmotionVo.convertToNumber(attentionDetailVo.getExpressValue()),image_date);
+        }
+
 
         if(showData){
 
@@ -70,20 +74,20 @@ public class AttentionAnalysisController {
 
         return Json.succ(oper);
     }
-    @PostMapping("/emotion")
-    public Json EmotionAnalysis(@RequestBody String body){
-        String oper = "EmotionAnalysis";
-
-        JSONObject jsonObj = JSON.parseObject(body);
-        String image = jsonObj.getString("image");
-        String imageName = jsonObj.getString("image_name");
-
-
-
-
-
-        return  null;
-
-    }
+//    @PostMapping("/emotion")
+//    public Json EmotionAnalysis(@RequestBody String body){
+//        String oper = "EmotionAnalysis";
+//
+//        JSONObject jsonObj = JSON.parseObject(body);
+//        String image = jsonObj.getString("image");
+//        String imageName = jsonObj.getString("image_name");
+//
+//
+//
+//
+//
+//        return  null;
+//
+//    }
 
 }

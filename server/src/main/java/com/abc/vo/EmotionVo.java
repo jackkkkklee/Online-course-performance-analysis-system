@@ -1,6 +1,7 @@
 package com.abc.vo;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class EmotionVo {
     static HashMap<Integer,String> emotionMap =new HashMap<>();
@@ -30,6 +31,14 @@ public class EmotionVo {
         emotionVoMap.put(voKey,emotionVoMap.get(voKey));
     }
     public static int convertToNumber(String emotion){
-        return reverseMap.get(emotion);
+        System.out.println("emotion"+emotion);
+        for(Map.Entry entry: reverseMap.entrySet()){
+            System.out.println("key:"+entry.getKey());
+            System.out.println("value:"+entry.getValue());
+        }
+        System.out.println(reverseMap.get("understanding"));
+        System.out.println(reverseMap.get("disdain"));
+        int res=reverseMap.get(emotion.trim());
+        return res;
     }
 }

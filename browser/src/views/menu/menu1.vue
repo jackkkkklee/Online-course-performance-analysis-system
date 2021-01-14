@@ -50,6 +50,13 @@
           :disabled="!onCourse"
           >Change Mode</el-button
         >
+        <el-button
+          type="primary"
+          style="margin: auto"
+          @click="emotionMode"
+          :disabled="!onCourse"
+        >Emotion Mode</el-button
+        >
         <el-switch
           v-model="switchState"
           active-text="Netwrok Traffic Saving Mode"
@@ -92,7 +99,7 @@ export default {
     ...mapGetters(["name"]),
   },
   mounted() {
-    //this.checkCourse();
+    this.checkCourse();
   },
   methods: {
     getUserMedia(constraints, success, error) {
@@ -214,6 +221,9 @@ export default {
         this.sendInterval=2000;
       }
       // console.log(this.sendInterval);
+    },
+    emotionMode() {
+      this.mode += "4";
     }
   },
 };

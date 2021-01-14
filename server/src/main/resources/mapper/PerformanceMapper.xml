@@ -19,7 +19,7 @@
 
     <!-- 添加课堂中学生的表情   -->
     <select id="addEmotion"  resultType="com.abc.entity.Performance">
-        insert into sys_performance (sid,cid,express_value,timeOffset) values (#{sid},#{cid},#{express_value},#{timeOffset})
+        insert into sys_performance (sid,cid,expression_value,timeOffset) values (#{sid},#{cid},#{expression_value},#{timeOffset})
     </select>
     <!-- 查单个学生某种课的所有表现   -->
     <select id="selectOne" resultMap="baseMap">

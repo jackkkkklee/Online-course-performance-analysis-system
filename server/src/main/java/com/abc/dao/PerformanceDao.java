@@ -14,7 +14,7 @@ public interface PerformanceDao {
 
     void add(@Param("cid") String cid, @Param("sid")String sid,@Param("attention_value") int attention_value ,@Param("timeOffset") Date timeOffset);
 
-    void addEmotion(@Param("cid") String cid, @Param("sid")String sid,@Param("express_value") int express_value ,@Param("timeOffset") Date timeOffset);
+    void addEmotion(@Param("cid") String cid, @Param("sid")String sid,@Param("expression_value") int expression_value ,@Param("timeOffset") Date timeOffset);
     //查某个学生单个时刻
     public Performance selectOne(@Param("cid") String cid, @Param("sid")String sid,@Param("timeOffset") Date timeOffset);
 
