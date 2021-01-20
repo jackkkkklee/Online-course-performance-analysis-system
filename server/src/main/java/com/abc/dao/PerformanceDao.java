@@ -23,6 +23,7 @@ public interface PerformanceDao {
     //查单个学生一节课单所有时刻表现  ps:这个应该是一种课，一节课要加时间开始 结束！！
     //查单个学生某种课的所有表现
     public List<Performance> selectAll(@Param("cid")String cid, @Param("sid")String sid);
+    Integer selectNewestEmotionForSingleStu(@Param("cid") String cid, @Param("sid")String sid,@Param("startDate") Date startDate,@Param("endDate")Date endDate);
     //查学生的表情
     Integer selectEmotionForSingleStu(@Param("cid") String cid, @Param("sid")String sid,@Param("timeOffset") Date timeOffset);
 

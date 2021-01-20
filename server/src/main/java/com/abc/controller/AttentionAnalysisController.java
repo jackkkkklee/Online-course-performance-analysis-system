@@ -68,7 +68,6 @@ public class AttentionAnalysisController {
 
         if(showData){
 
-
             return Json.succ(oper,"attentionDetailVo",attentionDetailVo);
         }
 

@@ -28,24 +28,34 @@ public class EmotionServiceImpl implements EmotionService {
     public EmotionVo queryAllEmotionByCourse(String cid, Date startTime) {
         EmotionVo emotionVo=new EmotionVo();
 
-        Date forwardTime= new Date(startTime.getTime()/1000/60-5);
+        Date forwardTime= new Date(((Long)startTime.getTime()/1000/60-300)*1000*60);
+        forwardTime = MyTimeUtils.convertToHHmmFormatInDate(forwardTime);
+
         List<Date> dateList = MyTimeUtils.getDateListInHHmmAndDate(forwardTime,startTime,1);
 
         List<Student> studentList = courseDao.selectStudentByCourse(cid);
         if (studentList==null){
             return emotionVo;
-        }
-        //暂时查找5分钟以内的
-        int timeIndex=0;
-        for(Student student:studentList){
-            String sid=student.getSid();
-            if(performanceDao.selectEmotionForSingleStu(cid,sid,dateList.get(timeIndex))==null){
-                timeIndex++;
-                continue;
             }
-            int express_value=performanceDao.selectEmotionForSingleStu(cid,sid,dateList.get(timeIndex));
-            emotionVo.add(express_value);
+        for(Student s:studentList){
+            Integer res=performanceDao.selectNewestEmotionForSingleStu(cid,s.getSid(),forwardTime,startTime);
+            if(res!=null)
+                emotionVo.add(res);
         }
+
+//        //暂时查找5分钟以内的
+//        int timeIndex=0;
+//        for(Student student:studentList){
+//            String sid=student.getSid();
+//            if(performanceDao.selectEmotionForSingleStu(cid,sid,dateList.get(timeIndex))==null){
+//                timeIndex++;
+//                continue;
+//            }
+//            if(timeIndex>=dateList.size())
+//                return emotionVo;
+//            int express_value=performanceDao.selectEmotionForSingleStu(cid,sid,dateList.get(timeIndex));
+//            emotionVo.add(express_value);
+//        }
 
         return emotionVo;
     }

@@ -1,12 +1,32 @@
 package com.abc.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer"})
 public class EmotionVo {
     static HashMap<Integer,String> emotionMap =new HashMap<>();
     static HashMap<String,Integer> reverseMap =new HashMap<>();
-    HashMap<String,Integer> emotionVoMap=new HashMap();
+
+    public HashMap<String, Integer> getEmotionVoMap() {
+        return emotionVoMap;
+    }
+
+    public void setEmotionVoMap(HashMap<String, Integer> emotionVoMap) {
+        this.emotionVoMap = emotionVoMap;
+    }
+
+    public EmotionVo(HashMap<String, Integer> emotionVoMap) {
+        this.emotionVoMap = emotionVoMap;
+    }
+    public EmotionVo(){
+
+    }
+
+    private HashMap<String,Integer> emotionVoMap=new HashMap();
     static {
         emotionMap.put(0,"unsure");
         emotionMap.put(1,"listening");
@@ -28,7 +48,10 @@ public class EmotionVo {
 
     public void add(int emotionNumber){
         String voKey=emotionMap.get(emotionNumber);
-        emotionVoMap.put(voKey,emotionVoMap.get(voKey));
+        if(!emotionVoMap.containsKey(voKey.trim())){
+            emotionVoMap.put(voKey.trim(),1);
+        }else
+        emotionVoMap.put(voKey.trim(),emotionVoMap.get(voKey.trim())+1);
     }
     public static int convertToNumber(String emotion){
         System.out.println("emotion"+emotion);

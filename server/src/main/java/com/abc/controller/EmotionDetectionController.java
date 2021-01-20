@@ -33,6 +33,7 @@ public class EmotionDetectionController {
         Date startDate= jsonObj.getDate("startDate");
         //更改为查询最新的
         EmotionVo emotionVo=emotionService.queryAllEmotionByCourse(cid,startDate);
-        return Json.succ(oper,"emotion",emotionVo);
+
+        return Json.succ(oper).data("emotion",emotionVo.getEmotionVoMap()).data("test","hello");
     }
 }

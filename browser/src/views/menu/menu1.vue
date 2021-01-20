@@ -243,17 +243,14 @@ export default {
       // console.log(this.sendInterval);
     },
     emotionMode() {
-<<<<<<< HEAD
-      this.mode += "4";
-    }
-=======
+
       if (this.mode.indexOf("4") == -1) {
         this.mode += "4";
       } else {
         this.mode.replace("4", "");
       }
     },
->>>>>>> bf240c9dd7f79d2a3583cbe00780748082e5c431
+
   },
 };
 </script>
