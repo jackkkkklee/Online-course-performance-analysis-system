@@ -51,7 +51,7 @@ public class AttentionAnalysisController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //用hashmap存储1分钟以内的attention_value
+        //用hashmap存储1分钟以内的attention_value或者使用内存数据库
 
 
         System.out.println("专注度:"+attention);
