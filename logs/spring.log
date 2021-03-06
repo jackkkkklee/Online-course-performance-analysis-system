@@ -174,3 +174,757 @@
 2021-03-06 20:54:26.386 DEBUG 17520 --- [http-nio-8888-exec-1] c.a.dao.SysPermMapper.getPermsByUserId   : <==      Total: 1
 2021-03-06 20:54:26.436  INFO 17520 --- [http-nio-8888-exec-1] c.a.c.basicController.AuthController     : user login: admin, sessionId: AAF265F877587AD2B89F80CE34D4B8EA
 2021-03-06 20:54:26.586  INFO 17520 --- [http-nio-8888-exec-4] c.a.c.basicController.AuthController     : get user info, sessionId: AAF265F877587AD2B89F80CE34D4B8EA
+2021-03-06 21:15:51.016  INFO 17520 --- [http-nio-8888-exec-7] com.abc.controller.StudentController     : get ongoing course, body: {"sid":"admin"}
+2021-03-06 21:15:51.046 DEBUG 17520 --- [http-nio-8888-exec-7] c.a.d.S.selectStudentCourseByDate        : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid and ? between c.startTime and c.endTime 
+2021-03-06 21:15:51.046 DEBUG 17520 --- [http-nio-8888-exec-7] c.a.d.S.selectStudentCourseByDate        : ==> Parameters: admin(String), 2021-03-06 21:15:51.036(Timestamp)
+2021-03-06 21:15:51.046 DEBUG 17520 --- [http-nio-8888-exec-7] c.a.d.S.selectStudentCourseByDate        : <==      Total: 0
+2021-03-06 21:15:59.464  INFO 17520 --- [http-nio-8888-exec-5] c.a.c.basicController.AuthController     : user logout
+2021-03-06 21:16:06.294  INFO 17520 --- [http-nio-8888-exec-2] c.a.c.basicController.AuthController     : user login, body: {"uname":"stu001","pwd":"123456"}
+2021-03-06 21:16:06.294 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.SysUserMapper.selectList     : ==>  Preparing: SELECT uid AS `uid`,uname,nick,pwd,salt,`lock`,created,updated FROM sys_user WHERE (uname = ?) 
+2021-03-06 21:16:06.294 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.SysUserMapper.selectList     : ==> Parameters: stu001(String)
+2021-03-06 21:16:06.294 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.SysUserMapper.selectList     : <==      Total: 1
+2021-03-06 21:16:06.294 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.SysRoleMapper.getRolesByUserId   : ==>  Preparing: SELECT r.rname,r.rval FROM sys_role r, sys_user_role ur WHERE r.rid = ur.role_id AND ur.user_id = ? 
+2021-03-06 21:16:06.294 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.SysRoleMapper.getRolesByUserId   : ==> Parameters: stu001(String)
+2021-03-06 21:16:06.305 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.SysRoleMapper.getRolesByUserId   : <==      Total: 1
+2021-03-06 21:16:06.305 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.SysPermMapper.getPermsByUserId   : ==>  Preparing: SELECT p.pname,p.pval FROM sys_perm p, sys_role_perm rp, sys_user_role ur WHERE p.pval = rp.perm_val AND ur.role_id = rp.role_id AND ur.user_id = ? 
+2021-03-06 21:16:06.305 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.SysPermMapper.getPermsByUserId   : ==> Parameters: stu001(String)
+2021-03-06 21:16:06.305 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.SysPermMapper.getPermsByUserId   : <==      Total: 2
+2021-03-06 21:16:06.305  INFO 17520 --- [http-nio-8888-exec-2] c.a.c.basicController.AuthController     : user login: stu001, sessionId: 269731699015DED3AF2E672A7A01B3CD
+2021-03-06 21:16:06.334  INFO 17520 --- [http-nio-8888-exec-3] c.a.c.basicController.AuthController     : get user info, sessionId: 269731699015DED3AF2E672A7A01B3CD
+2021-03-06 21:16:09.222  INFO 17520 --- [http-nio-8888-exec-9] com.abc.controller.StudentController     : get ongoing course, body: {"sid":"stu001"}
+2021-03-06 21:16:09.222 DEBUG 17520 --- [http-nio-8888-exec-9] c.a.d.S.selectStudentCourseByDate        : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid and ? between c.startTime and c.endTime 
+2021-03-06 21:16:09.222 DEBUG 17520 --- [http-nio-8888-exec-9] c.a.d.S.selectStudentCourseByDate        : ==> Parameters: stu001(String), 2021-03-06 21:16:09.222(Timestamp)
+2021-03-06 21:16:09.222 DEBUG 17520 --- [http-nio-8888-exec-9] c.a.d.S.selectStudentCourseByDate        : <==      Total: 3
+2021-03-06 21:16:09.472 ERROR 17520 --- [http-nio-8888-exec-9] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/api/v1] threw exception [Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3] with root cause
+
+org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:81) ~[mybatis-3.4.6.jar:3.4.6]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at com.sun.proxy.$Proxy92.selectOne(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:166) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:83) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59) ~[mybatis-3.4.6.jar:3.4.6]
+	at com.sun.proxy.$Proxy118.selectStudentCourseByDate(Unknown Source) ~[na:na]
+	at com.abc.service.impl.StudentServiceImpl.queryOngoingStudentCourse(StudentServiceImpl.java:22) ~[classes/:na]
+	at com.abc.controller.StudentController.queryOngoingStudentCourse(StudentController.java:33) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123) ~[druid-1.1.9.jar:1.1.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+
+2021-03-06 21:17:17.243  INFO 17520 --- [http-nio-8888-exec-8] com.abc.controller.StudentController     : queryStudentAllCourse, body: {"sid":"stu001"}
+2021-03-06 21:17:17.243 DEBUG 17520 --- [http-nio-8888-exec-8] c.a.dao.StudentDao.selectStudentCourse   : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid 
+2021-03-06 21:17:17.243 DEBUG 17520 --- [http-nio-8888-exec-8] c.a.dao.StudentDao.selectStudentCourse   : ==> Parameters: stu001(String)
+2021-03-06 21:17:17.243 DEBUG 17520 --- [http-nio-8888-exec-8] c.a.dao.StudentDao.selectStudentCourse   : <==      Total: 8
+2021-03-06 21:17:18.166  INFO 17520 --- [http-nio-8888-exec-5] com.abc.controller.StudentController     : get ongoing course, body: {"sid":"stu001"}
+2021-03-06 21:17:18.168 DEBUG 17520 --- [http-nio-8888-exec-5] c.a.d.S.selectStudentCourseByDate        : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid and ? between c.startTime and c.endTime 
+2021-03-06 21:17:18.168 DEBUG 17520 --- [http-nio-8888-exec-5] c.a.d.S.selectStudentCourseByDate        : ==> Parameters: stu001(String), 2021-03-06 21:17:18.167(Timestamp)
+2021-03-06 21:17:18.174 DEBUG 17520 --- [http-nio-8888-exec-5] c.a.d.S.selectStudentCourseByDate        : <==      Total: 3
+2021-03-06 21:17:18.177 ERROR 17520 --- [http-nio-8888-exec-5] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/api/v1] threw exception [Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3] with root cause
+
+org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:81) ~[mybatis-3.4.6.jar:3.4.6]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at com.sun.proxy.$Proxy92.selectOne(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:166) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:83) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59) ~[mybatis-3.4.6.jar:3.4.6]
+	at com.sun.proxy.$Proxy118.selectStudentCourseByDate(Unknown Source) ~[na:na]
+	at com.abc.service.impl.StudentServiceImpl.queryOngoingStudentCourse(StudentServiceImpl.java:22) ~[classes/:na]
+	at com.abc.controller.StudentController.queryOngoingStudentCourse(StudentController.java:33) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123) ~[druid-1.1.9.jar:1.1.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+
+2021-03-06 21:19:11.213  INFO 17520 --- [http-nio-8888-exec-2] com.abc.controller.StudentController     : queryStudentAllCourse, body: {"sid":"stu001"}
+2021-03-06 21:19:11.214 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.StudentDao.selectStudentCourse   : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid 
+2021-03-06 21:19:11.214 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.StudentDao.selectStudentCourse   : ==> Parameters: stu001(String)
+2021-03-06 21:19:11.227 DEBUG 17520 --- [http-nio-8888-exec-2] c.a.dao.StudentDao.selectStudentCourse   : <==      Total: 8
+2021-03-06 21:19:11.698  INFO 17520 --- [http-nio-8888-exec-3] com.abc.controller.StudentController     : get ongoing course, body: {"sid":"stu001"}
+2021-03-06 21:19:11.699 DEBUG 17520 --- [http-nio-8888-exec-3] c.a.d.S.selectStudentCourseByDate        : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid and ? between c.startTime and c.endTime 
+2021-03-06 21:19:11.705 DEBUG 17520 --- [http-nio-8888-exec-3] c.a.d.S.selectStudentCourseByDate        : ==> Parameters: stu001(String), 2021-03-06 21:19:11.698(Timestamp)
+2021-03-06 21:19:11.708 DEBUG 17520 --- [http-nio-8888-exec-3] c.a.d.S.selectStudentCourseByDate        : <==      Total: 3
+2021-03-06 21:19:11.711 ERROR 17520 --- [http-nio-8888-exec-3] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/api/v1] threw exception [Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3] with root cause
+
+org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 3
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:81) ~[mybatis-3.4.6.jar:3.4.6]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at com.sun.proxy.$Proxy92.selectOne(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:166) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:83) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59) ~[mybatis-3.4.6.jar:3.4.6]
+	at com.sun.proxy.$Proxy118.selectStudentCourseByDate(Unknown Source) ~[na:na]
+	at com.abc.service.impl.StudentServiceImpl.queryOngoingStudentCourse(StudentServiceImpl.java:22) ~[classes/:na]
+	at com.abc.controller.StudentController.queryOngoingStudentCourse(StudentController.java:33) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123) ~[druid-1.1.9.jar:1.1.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+
+2021-03-06 21:20:34.993  INFO 17520 --- [http-nio-8888-exec-9] com.abc.controller.StudentController     : queryStudentAllCourse, body: {"sid":"stu001"}
+2021-03-06 21:20:34.995 DEBUG 17520 --- [http-nio-8888-exec-9] c.a.dao.StudentDao.selectStudentCourse   : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid 
+2021-03-06 21:20:34.995 DEBUG 17520 --- [http-nio-8888-exec-9] c.a.dao.StudentDao.selectStudentCourse   : ==> Parameters: stu001(String)
+2021-03-06 21:20:35.000 DEBUG 17520 --- [http-nio-8888-exec-9] c.a.dao.StudentDao.selectStudentCourse   : <==      Total: 6
+2021-03-06 21:20:35.384  INFO 17520 --- [http-nio-8888-exec-6] com.abc.controller.StudentController     : get ongoing course, body: {"sid":"stu001"}
+2021-03-06 21:20:35.384 DEBUG 17520 --- [http-nio-8888-exec-6] c.a.d.S.selectStudentCourseByDate        : ==>  Preparing: select * from sys_course c,sys_course_student cs,sys_student s where s.sid=? and c.cid=cs.cid and s.sid=cs.sid and ? between c.startTime and c.endTime 
+2021-03-06 21:20:35.384 DEBUG 17520 --- [http-nio-8888-exec-6] c.a.d.S.selectStudentCourseByDate        : ==> Parameters: stu001(String), 2021-03-06 21:20:35.384(Timestamp)
+2021-03-06 21:20:35.384 DEBUG 17520 --- [http-nio-8888-exec-6] c.a.d.S.selectStudentCourseByDate        : <==      Total: 1
+2021-03-06 21:26:37.739 DEBUG 17520 --- [http-nio-8888-exec-19] com.abc.dao.PerformanceDao.add           : ==>  Preparing: insert into sys_performance (sid,cid,attention_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:26:37.814 DEBUG 17520 --- [http-nio-8888-exec-19] com.abc.dao.PerformanceDao.add           : ==> Parameters: stu001(String), 化学(String), 20(Integer), 2021-03-06 21:26:00.0(Timestamp)
+2021-03-06 21:32:28.179 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:28.179 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:10.438(Timestamp)
+2021-03-06 21:32:28.870 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:28.878 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:14.444(Timestamp)
+2021-03-06 21:32:28.895 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:28.895 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:12.44(Timestamp)
+2021-03-06 21:32:28.929 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.add           : ==>  Preparing: insert into sys_performance (sid,cid,attention_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:28.929 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.add           : ==> Parameters: stu001(String), 化学(String), 20(Integer), 2021-03-06 21:32:00.0(Timestamp)
+2021-03-06 21:32:28.941 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:28.941 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:18.446(Timestamp)
+2021-03-06 21:32:28.951 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:28.951 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:32:16.443(Timestamp)
+2021-03-06 21:32:30.733 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:30.733 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:30.733 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:22.446(Timestamp)
+2021-03-06 21:32:30.733 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:20.451(Timestamp)
+2021-03-06 21:32:32.632 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:32.632 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:24.44(Timestamp)
+2021-03-06 21:32:32.676 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:32.676 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:26.44(Timestamp)
+2021-03-06 21:32:32.706 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:32.706 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:28.451(Timestamp)
+2021-03-06 21:32:37.520 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:37.520 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:30.44(Timestamp)
+2021-03-06 21:32:37.520 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:37.520 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:32.434(Timestamp)
+2021-03-06 21:32:45.020 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:45.020 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:34.448(Timestamp)
+2021-03-06 21:32:45.040 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:45.040 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:36.434(Timestamp)
+2021-03-06 21:32:45.130 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:45.130 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:32:45.130 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:40.448(Timestamp)
+2021-03-06 21:32:45.130 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:32:38.435(Timestamp)
+2021-03-06 21:34:23.382 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:23.387 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:19.629(Timestamp)
+2021-03-06 21:34:25.331 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:25.331 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:21.627(Timestamp)
+2021-03-06 21:34:27.292 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:27.292 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:23.637(Timestamp)
+2021-03-06 21:34:36.989 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:36.989 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:33.622(Timestamp)
+2021-03-06 21:34:39.188 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:39.188 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:35.627(Timestamp)
+2021-03-06 21:34:41.164 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:41.164 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:37.634(Timestamp)
+2021-03-06 21:34:43.006 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:43.006 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:39.619(Timestamp)
+2021-03-06 21:34:45.118 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:45.118 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:41.642(Timestamp)
+2021-03-06 21:34:47.101 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:47.101 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:43.621(Timestamp)
+2021-03-06 21:34:49.109 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:49.109 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:45.636(Timestamp)
+2021-03-06 21:34:51.140 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:51.140 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:47.635(Timestamp)
+2021-03-06 21:34:53.002 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:53.002 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:49.638(Timestamp)
+2021-03-06 21:34:58.993 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:34:58.993 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:55.632(Timestamp)
+2021-03-06 21:35:01.003 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:01.003 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:57.618(Timestamp)
+2021-03-06 21:35:02.999 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:02.999 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:34:59.625(Timestamp)
+2021-03-06 21:35:16.983 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:16.983 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:35:13.627(Timestamp)
+2021-03-06 21:35:43.410 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:43.410 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:39.629(Timestamp)
+2021-03-06 21:35:45.387 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:45.387 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:41.638(Timestamp)
+2021-03-06 21:35:47.092 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:47.092 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:43.625(Timestamp)
+2021-03-06 21:35:48.919 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:48.919 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:45.634(Timestamp)
+2021-03-06 21:35:51.355 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:35:51.355 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:47.632(Timestamp)
+2021-03-06 21:36:00.847 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:36:00.847 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:51.627(Timestamp)
+2021-03-06 21:36:00.847 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:36:00.847 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:49.622(Timestamp)
+2021-03-06 21:36:04.481 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:36:04.481 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:53.635(Timestamp)
+2021-03-06 21:36:04.481 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.add           : ==>  Preparing: insert into sys_performance (sid,cid,attention_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:36:04.481 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.add           : ==> Parameters: stu001(String), 化学(String), 20(Integer), 2021-03-06 21:35:00.0(Timestamp)
+2021-03-06 21:36:04.521 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:36:04.521 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:57.619(Timestamp)
+2021-03-06 21:36:04.521 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:36:04.521 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:35:59.621(Timestamp)
+2021-03-06 21:36:04.654  INFO 17520 --- [http-nio-8888-exec-1] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2021-03-06 21:36:04.881  INFO 17520 --- [http-nio-8888-exec-1] o.s.jdbc.support.SQLErrorCodesFactory    : SQLErrorCodes loaded: [DB2, Derby, H2, HDB, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+2021-03-06 21:36:04.921 ERROR 17520 --- [http-nio-8888-exec-1] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/api/v1] threw exception [Request processing failed; nested exception is org.springframework.dao.DuplicateKeyException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '化学-stu001-2021-03-06 21:35:00' for key 'PRIMARY'
+### The error may exist in file [E:\git\biu-master\server\out\production\resources\mapper\PerformanceMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into sys_performance (sid,cid,attention_value,timeOffset) values (?,?,?,?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '化学-stu001-2021-03-06 21:35:00' for key 'PRIMARY'
+; ]; Duplicate entry '化学-stu001-2021-03-06 21:35:00' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '化学-stu001-2021-03-06 21:35:00' for key 'PRIMARY'] with root cause
+
+com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '化学-stu001-2021-03-06 21:35:00' for key 'PRIMARY'
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_161]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_161]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_161]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_161]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.Util.getInstance(Util.java:408) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3976) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3912) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2530) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2683) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2486) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1197) ~[mysql-connector-java-5.1.46.jar:5.1.46]
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3051) ~[druid-1.1.9.jar:1.1.9]
+	at com.alibaba.druid.filter.FilterEventAdapter.preparedStatement_execute(FilterEventAdapter.java:440) ~[druid-1.1.9.jar:1.1.9]
+	at com.alibaba.druid.filter.FilterChainImpl.preparedStatement_execute(FilterChainImpl.java:3049) ~[druid-1.1.9.jar:1.1.9]
+	at com.alibaba.druid.proxy.jdbc.PreparedStatementProxyImpl.execute(PreparedStatementProxyImpl.java:167) ~[druid-1.1.9.jar:1.1.9]
+	at com.alibaba.druid.pool.DruidPooledPreparedStatement.execute(DruidPooledPreparedStatement.java:498) ~[druid-1.1.9.jar:1.1.9]
+	at sun.reflect.GeneratedMethodAccessor135.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59) ~[mybatis-3.4.6.jar:3.4.6]
+	at com.sun.proxy.$Proxy140.execute(Unknown Source) ~[na:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79) ~[mybatis-3.4.6.jar:3.4.6]
+	at sun.reflect.GeneratedMethodAccessor134.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63) ~[mybatis-3.4.6.jar:3.4.6]
+	at com.sun.proxy.$Proxy138.query(Unknown Source) ~[na:na]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:326) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:136) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:77) ~[mybatis-3.4.6.jar:3.4.6]
+	at sun.reflect.GeneratedMethodAccessor141.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at com.sun.proxy.$Proxy92.selectOne(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:166) ~[mybatis-spring-1.3.2.jar:1.3.2]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:83) ~[mybatis-3.4.6.jar:3.4.6]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:59) ~[mybatis-3.4.6.jar:3.4.6]
+	at com.sun.proxy.$Proxy104.add(Unknown Source) ~[na:na]
+	at com.abc.service.impl.AttentionServiceImpl.add(AttentionServiceImpl.java:187) ~[classes/:na]
+	at com.abc.service.impl.AttentionServiceImpl$$FastClassBySpringCGLIB$$ab7dae73.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) ~[spring-core-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at com.abc.aop.APICallLimiterAspect.around(APICallLimiterAspect.java:54) ~[classes/:na]
+	at sun.reflect.GeneratedMethodAccessor110.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:174) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689) ~[spring-aop-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at com.abc.service.impl.AttentionServiceImpl$$EnhancerBySpringCGLIB$$cdd2713d.add(<generated>) ~[classes/:na]
+	at com.abc.controller.AttentionAnalysisController.AttentionAnalysis(AttentionAnalysisController.java:60) ~[classes/:na]
+	at sun.reflect.GeneratedMethodAccessor109.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_161]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_161]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:209) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387) ~[shiro-core-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125) ~[shiro-web-1.4.0.jar:1.4.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123) ~[druid-1.1.9.jar:1.1.9]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+
+2021-03-06 21:36:04.931 ERROR 17520 --- [http-nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost]           : Exception Processing ErrorPage[errorCode=0, location=/error]
+
+org.apache.catalina.connector.ClientAbortException: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:321) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.OutputBuffer.flush(OutputBuffer.java:284) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteOutputStream.flush(CoyoteOutputStream.java:118) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at com.fasterxml.jackson.core.json.UTF8JsonGenerator.flush(UTF8JsonGenerator.java:1100) ~[jackson-core-2.9.5.jar:2.9.5]
+	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:915) ~[jackson-databind-2.9.5.jar:2.9.5]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:286) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.http.converter.AbstractGenericHttpMessageConverter.write(AbstractGenericHttpMessageConverter.java:102) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:271) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:224) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:82) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:119) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:728) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:472) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:395) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:316) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:395) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:254) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:349) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:175) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+Caused by: java.io.IOException: 远程主机强迫关闭了一个现有的连接。
+	at sun.nio.ch.SocketDispatcher.write0(Native Method) ~[na:1.8.0_161]
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:51) ~[na:1.8.0_161]
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93) ~[na:1.8.0_161]
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65) ~[na:1.8.0_161]
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:471) ~[na:1.8.0_161]
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:134) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:101) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:157) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1267) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:670) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketWrapperBase.flushBlocking(SocketWrapperBase.java:607) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketWrapperBase.flush(SocketWrapperBase.java:597) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.flush(Http11OutputBuffer.java:646) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.filters.ChunkedOutputFilter.flush(ChunkedOutputFilter.java:169) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11OutputBuffer.flush(Http11OutputBuffer.java:252) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.flush(Http11Processor.java:1560) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessor.action(AbstractProcessor.java:285) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.Response.action(Response.java:173) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:317) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	... 42 common frames omitted
+
+2021-03-06 21:39:05.289 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:05.299 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:39:01.709(Timestamp)
+2021-03-06 21:39:09.135 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:09.135 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:39:05.7(Timestamp)
+2021-03-06 21:39:11.319 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:11.319 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:39:07.711(Timestamp)
+2021-03-06 21:39:15.343 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:15.343 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:39:11.763(Timestamp)
+2021-03-06 21:39:17.385 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:17.385 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:39:13.714(Timestamp)
+2021-03-06 21:39:19.115 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:19.115 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:39:15.7(Timestamp)
+2021-03-06 21:39:21.123 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:39:21.123 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:39:17.708(Timestamp)
+2021-03-06 21:43:17.750 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:17.750 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:14.346(Timestamp)
+2021-03-06 21:43:19.810 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:19.810 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:16.339(Timestamp)
+2021-03-06 21:43:21.763 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:21.770 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:18.338(Timestamp)
+2021-03-06 21:43:23.776 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:23.776 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:20.337(Timestamp)
+2021-03-06 21:43:25.826 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:25.826 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:22.337(Timestamp)
+2021-03-06 21:43:27.762 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:27.772 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:24.333(Timestamp)
+2021-03-06 21:43:29.782 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:29.782 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:26.342(Timestamp)
+2021-03-06 21:43:31.778 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:31.778 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:28.335(Timestamp)
+2021-03-06 21:43:33.700 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:33.710 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:30.348(Timestamp)
+2021-03-06 21:43:35.822 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:35.822 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:32.331(Timestamp)
+2021-03-06 21:43:37.914 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:37.914 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:34.339(Timestamp)
+2021-03-06 21:43:39.986 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:39.986 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:36.345(Timestamp)
+2021-03-06 21:43:42.027 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:42.027 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:38.345(Timestamp)
+2021-03-06 21:43:43.999 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:43.999 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:40.346(Timestamp)
+2021-03-06 21:43:46.112 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:46.112 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:42.397(Timestamp)
+2021-03-06 21:43:47.756 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:47.756 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:44.338(Timestamp)
+2021-03-06 21:43:49.618 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:49.628 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:46.344(Timestamp)
+2021-03-06 21:43:51.584 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:51.584 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:48.335(Timestamp)
+2021-03-06 21:43:53.500 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:53.500 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:50.332(Timestamp)
+2021-03-06 21:43:55.496 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:55.496 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:52.334(Timestamp)
+2021-03-06 21:43:57.508 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:57.508 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:54.344(Timestamp)
+2021-03-06 21:43:59.638 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:43:59.638 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:56.357(Timestamp)
+2021-03-06 21:44:01.996 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:01.996 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:43:58.346(Timestamp)
+2021-03-06 21:44:03.955 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:03.955 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:00.338(Timestamp)
+2021-03-06 21:44:06.044 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:06.044 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:02.366(Timestamp)
+2021-03-06 21:44:07.964 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:07.964 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:04.339(Timestamp)
+2021-03-06 21:44:09.870 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:09.870 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:06.348(Timestamp)
+2021-03-06 21:44:11.968 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:11.968 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:08.343(Timestamp)
+2021-03-06 21:44:13.926 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:13.926 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:10.342(Timestamp)
+2021-03-06 21:44:15.912 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:15.912 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:12.348(Timestamp)
+2021-03-06 21:44:18.038 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:18.038 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:14.357(Timestamp)
+2021-03-06 21:44:19.940 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:19.940 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:16.331(Timestamp)
+2021-03-06 21:44:21.718 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:21.718 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:18.34(Timestamp)
+2021-03-06 21:44:23.699 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:23.699 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:20.343(Timestamp)
+2021-03-06 21:44:25.718 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:25.718 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:22.338(Timestamp)
+2021-03-06 21:44:27.702 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:27.702 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:24.345(Timestamp)
+2021-03-06 21:44:29.868 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:29.868 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:26.358(Timestamp)
+2021-03-06 21:44:31.952 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:31.952 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:28.345(Timestamp)
+2021-03-06 21:44:33.948 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:33.948 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:30.332(Timestamp)
+2021-03-06 21:44:35.675 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:35.675 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:32.399(Timestamp)
+2021-03-06 21:44:37.624 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:37.624 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:34.402(Timestamp)
+2021-03-06 21:44:40.046 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:40.046 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:36.39(Timestamp)
+2021-03-06 21:44:45.806 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:45.806 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:44:45.806 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:38.528(Timestamp)
+2021-03-06 21:44:45.806 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:44:40.336(Timestamp)
+2021-03-06 21:45:11.086 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:11.086 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:07.727(Timestamp)
+2021-03-06 21:45:13.257 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:13.257 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:09.748(Timestamp)
+2021-03-06 21:45:15.200 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:15.200 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:11.732(Timestamp)
+2021-03-06 21:45:17.058 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:17.058 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:13.727(Timestamp)
+2021-03-06 21:45:19.048 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:19.048 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:15.726(Timestamp)
+2021-03-06 21:45:21.219 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:21.219 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:17.741(Timestamp)
+2021-03-06 21:45:23.122 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:23.122 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:19.731(Timestamp)
+2021-03-06 21:45:25.171 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:25.171 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:21.742(Timestamp)
+2021-03-06 21:45:29.050 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:29.050 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:25.736(Timestamp)
+2021-03-06 21:45:31.090 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:31.090 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:27.728(Timestamp)
+2021-03-06 21:45:33.070 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:33.070 DEBUG 17520 --- [http-nio-8888-exec-17] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:29.738(Timestamp)
+2021-03-06 21:45:35.014 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:35.014 DEBUG 17520 --- [http-nio-8888-exec-13] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:31.729(Timestamp)
+2021-03-06 21:45:37.042 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:37.042 DEBUG 17520 --- [http-nio-8888-exec-8] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:33.735(Timestamp)
+2021-03-06 21:45:39.050 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:39.050 DEBUG 17520 --- [http-nio-8888-exec-1] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:35.729(Timestamp)
+2021-03-06 21:45:41.215 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:41.215 DEBUG 17520 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:45:37.729(Timestamp)
+2021-03-06 21:45:43.055 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:45:43.055 DEBUG 17520 --- [http-nio-8888-exec-18] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 2(Integer), 2021-03-06 21:45:39.729(Timestamp)
+2021-03-06 21:46:04.080 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:46:04.080 DEBUG 17520 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:46:00.379(Timestamp)
+2021-03-06 21:46:06.190 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:46:06.190 DEBUG 17520 --- [http-nio-8888-exec-2] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:46:02.375(Timestamp)
+2021-03-06 21:46:08.102 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:46:08.102 DEBUG 17520 --- [http-nio-8888-exec-15] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:46:04.386(Timestamp)
+2021-03-06 21:46:09.702 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==>  Preparing: insert into sys_performance (sid,cid,expression_value,timeOffset) values (?,?,?,?) 
+2021-03-06 21:46:09.702 DEBUG 17520 --- [http-nio-8888-exec-3] com.abc.dao.PerformanceDao.addEmotion    : ==> Parameters: stu001(String), 化学(String), 3(Integer), 2021-03-06 21:46:06.381(Timestamp)
