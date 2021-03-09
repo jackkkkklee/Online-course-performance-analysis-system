@@ -60,7 +60,9 @@
           style="margin: auto"
           @click="emotionMode"
           :disabled="!onCourse"
+
           >Emotion Mode</el-button
+
         >
         <el-switch
           v-model="switchState"
@@ -243,12 +245,14 @@ export default {
       // console.log(this.sendInterval);
     },
     emotionMode() {
+
       if (this.mode.indexOf("4") == -1) {
         this.mode += "4";
       } else {
         this.mode.replace("4", "");
       }
     },
+
   },
 };
 </script>

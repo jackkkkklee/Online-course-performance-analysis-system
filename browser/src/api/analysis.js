@@ -77,12 +77,13 @@ export default {
     },
 
     //老师实时查询班级情绪
-    queryClassEmotion(teacherName) {
+    queryClassEmotion(teacherName, time) {
         return request({
             url: '/emotion/query_class_emotion',
             method: 'post',
             data: {
-                
+                cid: teacherName,
+                startDate: time
             }
         })
     },

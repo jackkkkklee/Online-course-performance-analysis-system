@@ -16,13 +16,26 @@
     <select id="add"  resultType="com.abc.entity.Performance">
         insert into sys_performance (sid,cid,attention_value,timeOffset) values (#{sid},#{cid},#{attention_value},#{timeOffset})
     </select>
+
+    <!-- 添加课堂中学生的表情   -->
+    <select id="addEmotion"  resultType="com.abc.entity.Performance">
+        insert into sys_performance (sid,cid,expression_value,timeOffset) values (#{sid},#{cid},#{expression_value},#{timeOffset})
+    </select>
     <!-- 查单个学生某种课的所有表现   -->
     <select id="selectOne" resultMap="baseMap">
         select * from sys_performance where cid=#{cid} and sid=#{sid} and timeOffset=#{timeOffset}
     </select>
+    <!-- 查单个学生某种课的表情  -->
+    <select id="selectEmotionForSingleStu" resultType="int">
+        select expression_value from sys_performance where cid=#{cid} and sid=#{sid} and timeOffset=#{timeOffset}
+    </select>
 
+    <!--查询某个时间区间内 小于目标且最接近的 情绪-->
+    <select id="selectNewestEmotionForSingleStu" resultType="int">
+    select expression_value from sys_performance WHERE cid=#{cid} and sid=#{sid} and timeOffset >#{startDate} and #{endDate}>timeOffset  order by timeOffset desc limit 0,1
+    </select>
     <!-- 查单个学生某种课的所有表现   -->
-    <select id="selectOne11"  resultType="int">
+    <select id="selectOne11"  resultType="Integer">
         select attention_value from sys_performance where cid=#{cid} and sid=#{sid}
     </select>
 

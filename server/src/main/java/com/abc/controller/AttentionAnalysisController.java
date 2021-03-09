@@ -3,9 +3,11 @@ package com.abc.controller;
 import com.abc.annotation.APICallLimiter;
 import com.abc.annotation.PermInfo;
 import com.abc.service.AttentionService;
+import com.abc.service.EmotionService;
 import com.abc.service.impl.AttentionServiceImpl;
 import com.abc.util.MyTimeUtils;
 import com.abc.vo.AttentionDetailVo;
+import com.abc.vo.EmotionVo;
 import com.abc.vo.Json;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -25,7 +27,8 @@ public class AttentionAnalysisController {
 
     @Autowired
     AttentionService attentionService;
-
+    @Autowired
+    EmotionService emotionService;
     @PostMapping
     public Json AttentionAnalysis(@RequestBody String body) {
         String oper = "AttentionAnalysis";
@@ -48,37 +51,42 @@ public class AttentionAnalysisController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //用hashmap存储1分钟以内的attention_value
+        //用hashmap存储1分钟以内的attention_value或者使用内存数据库
 
 
         System.out.println("专注度:"+attention);
         System.out.println("cid"+cid);
-        // 存到数据库
-
+        // 将专注度存到数据库
         attentionService.add(cid,sid,attention,image_date,image_date);
+        //将表情存到数据库
+        if(attentionDetailVo.getExpressValue()!=null){
+            EmotionVo emotionVo=new EmotionVo();
+            System.out.println(attentionDetailVo.getExpressValue());
+            emotionService.addEmotion(cid,sid, EmotionVo.convertToNumber(attentionDetailVo.getExpressValue()),image_date);
+        }
+
+
         if(showData){
-
-
 
             return Json.succ(oper,"attentionDetailVo",attentionDetailVo);
         }
 
         return Json.succ(oper);
     }
-    @PostMapping("/emotion")
-    public Json EmotionAnalysis(@RequestBody String body){
-        String oper = "EmotionAnalysis";
-
-        JSONObject jsonObj = JSON.parseObject(body);
-        String image = jsonObj.getString("image");
-        String imageName = jsonObj.getString("image_name");
-
-
-
-
-
-        return  null;
-
-    }
+//    @PostMapping("/emotion")
+//    public Json EmotionAnalysis(@RequestBody String body){
+//        String oper = "EmotionAnalysis";
+//
+//        JSONObject jsonObj = JSON.parseObject(body);
+//        String image = jsonObj.getString("image");
+//        String imageName = jsonObj.getString("image_name");
+//
+//
+//
+//
+//
+//        return  null;
+//
+//    }
 
 }

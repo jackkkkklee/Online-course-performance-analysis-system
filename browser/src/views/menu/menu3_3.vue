@@ -94,18 +94,18 @@ export default {
   methods: {
     //调用接口方法
     refreshData() {
-      analysisApi.queryClassEmotion(this.name).then((res) => {
+      let date = new Date();
+      analysisApi.queryClassEmotion("class001", date).then((res) => {
         this.myChart.showLoading();
         let chartData = [];
-        let chartMap = new Map();
-        chartMap = res.data.emotion.emotionVoMap;
-        for (let [key, mapValue] of chartMap) {
-          chartData.push({ name: key, value: mapValue });
+        let chartMap = res.data.emotion;
+        for (let key in chartMap) {
+          chartData.push({ name: key, value: chartMap[key] });
         }
-        myChart.setOption({
+        this.myChart.setOption({
           series: [
             {
-              data: chartData,
+              data: chartData
             },
           ],
         });

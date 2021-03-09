@@ -8,14 +8,24 @@ public class AttentionDetailVo {
 
     public AttentionDetailVo() {
     }
-
-
-
-
+    private  String expressValue;
     private  int attentionValue;
     private  boolean yawnStatus;
     private  boolean sleepChance;
     private  boolean hasFace;
+    private  boolean smoking;
+    private  boolean usingPhone;
+    private  int unClassRelatedItem;
+
+    public String getExpressValue() {
+        return expressValue;
+    }
+
+    public void setExpressValue(String expressValue) {
+        this.expressValue = expressValue;
+    }
+
+
 
     public int getAttentionValue() {
         return attentionValue;
@@ -73,8 +83,6 @@ public class AttentionDetailVo {
         this.unClassRelatedItem = unClassRelatedItem;
     }
 
-    private  boolean smoking;
-    private  boolean usingPhone;
-    private  int unClassRelatedItem;
+
 
 }
