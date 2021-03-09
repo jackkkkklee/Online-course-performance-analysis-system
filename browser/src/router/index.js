@@ -75,17 +75,18 @@ export const asyncRouterMap = [
         path: 'role_manage/:roleId/assign_perm',
         name: 'role_manage_assign_perm',
         component: _import('_system/role/assign_perm'),
-        meta: { hiddenTag: true , title: '角色授权'},
+        meta: { hiddenTag: true , title: 'Role Permission'},
       },
       {
         path: 'perm_manage',
         name: 'perm_manage',
         component: _import('_system/perm/index'),
-        meta: { perm: 'm:sys:perm', title: 'Role Authorization', icon: 'chart', noCache: true }
+        meta: { perm: 'm:sys:perm', title: 'Permission Management', icon: 'chart', noCache: true }
 
       },
     ]
   },
+
   {
     path: '/menu1',
     component: Layout,
@@ -96,7 +97,6 @@ export const asyncRouterMap = [
       meta: { perm:'m:menu1', title: 'Start Online Course', icon: 'peoples' }
     }]
   },
-
 
   {
     path: '/menu2',
@@ -124,7 +124,6 @@ export const asyncRouterMap = [
     ]
   },
 
-
   {
     path: '/menu4',
     component: Layout,
@@ -145,8 +144,23 @@ export const asyncRouterMap = [
       icon: 'clipboard'
     },
     children: [
-      { path: 'menu5_1', component: _import('menu/menu5_1'), name: 'menu5_1', meta: { perm:'m:menu5:1', title: 'Student Attention Analysis Export', icon: 'clipboard', noCache: true }},
-      { path: 'menu5_2', component: _import('menu/menu5_2'), name: 'menu5_2', meta: { perm:'m:menu5:2', title: 'Class Attention Analysis Export', icon: 'clipboard', noCache: true }},
+      { path: 'menu5_1', component: _import('menu/menu5_1'), name: 'menu5_1', meta: { perm:'m:menu5:1', title: 'Student Analysis Export', icon: 'clipboard', noCache: true }},
+      { path: 'menu5_2', component: _import('menu/menu5_2'), name: 'menu5_2', meta: { perm:'m:menu5:2', title: 'Class Analysis Export', icon: 'clipboard', noCache: true }},
+    ]
+  },
+
+  {
+    path: '/menu6',
+    component: Layout,
+    meta: {
+      perm:'m:menu6',
+      title: 'Course Management',
+      icon: 'component'
+    },
+    children: [
+      { path: 'menu6_1', component: _import('menu/menu6_1'), name: 'menu6_1', meta: { perm:'m:menu6:1', title: 'Course', icon: 'component', noCache: true }},
+      { path: 'menu6_2', component: _import('menu/menu6_2'), name: 'menu6_2', meta: { perm:'m:menu6:2', title: 'Teacher Course', icon: 'component', noCache: true }},
+      { path: 'menu6_3', component: _import('menu/menu6_3'), name: 'menu6_3', meta: { perm:'m:menu6:3', title: 'Student Course', icon: 'component', noCache: true }}
     ]
   },
 

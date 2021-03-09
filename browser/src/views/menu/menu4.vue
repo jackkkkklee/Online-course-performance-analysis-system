@@ -1,7 +1,7 @@
 <template>
   <div class="menu-container">
-    <el-card style="margin: 15px">
-      <div style="margin: auto auto auto 240px">
+    <el-card class="main">
+      <div class="selector">
         <el-autocomplete
           class="inline-input"
           v-model="course"
@@ -38,8 +38,12 @@
           }"
         >
         </el-time-select>
-        <el-button type="primary" style="margin: auto" @click="queryData">Search</el-button>
-        <el-button type="primary" style="margin: auto" @click="clearData">Clear</el-button>
+        <el-button type="primary" style="margin: auto" @click="queryData"
+          >Search</el-button
+        >
+        <el-button type="primary" style="margin: auto" @click="clearData"
+          >Clear</el-button
+        >
       </div>
       <div style="margin: 20px auto">
         <exportExcel
@@ -132,40 +136,86 @@ export default {
       //需要导出的table数据
       tableData: [
         {
-          time: "2016-05-02",
+          time: "2016-05-01",
           studentName: "王小虎",
           className: "上海市普陀区金沙江路 1518 弄",
           score: "111",
         },
         {
           time: "2016-05-02",
-          studentName: "王小虎",
+          studentName: "王小mao",
           className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
+          score: "1111",
         },
         {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
+          time: "2016-05-03",
+          studentName: "王小2",
+          className: "上海市普陀区金沙江路 151218 弄",
+          score: "11331",
         },
         {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
+          time: "2016-05-04",
+          studentName: "王小3",
+          className: "上海市普陀区金沙江路 15158 弄",
+          score: "11441",
         },
         {
-          time: "2016-05-02",
+          time: "2016-05-05",
           studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        }
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        },
+         {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        }, {
+          time: "2016-05-05",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 152218 弄",
+          score: "11551",
+        },
       ],
     };
   },
   components: {
-    exportExcel
+    exportExcel,
   },
   //获取用户名字
   computed: {
@@ -209,13 +259,23 @@ export default {
         )
         .then((res) => {});
     },
-    
+
     exportExcel() {
       this.$refs.myChild.exportExcel();
     },
     clearData() {
-      this.tableData=[];
-    }
+      this.tableData = [];
+    },
   },
 };
 </script>
+
+<style scoped>
+.main {
+  margin: 15px;
+}
+.selector {
+  width: 1050px;
+  margin: auto;
+}
+</style>

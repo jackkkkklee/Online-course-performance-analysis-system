@@ -4,6 +4,7 @@ import 'normalize.css/normalize.css'// A modern alternative to CSS resets
 
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/en'
 
 import '@/styles/index.scss' // global css
 
@@ -24,6 +25,7 @@ Vue.prototype.$hasPerm = hasPerm
 Vue.directive('perm', perm)
 
 Vue.use(Element, {
+  locale,
   size: 'medium', // set element-ui default size
 })
 

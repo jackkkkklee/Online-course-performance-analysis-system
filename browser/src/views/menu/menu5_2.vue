@@ -1,7 +1,7 @@
 <template>
   <div class="menu-container">
-    <el-card style="margin: 15px">
-      <div style="margin: auto auto auto 240px">
+    <el-card class="main">
+      <div class="selector">
         <el-autocomplete
           class="inline-input"
           v-model="course"
@@ -209,3 +209,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main {
+  margin: 15px;
+}
+.selector {
+  width: 1050px;
+  margin: auto;
+}
+</style>

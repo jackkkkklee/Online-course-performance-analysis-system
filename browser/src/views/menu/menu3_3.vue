@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
-    <el-card style="margin: 15px">
-      <div id="chart" style="width: 600px; height: 400px; margin: auto"></div>
+    <el-card class="main">
+      <div id="chart"></div>
       <div style="width: 80px; height: 50px; margin: auto">
         <el-button type="primary" style="margin: auto" @click="refreshData"
           >Refresh</el-button
@@ -59,7 +59,7 @@ export default {
       },
     });
 
-    //模拟数据
+    // 模拟数据
     // axios.get("/static/mock/expression.json").then((res) => {
     //   // console.log(res.data);
     //   myChart.hideLoading();
@@ -118,17 +118,27 @@ export default {
         message: "Now the students emotions are poor, please make adjustment!",
         type: "warning",
         duration: 5000,
-        showClose: true
+        showClose: true,
       });
       this.$notify({
         title: "Notice",
         message: "Now the students emotions are poor, please make adjustment!",
         type: "warning",
         duration: 5000,
-        offset: 100
+        offset: 100,
       });
     },
   },
 };
 </script>
 
+<style scoped>
+.main {
+  margin: 15px;
+}
+#chart {
+  width: 600px;
+  height: 400px;
+  margin: auto;
+}
+</style>
