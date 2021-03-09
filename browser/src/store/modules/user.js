@@ -1,6 +1,6 @@
 import authApi from '@/api/auth'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import avatorImg from '../../../static/image/avator.gif'
+import avatorImg from '../../../static/image/mario.jpg'
 
 const user = {
   state: {

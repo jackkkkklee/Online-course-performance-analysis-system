@@ -1,0 +1,318 @@
+<template>
+  <div class="app-container">
+    <!--查询  -->
+    <el-row>
+      <el-input
+        style="width: 200px"
+        v-model="tableQuery.teacherName"
+        placeholder="Teacher Name"
+      ></el-input>
+      <span style="margin-right: 15px"></span>
+      <el-tooltip class="item" content="Search" placement="top">
+        <el-button
+          icon="el-icon-search"
+          circle
+          @click="searchTeacher"
+        ></el-button>
+      </el-tooltip>
+    </el-row>
+    <div style="margin-bottom: 30px"></div>
+    <!--列表-->
+    <el-table
+      style="width: 100%"
+      :data="tableData"
+      v-loading.body="tableLoading"
+      element-loading-text="Loading"
+      border
+      fit
+      highlight-current-row
+    >
+      <el-table-column
+        prop="teacherName"
+        label="Teacher Name"
+      ></el-table-column>
+      <el-table-column label="Courses">
+        <template slot-scope="scope">
+          <el-tag
+            style="margin: 2px"
+            v-for="course in scope.row.course"
+            :key="course"
+            >{{ course }}</el-tag
+          >
+        </template>
+      </el-table-column>
+      <el-table-column label="Operate">
+        <template slot-scope="scope">
+          <el-tooltip content="Edit" placement="top">
+            <el-button
+              @click="handleUpdate(scope.$index, scope.row)"
+              size="medium"
+              type="info"
+              icon="el-icon-edit"
+              circle
+              plain
+            ></el-button>
+          </el-tooltip>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div style="margin-bottom: 30px"></div>
+    <!--分页-->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="tablePage.current"
+      :page-sizes="[10, 20, 30, 40, 50]"
+      :page-size="tablePage.size"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="tablePage.total"
+    >
+    </el-pagination>
+    <!-- 弹出窗口：修改用户课程 -->
+    <el-dialog
+      title="Edit Course"
+      :visible.sync="dialogFormVisible"
+      width="30%"
+    >
+      <div>
+        <el-checkbox
+          :indeterminate="isIndeterminate"
+          v-model="checkAll"
+          @change="handleCheckAllChange"
+          >Select all</el-checkbox
+        >
+        <div style="margin: 15px 0"></div>
+        <el-checkbox-group v-model="checkedCourses">
+          <el-checkbox
+            class="course-checkbox"
+            v-for="course in courseOptions"
+            :label="course"
+            :key="course"
+          >
+            {{ course }}
+          </el-checkbox>
+        </el-checkbox-group>
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="updateData">Confirm</el-button>
+      </div>
+    </el-dialog>
+  </div>
+</template>
+
+<script>
+import courseApi from "@/api/course";
+import debounce from "lodash/debounce";
+
+export default {
+  name: "TeacherCourseManage",
+
+  data() {
+    return {
+      teacherData: [],
+      pagedData: [],
+      courseOptions: [],
+      checkedCourses: [],
+      tableLoading: false,
+      tableData: [],
+      tableQuery: {
+        teacherName: null,
+      },
+      tablePage: {
+        current: null,
+        pages: null,
+        size: null,
+        total: null,
+      },
+      dialogFormVisible: false,
+      dialogStatus: "",
+      temp: {
+        idx: null, //tableData中的下标
+        tname: null,
+        course: [],
+      },
+      checkAll: false,
+      isIndeterminate: true,
+      mockData: [
+        {
+          teacherName: "111",
+          course: ["math", "history"],
+        },
+        {
+          teacherName: "222",
+          course: ["math", "computer"],
+        },
+        {
+          teacherName: "333",
+          course: ["math"],
+        },
+        {
+          teacherName: "444",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "555",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "666",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "777",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "888",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "999",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "1010111",
+          course: ["math", "service"],
+        },
+        {
+          teacherName: "110111",
+          course: ["math", "service"],
+        },
+      ],
+      courseMockData: [
+        "math",
+        "english",
+        "history",
+        "computer",
+        "design",
+        "service",
+      ],
+    };
+  },
+
+  created() {
+    this.fetchData();
+  },
+
+  watch: {
+    //延时查询
+    "tableQuery.teacherName": debounce(function () {
+      this.searchTeacher();
+    }, 500),
+  }, //watch
+
+  methods: {
+    //全选
+    handleCheckAllChange(val) {
+      this.checkedCourses = val ? this.courseOptions : [];
+      this.isIndeterminate = false;
+    },
+
+    //分页
+    handleSizeChange(val) {
+      this.tablePage.size = val;
+      this.pageTable(this.teacherData);
+      this.tableData = this.pagedData[0];
+    },
+    handleCurrentChange(val) {
+      this.tablePage.current = val;
+      this.tableData = this.pagedData[val - 1];
+    },
+    pageTable(data) {
+      if (this.tablePage.size == null) {
+        this.tablePage.size = 10;
+      }
+      if (data.length > this.tablePage.size) {
+        let page = 1;
+        if (data.length % this.tablePage.size != 0) {
+          page = Math.ceil(data.length / this.tablePage.size);
+        } else {
+          page = data.length / this.tablePage.size;
+        }
+        for (let i = 0; i < page; i++) {
+          let arr = [];
+          for (let j = 0; j < this.tablePage.size; j++) {
+            arr.push(data[j + i * this.tablePage.size]);
+            if (j + i * this.tablePage.size + 1 == data.length) {
+              break;
+            }
+          }
+          this.pagedData[i] = arr;
+        }
+      } else {
+        this.pagedData[0] = data;
+      }
+    },
+
+    // 搜索老师
+    searchTeacher() {
+      if (this.tableQuery.teacherName != "") {
+        this.tablePage.current = 1;
+        this.tableLoading = true;
+        this.tableData = [];
+        for (let item of this.teacherData) {
+          if (item.teacherName == this.tableQuery.teacherName) {
+            this.tableData.push(item);
+          }
+        }
+        this.tablePage.total = this.tableData.length;
+        this.tableLoading = false;
+      } else {
+        this.tablePage.current = 1;
+        this.tableLoading = true;
+        this.tableData = this.pagedData[0];
+        this.tablePage.total = this.teacherData.length;
+        this.tableLoading = false;
+      }
+    },
+
+    // 查询
+    fetchData() {
+      this.tableLoading = true;
+      this.teacherData = this.mockData;
+      this.pageTable(this.teacherData);
+      this.tablePage.current = 1;
+      this.tablePage.total = this.teacherData.length;
+      this.tableData = this.pagedData[0];
+      this.courseOptions = this.courseMockData;
+      this.tableLoading = false;
+      // 调用接口
+      // courseApi.queryCourse(this.tableQuery).then((res) => {
+      //   this.courseData = res.data;
+      //   this.pageTable(this.courseData);
+      //   this.tableLoading = false;
+      // });
+    },
+
+    // 修改课程
+    handleUpdate(idx, row) {
+      this.temp.idx = idx;
+      this.temp.tname = row.teacherName;
+      this.temp.course = row.course;
+      this.checkedCourses = this.temp.course;
+      this.dialogStatus = "update";
+      this.dialogFormVisible = true;
+    },
+    updateData() {
+      this.teacherData[
+        (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
+      ] = {
+        teacherName: this.temp.tname,
+        course: this.checkedCourses,
+      };
+      this.pageTable(this.teacherData);
+      this.tableData = this.pagedData[this.tablePage.current - 1];
+      this.dialogFormVisible = false;
+      this.$message.success("Update successfully");
+    },
+  },
+};
+</script>
+
+<style rel="stylesheet/scss" lang="scss" scoped>
+.course-checkbox {
+  margin-left: 0px;
+  margin-right: 15px;
+}
+</style>

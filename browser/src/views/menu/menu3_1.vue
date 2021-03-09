@@ -1,7 +1,7 @@
 <template>
   <div class="menu-container">
-    <el-card style="margin: 15px">
-      <div style="margin: auto auto auto 150px">
+    <el-card class="main">
+      <div class="selector">
         <el-autocomplete
           class="inline-input"
           v-model="course"
@@ -46,10 +46,7 @@
         </el-time-select>
         <el-button type="primary" @click="queryData">Search </el-button>
       </div>
-      <div
-        id="chart"
-        style="width: 600px; margin: 20px auto 20px auto; height: 400px"
-      ></div>
+      <div id="chart"></div>
     </el-card>
   </div>
 </template>
@@ -234,7 +231,7 @@ export default {
         },
       ],
     });
-    //模拟数据
+    // 模拟数据
     // axios.get("/static/mock/data.json").then((res) => {
     //   // console.log(res.data);
     //   myChart.hideLoading();
@@ -335,3 +332,17 @@ export default {
 };
 </script>
 
+<style scoped>
+.main {
+  margin: 15px;
+}
+.selector {
+  width: 1150px;
+  margin: auto;
+}
+#chart {
+  width: 600px;
+  margin: 20px auto 20px auto;
+  height: 400px;
+}
+</style>

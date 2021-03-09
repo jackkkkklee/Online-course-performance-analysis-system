@@ -1,23 +1,25 @@
 <template>
   <div class="menu-container">
-    <el-card style="margin: 15px">
+    <el-card class="main">
       <div style="margin: auto">
-        <!--使用video标签调用摄像头-->
-        <video
-          id="camera"
-          style="margin: auto"
-          width="300"
-          height="300"
-          autoplay
-        ></video>
-        <!--创建一个cavas  用来存放图片-->
-        <canvas
-          id="canvas"
-          style="margin: auto"
-          width="300"
-          height="300"
-        ></canvas>
-        <span>
+        <div class="video">
+          <!--使用video标签调用摄像头-->
+          <video
+            id="camera"
+            style="margin: auto"
+            width="300"
+            height="300"
+            autoplay
+          ></video>
+          <!--创建一个cavas  用来存放图片-->
+          <canvas
+            id="canvas"
+            style="margin: auto"
+            width="300"
+            height="300"
+          ></canvas>
+        </div>
+        <div>
           <p>Attention Value: {{ attentionValue }}</p>
           <p>Yawn Status: {{ yawnStatus }}</p>
           <p>Sleep Chance: {{ sleepChance }}</p>
@@ -28,9 +30,9 @@
           <p :class="emotionClass" v-show="mode.indexOf('4') != -1">
             Emotion: {{ emotion }}
           </p>
-        </span>
+        </div>
       </div>
-      <div class="button_container" style="margin: auto">
+      <div class="button_container">
         <el-button
           type="primary"
           style="margin: auto"
@@ -97,7 +99,7 @@ export default {
       sendInterval: 2000,
       switchState: false,
       emotion: "",
-      emotionClass: ""
+      emotionClass: "",
     };
   },
   computed: {
@@ -207,7 +209,7 @@ export default {
             this.prohibitItem = res.data.attentionDetailVo.unClassRelatedItem;
           }
           if (this.mode.indexOf("4") != -1) {
-            this.emotion = res.data.attentionDetailVo.expressValue;        
+            this.emotion = res.data.attentionDetailVo.expressValue;
             this.emotionClass = this.emotion;
           }
         });
@@ -252,9 +254,13 @@ export default {
 </script>
 
 <style scoped>
-.menu-container {
-  position: absolute;
-  left: 25%;
+.main {
+  width: 930px;
+  margin: 15px auto;
+}
+.button_container {
+  width: 880px;
+  margin: auto;
 }
 .unsure {
   color: blue;
@@ -273,5 +279,11 @@ export default {
 }
 .resist {
   color: red;
+}
+
+.video {
+  width: 600px;
+  height: 300px;
+  margin: auto;
 }
 </style>

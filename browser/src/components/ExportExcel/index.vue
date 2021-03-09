@@ -5,8 +5,8 @@
         :id="exportExcelInfo.excelId"
         :data="tableData"
         border
-        max-height="450"
-        highlight-current-row
+        stripe
+        max-height="475"
         style="width: 100%"
       >
         <el-table-column
@@ -14,6 +14,7 @@
           :key="item.label"
           :prop="item.prop"
           :label="item.label"
+          sortable
         >
         </el-table-column>
       </el-table>

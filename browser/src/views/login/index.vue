@@ -3,38 +3,38 @@
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm"
              label-position="left">
       <div class="title-container">
-        <h3 class="title">系统登录</h3>
+        <h3 class="title">Login</h3>
       </div>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user"/>
         </span>
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="帐号"/>
+        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="Account"/>
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password"/>
         </span>
         <el-input name="password" :type="passwordType" @keyup.enter.native="handleLogin" v-model="loginForm.password"
-                  autoComplete="on" placeholder="密码"/>
+                  autoComplete="on" placeholder="Password"/>
         <span class="show-pwd" @click="showPwd">
           <svg-icon icon-class="eye"/>
         </span>
       </el-form-item>
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading"
-                 @click.native.prevent="handleLogin">登录
+                 @click.native.prevent="handleLogin">Login
       </el-button>
       <div class="tips">
-        <span>管理员帐号 : admin</span>
-        <span>密码 : 123456</span>
+        <span>Admin Account : admin</span>
+        <span>Password : 123456</span>
       </div>
       <div class="tips">
-        <span style="margin-right:18px;">学生帐号student account : stu001</span>
-        <span>密码 : 123456</span>
+        <span style="margin-right:18px;">Student Account: stu001</span>
+        <span>Password : 123456</span>
       </div>
       <div class="tips">
-        <span style="margin-right:18px;">老师帐号 teacher account: tea001</span>
-        <span>密码 : 123456</span>
+        <span style="margin-right:18px;">Teacher Account: tea001</span>
+        <span>Password : 123456</span>
       </div>
 
     </el-form>
@@ -53,14 +53,14 @@
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!isvalidUsername(value)) {
-          callback(new Error('请输入正确的用户帐号'))
+          callback(new Error('Please enter the correct user account'))
         } else {
           callback()
         }
       }
       const validatePassword = (rule, value, callback) => {
         if (value.length < 6) {
-          callback(new Error('密码不能少于6个字符'))
+          callback(new Error('Password cannot be less than 6 characters'))
         } else {
           callback()
         }
