@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class EmotionServiceImpl implements EmotionService {
     @Autowired
@@ -62,7 +62,16 @@ public class EmotionServiceImpl implements EmotionService {
 
     @Override
     public void addEmotion(String cid, String sid, int express_value, Date startTime) {
-        performanceDao.addEmotion(cid,sid,express_value,startTime);
+        Date time_HHMM=MyTimeUtils.convertToHHmmFormatInDate(startTime);
+        // only the expression is negative can the original value be override.
+        Set negativeExpressSet =new HashSet();
+        negativeExpressSet.add(2);
+        negativeExpressSet.add(4);
+        negativeExpressSet.add(5);
+        Integer oldExpressionValue = performanceDao.selectEmotionForSingleStu(cid,sid,time_HHMM);
+
+        if(oldExpressionValue==null||oldExpressionValue!=null&&negativeExpressSet.contains(express_value))
+            performanceDao.addEmotion(cid,sid,express_value,time_HHMM);
 
     }
     @Override

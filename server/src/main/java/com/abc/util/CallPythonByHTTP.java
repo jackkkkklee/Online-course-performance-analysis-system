@@ -16,12 +16,13 @@ public class CallPythonByHTTP {
     public  String CallPythonService(String dir,int port){
         String res="";
         try {
-            InetAddress addr = InetAddress.getLocalHost();
-            String host=addr.getHostName();
+//            InetAddress addr = InetAddress.getLocalHost();
+//            String host=addr.getHostName();
             //String ip=addr.getHostAddress().toString(); //获取本机ip
             //log.info("调用远程接口:host=>"+ip+",port=>"+12345);
 
             // 初始化套接字，设置访问服务的主机和进程端口号，HOST是访问python进程的主机名称，可以是IP地址或者域名，PORT是python进程绑定的端口号
+            String host="192.168.152.1";
             socket = new Socket(host,port);
 
             // 获取输出流对象
