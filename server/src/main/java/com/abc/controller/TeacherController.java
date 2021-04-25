@@ -56,6 +56,7 @@ public class TeacherController {
             }
         }
         Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
+
         System.out.println(json);
         return json;
     }
@@ -84,7 +85,7 @@ public class TeacherController {
             time[i] = MyTimeUtils.convertToHHmmFormat(classAttentionVos.get(i).getTimeOffset());
             attention_value[i] = classAttentionVos.get(i).getAttention_value();
         }
-        Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
+       Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
         System.out.println(json);
         return json;
     }
