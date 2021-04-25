@@ -59,15 +59,10 @@ public class AttentionAnalysisController {
         // 将专注度存到数据库
         attentionService.add(cid,sid,attention,image_date,image_date);
         //将表情存到数据库
-        if(attentionDetailVo!=null&&attentionDetailVo.getExpressValue()!=null){
+        if(attentionDetailVo.getExpressValue()!=null){
             EmotionVo emotionVo=new EmotionVo();
             System.out.println(attentionDetailVo.getExpressValue());
-            //if no face detected,it means stu are in resist emotion
-            if(attentionDetailVo.isHasFace()!=false)
-                emotionService.addEmotion(cid,sid, EmotionVo.convertToNumber(attentionDetailVo.getExpressValue()),image_date);
-            else{
-                emotionService.addEmotion(cid,sid, EmotionVo.convertToNumber("4"),image_date);
-            }
+            emotionService.addEmotion(cid,sid, EmotionVo.convertToNumber(attentionDetailVo.getExpressValue()),image_date);
         }
 
 

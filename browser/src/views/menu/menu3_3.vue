@@ -23,6 +23,7 @@ export default {
     return {
       pageName: "菜单3-3",
       myChart: null,
+      chartData: [],
     };
   },
   computed: {
@@ -97,32 +98,44 @@ export default {
       let date = new Date();
       analysisApi.queryClassEmotion("class001", date).then((res) => {
         this.myChart.showLoading();
-        let chartData = [];
         let chartMap = res.data.emotion;
         for (let key in chartMap) {
-          chartData.push({ name: key, value: chartMap[key] });
+          this.chartData.push({ name: key, value: chartMap[key] });
         }
         this.myChart.setOption({
           series: [
             {
-              data: chartData
+              data: this.chartData,
             },
           ],
         });
         this.myChart.hideLoading();
       });
-      this.tip();
+      this.checkEmotion();
+    },
+    checkEmotion() {
+      if (this.chartData.length != 0) {
+        let sum = 0;
+        let negative = 0;
+        for (let item of this.chartData) {
+          sum += item.value;
+          if (
+            item.name == "disdain" ||
+            item.name == "confusing" ||
+            item.name == "resist"
+          ) {
+            negative += item.value;
+          }
+        }
+        if (negative / sum > 0.5) {
+          this.tip();
+        }
+      }
     },
     tip() {
-      this.$message({
-        message: "Now the students emotions are poor, please make adjustment!",
-        type: "warning",
-        duration: 5000,
-        showClose: true,
-      });
       this.$notify({
         title: "Notice",
-        message: "Now the students emotions are poor, please make adjustment!",
+        message: "Now the students emotions are poor!",
         type: "warning",
         duration: 5000,
         offset: 100,

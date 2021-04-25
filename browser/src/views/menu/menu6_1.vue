@@ -315,18 +315,22 @@ export default {
     // 查询
     fetchData() {
       this.tableLoading = true;
-      this.courseData = this.mockData;
-      this.pageTable(this.courseData);
-      this.tablePage.current = 1;
-      this.tablePage.total = this.courseData.length;
-      this.tableData = this.pagedData[0];
-      this.tableLoading = false;
+      // this.courseData = this.mockData;
+      // this.pageTable(this.courseData);
+      // this.tablePage.current = 1;
+      // this.tablePage.total = this.courseData.length;
+      // this.tableData = this.pagedData[0];
+      // this.tableLoading = false;
+
       // 调用接口
-      // courseApi.queryCourse(this.tableQuery).then((res) => {
-      //   this.courseData = res.data;
-      //   this.pageTable(this.courseData);
-      //   this.tableLoading = false;
-      // });
+      courseApi.queryCourse().then((res) => {
+        this.courseData = res.data.courses;
+        this.pageTable(this.courseData);
+        this.tablePage.current = 1;
+        this.tablePage.total = this.courseData.length;
+        this.tableData = this.pagedData[0];
+        this.tableLoading = false;
+      });
     },
 
     // 创建课程
@@ -341,7 +345,7 @@ export default {
       this.$refs["dataForm"].validate((valid) => {
         if (!valid) return;
         let flag = false;
-        for (let item of this.tableData) {
+        for (let item of this.courseData) {
           if (this.temp.cname == item.courseName) {
             flag = true;
           }
@@ -358,12 +362,18 @@ export default {
         if (flag) {
           this.$message.success("Course already exists");
         } else {
-          this.courseData.push({
-            courseName: this.temp.cname,
-            startTime: this.temp.startTime,
-            endTime: this.temp.endTime,
-          });
-          this.pageTable(this.courseData);
+          // this.courseData.push({
+          //   courseName: this.temp.cname,
+          //   startTime: this.temp.startTime,
+          //   endTime: this.temp.endTime,
+          // });
+          courseApi.addCourse(
+            this.temp.cname,
+            this.temp.startTime,
+            this.temp.endTime
+          );
+          // this.pageTable(this.courseData);
+          this.fetchData();
           this.dialogFormVisible = false;
           this.$message.success("Create successfully");
         }
@@ -390,15 +400,24 @@ export default {
         //   this.dialogFormVisible = false;
         //   this.$message.success("Update successfully");
         // });
-        this.courseData[
-          (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
-        ] = {
-          courseName: this.temp.cname,
-          startTime: this.temp.startTime,
-          endTime: this.temp.endTime,
-        };
-        this.pageTable(this.courseData);
-        this.tableData = this.pagedData[this.tablePage.current - 1];
+
+        // this.courseData[
+        //   (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
+        // ] = {
+        //   courseName: this.temp.cname,
+        //   startTime: this.temp.startTime,
+        //   endTime: this.temp.endTime,
+        // };
+        // this.pageTable(this.courseData);
+        // this.tableData = this.pagedData[this.tablePage.current - 1];
+
+        // 调用接口
+        courseApi.updateCourse(
+          this.temp.cname,
+          this.temp.startTime,
+          this.temp.endTime
+        );
+        this.fetchData();
         this.dialogFormVisible = false;
         this.$message.success("Update successfully");
       });
@@ -416,6 +435,9 @@ export default {
           //   --this.tablePage.total;
           //   this.$message.success("Delete successfully");
           // });
+
+          courseApi.deleteCourse(row.courseName);
+          this.fetchData();
           this.$message.success("Delete successfully");
         })
         .catch(() => {
