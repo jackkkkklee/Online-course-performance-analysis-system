@@ -23,11 +23,7 @@
           :picker-options="{
             start: '08:00',
             step: '00:45',
-<<<<<<< HEAD
-            end: '17:00',
-=======
             end: '24:00',
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           }"
         >
         </el-time-select>
@@ -37,26 +33,17 @@
           :picker-options="{
             start: '08:45',
             step: '00:45',
-<<<<<<< HEAD
-            end: '17:00',
-=======
             end: '24:00',
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
             minTime: startTime,
           }"
         >
         </el-time-select>
-<<<<<<< HEAD
-        <el-button type="primary" style="margin: auto" @click="queryData">Search</el-button>
-        <el-button type="primary" style="margin: auto" @click="clearData">Clear</el-button>
-=======
         <el-button type="primary" style="margin: auto" @click="queryData"
           >Search</el-button
         >
         <el-button type="primary" style="margin: auto" @click="clearData"
           >Clear</el-button
         >
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       </div>
       <div style="margin: 20px auto">
         <exportExcel
@@ -79,10 +66,7 @@
 import axios from "axios";
 import echarts from "echarts";
 import analysisApi from "@/api/analysis";
-<<<<<<< HEAD
-=======
 import dataApi from "@/api/data";
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 import { mapGetters } from "vuex";
 import exportExcel from "@/components/ExportExcel/index";
 
@@ -128,11 +112,7 @@ export default {
       },
       exportExcelArr: [
         {
-<<<<<<< HEAD
-          prop: "time",
-=======
           prop: "timeOffset",
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           label: "Time",
         },
         {
@@ -140,53 +120,13 @@ export default {
           label: "Class Name",
         },
         {
-<<<<<<< HEAD
-          prop: "score",
-=======
           prop: "attention_value",
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           label: "Concenstration Score",
         },
       ],
       //导出excel表格id及excel名称
       exportExcelInfo: {
         excelId: "record-table",
-<<<<<<< HEAD
-        excelName: "Concenstration Score.xlsx",
-      },
-      //需要导出的table数据
-      tableData: [
-        {
-          time: "2016-05-02",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        }
-      ],
-    };
-  },
-  components: {
-    exportExcel
-=======
         excelName: "Class Performance data.xlsx",
       },
       //需要导出的table数据
@@ -195,18 +135,13 @@ export default {
   },
   components: {
     exportExcel,
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   },
   //获取用户名字
   computed: {
     ...mapGetters(["name"]),
   },
   mounted() {
-<<<<<<< HEAD
-    // this.queryCourse();
-=======
     this.queryCourse();
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   },
   methods: {
     querySearch(queryString, cb) {
@@ -224,60 +159,35 @@ export default {
         );
       };
     },
-<<<<<<< HEAD
-    queryCourse() {
-      analysisApi.queryStudentCourse(this.name).then((res) => {
-=======
 
     queryCourse() {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         for (let item of res.data.courses) {
           this.courses.push({ value: item.cid });
         }
       });
     },
-<<<<<<< HEAD
-    //调用接口方法
-    queryData() {
-      //查询本学生对应课程专注度
-      analysisApi
-        .queryStudentConcentration(
-          this.name,
-=======
 
     //调用接口方法
     queryData() {
       //查询本学生对应课程专注度
       dataApi
         .queryClass(
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           this.course,
           this.date + " " + this.startTime,
           this.date + " " + this.endTime
         )
-<<<<<<< HEAD
-        .then((res) => {});
-    },
-    
-=======
         .then((res) => {
           this.tableData = res.data.classAttentionVos;
         });
     },
 
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     exportExcel() {
       this.$refs.myChild.exportExcel();
     },
     clearData() {
-<<<<<<< HEAD
-      this.tableData=[];
-    }
-=======
       this.tableData = [];
     },
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   },
 };
 </script>
