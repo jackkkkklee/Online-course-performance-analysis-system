@@ -1,0 +1,9 @@
+{
+    "emotion":[
+        {"value":5, "name":"understand"},
+        {"value":10, "name":"confuse"},
+        {"value":3, "name":"boring"},
+        {"value":15, "name":"happy"},
+        {"value":20, "name":"sad"}
+    ]
+}

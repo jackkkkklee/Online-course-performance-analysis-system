@@ -1,0 +1,537 @@
+2021-04-25 14:06:12.418  INFO 3061 --- [Thread-30] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2f8116b3: startup date [Sat Apr 24 19:40:32 CST 2021]; root of context hierarchy
+2021-04-25 14:06:13.080  INFO 3061 --- [Thread-30] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2021-04-25 14:06:13.112  INFO 3061 --- [Thread-30] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2021-04-25 14:06:13.115  INFO 3061 --- [Thread-30] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2021-04-25 14:06:13.122  INFO 3061 --- [Thread-30] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'asyncPromiseExecutor'
+2021-04-25 14:06:13.162  INFO 3061 --- [Thread-30] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2021-04-25 14:06:27.716  INFO 3911 --- [restartedMain] com.abc.ServerApplication                : Starting ServerApplication on LaVinedeMBP.lan with PID 3911 (started by LaVine in /Users/buynow/Desktop/毕设/online-classroom-analysis)
+2021-04-25 14:06:27.720  INFO 3911 --- [restartedMain] com.abc.ServerApplication                : The following profiles are active: druid,mybatisplus,shiro,swagger,dev
+2021-04-25 14:06:27.828  INFO 3911 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4f37908: startup date [Sun Apr 25 14:06:27 CST 2021]; root of context hierarchy
+2021-04-25 14:06:29.145  INFO 3911 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-04-25 14:06:29.523  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroBeanAutoConfiguration$$EnhancerBySpringCGLIB$$2cf3c45a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:29.671  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$19dae6aa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:29.886  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration' of type [org.apache.shiro.spring.boot.autoconfigure.ShiroAnnotationProcessorAutoConfiguration$$EnhancerBySpringCGLIB$$2f8702ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:29.903  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'eventBus' of type [org.apache.shiro.event.support.DefaultEventBus] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:29.960  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration' of type [org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration$$EnhancerBySpringCGLIB$$519024c4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:29.970  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroConfig' of type [com.abc.config.ShiroConfig$$EnhancerBySpringCGLIB$$d80815ef] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.020  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.context.properties.ConversionServiceDeducer$Factory' of type [org.springframework.boot.context.properties.ConversionServiceDeducer$Factory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.144  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'mybatis-plus-com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.153  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'myBatisPlusConfig' of type [com.abc.config.MyBatisPlusConfig$$EnhancerBySpringCGLIB$$9329eab] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.167  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'paginationInterceptor' of type [com.baomidou.mybatisplus.plugins.PaginationInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.179  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration' of type [com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$677a8507] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.184  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure' of type [com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure$$EnhancerBySpringCGLIB$$3386dc1c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.187  INFO 3911 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2021-04-25 14:06:30.248  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.255  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidFilterConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidFilterConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:30.295  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'statFilter' of type [com.alibaba.druid.filter.stat.StatFilter] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.147  INFO 3911 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-04-25 14:06:31.147  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'dataSource' of type [com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceWrapper] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.174  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.510  WARN 3911 --- [restartedMain] c.b.mybatisplus.toolkit.TableInfoHelper  : Warn: Could not find @TableId in Class: com.abc.entity.SysRolePerm.
+2021-04-25 14:06:31.511  WARN 3911 --- [restartedMain] c.b.mybatisplus.mapper.AutoSqlInjector   : class com.abc.entity.SysRolePerm ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2021-04-25 14:06:31.545  WARN 3911 --- [restartedMain] c.b.mybatisplus.toolkit.TableInfoHelper  : Warn: Could not find @TableId in Class: com.abc.entity.SysUserRole.
+2021-04-25 14:06:31.545  WARN 3911 --- [restartedMain] c.b.mybatisplus.mapper.AutoSqlInjector   : class com.abc.entity.SysUserRole ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2021-04-25 14:06:31.562  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionFactory' of type [org.apache.ibatis.session.defaults.DefaultSqlSessionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.573  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sqlSessionTemplate' of type [org.mybatis.spring.SqlSessionTemplate] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.575  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysUserMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.578  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysUserMapper' of type [com.sun.proxy.$Proxy95] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.579  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysUserServiceImpl' of type [com.abc.service.impl.SysUserServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.625  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysRoleMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.626  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysRoleMapper' of type [com.sun.proxy.$Proxy96] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.627  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysRoleServiceImpl' of type [com.abc.service.impl.SysRoleServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.649  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysPermMapper' of type [org.mybatis.spring.mapper.MapperFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.650  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysPermMapper' of type [com.sun.proxy.$Proxy97] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.650  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sysPermServiceImpl' of type [com.abc.service.impl.SysPermServiceImpl] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.666  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'realm' of type [com.abc.shiro.UserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.901  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionStorageEvaluator' of type [org.apache.shiro.web.mgt.DefaultWebSessionStorageEvaluator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.905  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'subjectDAO' of type [org.apache.shiro.mgt.DefaultSubjectDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.910  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'subjectFactory' of type [org.apache.shiro.web.mgt.DefaultWebSubjectFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.914  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeCookieTemplate' of type [org.apache.shiro.web.servlet.SimpleCookie] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.920  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'rememberMeManager' of type [org.apache.shiro.web.mgt.CookieRememberMeManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.927  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authenticationStrategy' of type [org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.935  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authenticator' of type [org.apache.shiro.authc.pam.ModularRealmAuthenticator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.943  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authorizer' of type [org.apache.shiro.authz.ModularRealmAuthorizer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.948  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.ServletContainerSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:31.961  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.025  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.037  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConfig' of type [com.abc.config.RedisConfig$$EnhancerBySpringCGLIB$$22d69d39] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.048  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'keyGenerator' of type [com.abc.config.RedisConfig$1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.049  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cache.annotation.ProxyCachingConfiguration' of type [org.springframework.cache.annotation.ProxyCachingConfiguration$$EnhancerBySpringCGLIB$$62ed1cc8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.069  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration' of type [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$$EnhancerBySpringCGLIB$$5760e16c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.080  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.cache-org.springframework.boot.autoconfigure.cache.CacheProperties' of type [org.springframework.boot.autoconfigure.cache.CacheProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.096  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'cacheManagerCustomizers' of type [org.springframework.boot.autoconfigure.cache.CacheManagerCustomizers] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.103  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.cache.RedisCacheConfiguration' of type [org.springframework.boot.autoconfigure.cache.RedisCacheConfiguration$$EnhancerBySpringCGLIB$$7f27dc6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.132  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'spring.redis-org.springframework.boot.autoconfigure.data.redis.RedisProperties' of type [org.springframework.boot.autoconfigure.data.redis.RedisProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.144  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.data.redis.JedisConnectionConfiguration' of type [org.springframework.boot.autoconfigure.data.redis.JedisConnectionConfiguration$$EnhancerBySpringCGLIB$$bb16983f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.286  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'redisConnectionFactory' of type [org.springframework.data.redis.connection.jedis.JedisConnectionFactory] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.330  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'cacheManager' of type [org.springframework.data.redis.cache.RedisCacheManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.347  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'cacheAutoConfigurationValidator' of type [org.springframework.boot.autoconfigure.cache.CacheAutoConfiguration$CacheManagerValidator] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.460  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'shiroFilterChainDefinition' of type [org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:32.463  INFO 3911 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.apache.shiro.spring.config.web.autoconfigure.ShiroWebFilterConfiguration' of type [org.apache.shiro.spring.config.web.autoconfigure.ShiroWebFilterConfiguration$$EnhancerBySpringCGLIB$$83fa89fb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-25 14:06:33.146  INFO 3911 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8888 (http)
+2021-04-25 14:06:33.200  INFO 3911 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-25 14:06:33.201  INFO 3911 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2021-04-25 14:06:33.207  INFO 3911 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [“/usr/local”/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2021-04-25 14:06:33.300  INFO 3911 --- [localhost-startStop-1] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+2021-04-25 14:06:33.301  INFO 3911 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5473 ms
+2021-04-25 14:06:33.687  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2021-04-25 14:06:33.690  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet statViewServlet mapped to [/druid/*]
+2021-04-25 14:06:33.692  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-04-25 14:06:33.693  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-04-25 14:06:33.693  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2021-04-25 14:06:33.693  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-04-25 14:06:33.693  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webStatFilter' to urls: [/*]
+2021-04-25 14:06:33.693  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'corsFilter' to: [/*]
+2021-04-25 14:06:33.693  INFO 3911 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'shiroFilterFactoryBean' to: [/*]
+2021-04-25 14:06:35.123  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/analysis],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.AttentionAnalysisController.AttentionAnalysis(java.lang.String)
+2021-04-25 14:06:35.124  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/analysis/selectAverageAttentionValue_teacher],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.AttentionAnalysisController.selectAverageAttentionValueByTeacher(java.lang.String)
+2021-04-25 14:06:35.125  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/course/delete_course_by_cid],methods=[POST]}" onto public void com.abc.controller.CourseController.deleteCourseByCid(java.lang.String)
+2021-04-25 14:06:35.125  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/course/add_course],methods=[POST]}" onto public void com.abc.controller.CourseController.queryOngoingStudentCourse(java.lang.String)
+2021-04-25 14:06:35.126  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/course/select_all_courses],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.CourseController.SelectAllCourses(java.lang.String)
+2021-04-25 14:06:35.126  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/course/update_course_by_cid],methods=[POST]}" onto public void com.abc.controller.CourseController.UpdateCourseByCid(java.lang.String)
+2021-04-25 14:06:35.126  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/emotion/query_class_emotion],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.EmotionDetectionController.queryRealTimeEmotionOfAllStu(java.lang.String)
+2021-04-25 14:06:35.128  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/student/has_course],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.StudentController.queryOngoingStudentCourse(java.lang.String)
+2021-04-25 14:06:35.128  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/student/query_all_course],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.StudentController.queryStudentAllCourse(java.lang.String)
+2021-04-25 14:06:35.129  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/student/query_all_student],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.StudentController.queryAllStudent(java.lang.String)
+2021-04-25 14:06:35.129  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/student/update_student_course],methods=[POST]}" onto public void com.abc.controller.StudentController.updateStudentCourse(java.lang.String)
+2021-04-25 14:06:35.132  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/testAop],methods=[POST]}" onto public java.lang.String com.abc.controller.TeacherController.testAop(java.lang.String)
+2021-04-25 14:06:35.132  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_concentration],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryStudentConcentration(java.lang.String)
+2021-04-25 14:06:35.133  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_concentration2],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryStudentConcentration2(java.lang.String)
+2021-04-25 14:06:35.133  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_class_concentration],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryClassConcentration(java.lang.String) throws java.lang.CloneNotSupportedException,java.text.ParseException
+2021-04-25 14:06:35.133  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_class_concentration2],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryClassConcentration2(java.lang.String) throws java.lang.CloneNotSupportedException,java.text.ParseException
+2021-04-25 14:06:35.133  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_courses],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryCoursesOfTeacher(java.lang.String)
+2021-04-25 14:06:35.133  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_student],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryStudentFromTeacher(java.lang.String)
+2021-04-25 14:06:35.133  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/query_all_teachers],methods=[POST]}" onto com.abc.vo.Json com.abc.controller.TeacherController.queryAllTeachers(java.lang.String)
+2021-04-25 14:06:35.134  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/teacher/update_teacher_course],methods=[POST]}" onto void com.abc.controller.TeacherController.updateTeacherCourse(java.lang.String)
+2021-04-25 14:06:35.135  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auth/page/401]}" onto public com.abc.vo.Json com.abc.controller.basicController.AuthController.page401()
+2021-04-25 14:06:35.136  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auth/page/403]}" onto public com.abc.vo.Json com.abc.controller.basicController.AuthController.page403()
+2021-04-25 14:06:35.136  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auth/page/index]}" onto public com.abc.vo.Json com.abc.controller.basicController.AuthController.pageIndex()
+2021-04-25 14:06:35.136  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auth/login],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.AuthController.login(java.lang.String)
+2021-04-25 14:06:35.136  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auth/logout],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.AuthController.logout()
+2021-04-25 14:06:35.137  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/auth/info],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.AuthController.info()
+2021-04-25 14:06:35.137  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/option/role],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.OptionController.listRoleOptions()
+2021-04-25 14:06:35.140  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm/list/all],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.listAllPermission()
+2021-04-25 14:06:35.140  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm/list/btn_perm_map],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.listButtonPermMapGroupByParent()
+2021-04-25 14:06:35.140  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm/sync/menu],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.syncMenuPermission(java.lang.String)
+2021-04-25 14:06:35.140  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm/sync/api],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.syncApiPermission(java.lang.String)
+2021-04-25 14:06:35.141  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm/meta/api],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.listApiPermMetadata()
+2021-04-25 14:06:35.141  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.add(java.lang.String)
+2021-04-25 14:06:35.141  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm/info],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.update(java.lang.String)
+2021-04-25 14:06:35.141  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_perm],methods=[DELETE]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysPermController.delete(java.lang.String)
+2021-04-25 14:06:35.143  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role/perm],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.updateRolePerm(com.abc.vo.UpdateRolePermVo)
+2021-04-25 14:06:35.143  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role/perm],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.addPerm(java.lang.String)
+2021-04-25 14:06:35.143  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role/perm],methods=[DELETE]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.deletePerm(java.lang.String)
+2021-04-25 14:06:35.143  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role/{rid}/perms],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.findRolePerms(java.lang.String)
+2021-04-25 14:06:35.143  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.add(java.lang.String)
+2021-04-25 14:06:35.144  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role/info],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.update(java.lang.String)
+2021-04-25 14:06:35.144  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role],methods=[DELETE]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.delete(java.lang.String)
+2021-04-25 14:06:35.144  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_role/query],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysRoleController.query(java.lang.String)
+2021-04-25 14:06:35.145  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/role],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.updateUserRole(java.lang.String)
+2021-04-25 14:06:35.146  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/pwd],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.updatePwd(java.lang.String)
+2021-04-25 14:06:35.146  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/{uid}/roles],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.findUserRoles(java.lang.String)
+2021-04-25 14:06:35.146  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.add(java.lang.String)
+2021-04-25 14:06:35.146  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/info],methods=[PATCH]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.update(java.lang.String)
+2021-04-25 14:06:35.146  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user],methods=[DELETE]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.delete(java.lang.String)
+2021-04-25 14:06:35.147  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/query],methods=[POST]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.query(java.lang.String)
+2021-04-25 14:06:35.147  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys_user/info],methods=[GET]}" onto public com.abc.vo.Json com.abc.controller.basicController.SysUserController.userInfo()
+2021-04-25 14:06:35.150  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/hello],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.hello()
+2021-04-25 14:06:35.150  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/testAop],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.testAop(java.lang.String)
+2021-04-25 14:06:35.150  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/guest],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.guest()
+2021-04-25 14:06:35.151  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/authn],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.authn()
+2021-04-25 14:06:35.151  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/mvnInstall],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.mvnInstall()
+2021-04-25 14:06:35.151  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/gradleBuild],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.gradleBuild()
+2021-04-25 14:06:35.151  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/python],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.python()
+2021-04-25 14:06:35.151  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/js],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.js()
+2021-04-25 14:06:35.152  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/user],methods=[GET]}" onto public java.lang.String com.abc.controller.basicController.TestController.user()
+2021-04-25 14:06:35.154  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/security]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2021-04-25 14:06:35.155  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources/configuration/ui]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2021-04-25 14:06:35.155  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/swagger-resources]}" onto public org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2021-04-25 14:06:35.157  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2021-04-25 14:06:35.158  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-04-25 14:06:35.441  INFO 3911 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2021-04-25 14:06:35.499  INFO 3911 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 
+2021-04-25 14:06:35.499  INFO 3911 --- [restartedMain] com.abc.config.TaskExecutorConfig        : 线程池A-Thread配置成功
+2021-04-25 14:06:35.507  INFO 3911 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'asyncPromiseExecutor'
+2021-04-25 14:06:35.672  INFO 3911 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-04-25 14:06:36.514  INFO 3911 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4f37908: startup date [Sun Apr 25 14:06:27 CST 2021]; root of context hierarchy
+2021-04-25 14:06:36.655  INFO 3911 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-04-25 14:06:36.655  INFO 3911 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2021-04-25 14:06:36.680  INFO 3911 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in globalExceptionHandler
+2021-04-25 14:06:37.366  INFO 3911 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-25 14:06:37.418  INFO 3911 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2021-04-25 14:06:37.421  INFO 3911 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'statFilter' has been autodetected for JMX exposure
+2021-04-25 14:06:37.421  INFO 3911 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2021-04-25 14:06:37.428  INFO 3911 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.spring.boot.autoconfigure:name=dataSource,type=DruidDataSourceWrapper]
+2021-04-25 14:06:37.430  INFO 3911 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'statFilter': registering with JMX server as MBean [com.alibaba.druid.filter.stat:name=statFilter,type=StatFilter]
+2021-04-25 14:06:37.435  INFO 3911 --- [restartedMain] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2021-04-25 14:06:37.435  INFO 3911 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2021-04-25 14:06:37.458  INFO 3911 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2021-04-25 14:06:37.497  INFO 3911 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2021-04-25 14:06:37.662  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryOngoingStudentCourseUsingPOST_1
+2021-04-25 14:06:37.683  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsingPOST_1
+2021-04-25 14:06:37.687  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2021-04-25 14:06:37.695  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPATCH_1
+2021-04-25 14:06:37.709  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: addUsingPOST_2
+2021-04-25 14:06:37.710  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
+2021-04-25 14:06:37.713  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: queryUsingPOST_1
+2021-04-25 14:06:37.714  INFO 3911 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPATCH_2
+2021-04-25 14:06:37.866  INFO 3911 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8888 (http) with context path '/api/v1'
+2021-04-25 14:06:37.872  INFO 3911 --- [restartedMain] com.abc.ServerApplication                : Started ServerApplication in 10.853 seconds (JVM running for 12.742)
+2021-04-25 14:07:08.860  INFO 3911 --- [http-nio-8888-exec-1] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2021-04-25 14:07:08.861  INFO 3911 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2021-04-25 14:07:08.898  INFO 3911 --- [http-nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 37 ms
+2021-04-25 14:09:20.095  INFO 3911 --- [http-nio-8888-exec-5] com.abc.controller.TeacherController     : queryStudentConcentration2, body: {"xid":"stu001",
+"cid":"class001",
+"startTime":"2020-12-19 20:00:00",
+"endTime":"2020-12-19 20:55:00"
+}
+2021-04-25 14:09:20.152 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.182 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:00:00.0(Timestamp)
+2021-04-25 14:09:20.245 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.253 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.254 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:01:00.0(Timestamp)
+2021-04-25 14:09:20.257 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.258 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.259 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:02:00.0(Timestamp)
+2021-04-25 14:09:20.260 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.261 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.261 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:03:00.0(Timestamp)
+2021-04-25 14:09:20.264 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.266 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.266 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:04:00.0(Timestamp)
+2021-04-25 14:09:20.268 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.270 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.271 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:05:00.0(Timestamp)
+2021-04-25 14:09:20.271 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.272 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.272 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:06:00.0(Timestamp)
+2021-04-25 14:09:20.274 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.275 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.276 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:07:00.0(Timestamp)
+2021-04-25 14:09:20.277 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.278 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.279 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:08:00.0(Timestamp)
+2021-04-25 14:09:20.282 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.284 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.284 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:09:00.0(Timestamp)
+2021-04-25 14:09:20.286 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.287 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.287 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:10:00.0(Timestamp)
+2021-04-25 14:09:20.288 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.288 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.289 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:11:00.0(Timestamp)
+2021-04-25 14:09:20.289 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.290 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.290 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:12:00.0(Timestamp)
+2021-04-25 14:09:20.292 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.293 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.293 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:13:00.0(Timestamp)
+2021-04-25 14:09:20.296 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.297 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.298 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:14:00.0(Timestamp)
+2021-04-25 14:09:20.300 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.302 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.304 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:15:00.0(Timestamp)
+2021-04-25 14:09:20.306 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.307 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.308 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:16:00.0(Timestamp)
+2021-04-25 14:09:20.309 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.310 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.310 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:17:00.0(Timestamp)
+2021-04-25 14:09:20.311 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.312 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.313 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:18:00.0(Timestamp)
+2021-04-25 14:09:20.315 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.316 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.317 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:19:00.0(Timestamp)
+2021-04-25 14:09:20.319 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.325 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.326 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:20:00.0(Timestamp)
+2021-04-25 14:09:20.332 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.335 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.340 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:21:00.0(Timestamp)
+2021-04-25 14:09:20.341 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.342 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.343 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:22:00.0(Timestamp)
+2021-04-25 14:09:20.344 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.354 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.356 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:23:00.0(Timestamp)
+2021-04-25 14:09:20.359 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.368 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.372 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:24:00.0(Timestamp)
+2021-04-25 14:09:20.374 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.386 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.389 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:25:00.0(Timestamp)
+2021-04-25 14:09:20.391 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.392 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.394 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:26:00.0(Timestamp)
+2021-04-25 14:09:20.399 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.405 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.405 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:27:00.0(Timestamp)
+2021-04-25 14:09:20.407 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.408 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.408 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:28:00.0(Timestamp)
+2021-04-25 14:09:20.409 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.423 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.423 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:29:00.0(Timestamp)
+2021-04-25 14:09:20.424 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.425 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.425 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:30:00.0(Timestamp)
+2021-04-25 14:09:20.432 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.436 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.437 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:31:00.0(Timestamp)
+2021-04-25 14:09:20.438 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.439 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.439 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:32:00.0(Timestamp)
+2021-04-25 14:09:20.440 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.441 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.442 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:33:00.0(Timestamp)
+2021-04-25 14:09:20.442 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.443 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.444 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:34:00.0(Timestamp)
+2021-04-25 14:09:20.449 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.450 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.451 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:35:00.0(Timestamp)
+2021-04-25 14:09:20.453 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.453 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.454 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:36:00.0(Timestamp)
+2021-04-25 14:09:20.455 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.456 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.456 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:37:00.0(Timestamp)
+2021-04-25 14:09:20.457 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.457 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.458 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:38:00.0(Timestamp)
+2021-04-25 14:09:20.459 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.460 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.466 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:39:00.0(Timestamp)
+2021-04-25 14:09:20.468 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.469 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.469 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:40:00.0(Timestamp)
+2021-04-25 14:09:20.471 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.472 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.472 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:41:00.0(Timestamp)
+2021-04-25 14:09:20.473 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.474 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.474 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:42:00.0(Timestamp)
+2021-04-25 14:09:20.475 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.476 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.477 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:43:00.0(Timestamp)
+2021-04-25 14:09:20.478 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.481 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.481 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:44:00.0(Timestamp)
+2021-04-25 14:09:20.484 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.485 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.486 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:45:00.0(Timestamp)
+2021-04-25 14:09:20.487 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.488 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.489 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:46:00.0(Timestamp)
+2021-04-25 14:09:20.490 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.491 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.491 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:47:00.0(Timestamp)
+2021-04-25 14:09:20.492 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.493 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.493 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:48:00.0(Timestamp)
+2021-04-25 14:09:20.495 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.496 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.498 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:49:00.0(Timestamp)
+2021-04-25 14:09:20.500 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.501 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.502 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:50:00.0(Timestamp)
+2021-04-25 14:09:20.503 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.504 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.507 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:51:00.0(Timestamp)
+2021-04-25 14:09:20.514 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.515 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.516 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:52:00.0(Timestamp)
+2021-04-25 14:09:20.520 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.522 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.522 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:53:00.0(Timestamp)
+2021-04-25 14:09:20.523 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.524 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.525 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:54:00.0(Timestamp)
+2021-04-25 14:09:20.526 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:09:20.527 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:09:20.528 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu001(String), 2020-12-19 20:55:00.0(Timestamp)
+2021-04-25 14:09:20.535 DEBUG 3911 --- [http-nio-8888-exec-5] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.074  INFO 3911 --- [http-nio-8888-exec-7] com.abc.controller.TeacherController     : queryStudentConcentration2, body: {"xid":"par002",
+"cid":"class001",
+"startTime":"2020-12-19 20:00:00",
+"endTime":"2020-12-19 20:55:00"
+}
+2021-04-25 14:10:21.091 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.StudentDao.selectSidByPid    : ==>  Preparing: select sid from sys_parent where pid=? 
+2021-04-25 14:10:21.092 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.StudentDao.selectSidByPid    : ==> Parameters: par002(String)
+2021-04-25 14:10:21.115 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.StudentDao.selectSidByPid    : <==      Total: 1
+2021-04-25 14:10:21.116 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.116 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:00:00.0(Timestamp)
+2021-04-25 14:10:21.117 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.119 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.120 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:01:00.0(Timestamp)
+2021-04-25 14:10:21.120 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.121 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.122 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:02:00.0(Timestamp)
+2021-04-25 14:10:21.123 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.123 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.124 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:03:00.0(Timestamp)
+2021-04-25 14:10:21.128 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.129 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.130 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:04:00.0(Timestamp)
+2021-04-25 14:10:21.131 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.132 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.134 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:05:00.0(Timestamp)
+2021-04-25 14:10:21.135 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.136 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.136 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:06:00.0(Timestamp)
+2021-04-25 14:10:21.137 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.138 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.138 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:07:00.0(Timestamp)
+2021-04-25 14:10:21.139 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.142 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.143 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:08:00.0(Timestamp)
+2021-04-25 14:10:21.146 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.147 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.147 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:09:00.0(Timestamp)
+2021-04-25 14:10:21.148 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.149 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.149 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:10:00.0(Timestamp)
+2021-04-25 14:10:21.150 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.151 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.151 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:11:00.0(Timestamp)
+2021-04-25 14:10:21.153 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.154 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.154 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:12:00.0(Timestamp)
+2021-04-25 14:10:21.155 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.156 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.156 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:13:00.0(Timestamp)
+2021-04-25 14:10:21.161 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.161 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.162 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:14:00.0(Timestamp)
+2021-04-25 14:10:21.163 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.164 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.164 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:15:00.0(Timestamp)
+2021-04-25 14:10:21.165 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.166 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.168 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:16:00.0(Timestamp)
+2021-04-25 14:10:21.169 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.169 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.170 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:17:00.0(Timestamp)
+2021-04-25 14:10:21.170 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.171 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.171 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:18:00.0(Timestamp)
+2021-04-25 14:10:21.172 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.173 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.173 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:19:00.0(Timestamp)
+2021-04-25 14:10:21.176 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.177 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.180 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:20:00.0(Timestamp)
+2021-04-25 14:10:21.181 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.182 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.182 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:21:00.0(Timestamp)
+2021-04-25 14:10:21.183 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.184 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.184 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:22:00.0(Timestamp)
+2021-04-25 14:10:21.185 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.186 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.186 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:23:00.0(Timestamp)
+2021-04-25 14:10:21.187 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.187 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.188 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:24:00.0(Timestamp)
+2021-04-25 14:10:21.188 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.189 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.190 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:25:00.0(Timestamp)
+2021-04-25 14:10:21.194 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.195 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.196 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:26:00.0(Timestamp)
+2021-04-25 14:10:21.197 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.198 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.198 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:27:00.0(Timestamp)
+2021-04-25 14:10:21.199 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.200 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.201 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:28:00.0(Timestamp)
+2021-04-25 14:10:21.202 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.203 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.203 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:29:00.0(Timestamp)
+2021-04-25 14:10:21.205 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.206 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.206 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:30:00.0(Timestamp)
+2021-04-25 14:10:21.207 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.208 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.209 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:31:00.0(Timestamp)
+2021-04-25 14:10:21.213 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.214 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.215 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:32:00.0(Timestamp)
+2021-04-25 14:10:21.217 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.217 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.218 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:33:00.0(Timestamp)
+2021-04-25 14:10:21.218 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.219 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.219 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:34:00.0(Timestamp)
+2021-04-25 14:10:21.220 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.220 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.220 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:35:00.0(Timestamp)
+2021-04-25 14:10:21.221 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.222 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.222 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:36:00.0(Timestamp)
+2021-04-25 14:10:21.223 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.224 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.224 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:37:00.0(Timestamp)
+2021-04-25 14:10:21.228 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.228 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.229 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:38:00.0(Timestamp)
+2021-04-25 14:10:21.230 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.231 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.231 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:39:00.0(Timestamp)
+2021-04-25 14:10:21.232 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.233 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.233 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:40:00.0(Timestamp)
+2021-04-25 14:10:21.234 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.235 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.236 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:41:00.0(Timestamp)
+2021-04-25 14:10:21.236 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.237 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.237 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:42:00.0(Timestamp)
+2021-04-25 14:10:21.238 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.238 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.238 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:43:00.0(Timestamp)
+2021-04-25 14:10:21.240 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.242 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.243 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:44:00.0(Timestamp)
+2021-04-25 14:10:21.244 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.245 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.245 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:45:00.0(Timestamp)
+2021-04-25 14:10:21.247 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.248 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.248 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:46:00.0(Timestamp)
+2021-04-25 14:10:21.249 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.249 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.250 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:47:00.0(Timestamp)
+2021-04-25 14:10:21.250 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.251 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.251 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:48:00.0(Timestamp)
+2021-04-25 14:10:21.252 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.252 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.252 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:49:00.0(Timestamp)
+2021-04-25 14:10:21.253 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.253 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.254 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:50:00.0(Timestamp)
+2021-04-25 14:10:21.255 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.256 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.256 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:51:00.0(Timestamp)
+2021-04-25 14:10:21.258 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.260 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.261 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:52:00.0(Timestamp)
+2021-04-25 14:10:21.262 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.263 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.263 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:53:00.0(Timestamp)
+2021-04-25 14:10:21.264 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.265 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.265 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:54:00.0(Timestamp)
+2021-04-25 14:10:21.266 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:21.266 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==>  Preparing: select * from sys_performance where cid=? and sid=? and timeOffset=? 
+2021-04-25 14:10:21.266 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : ==> Parameters: class001(String), stu002(String), 2020-12-19 20:55:00.0(Timestamp)
+2021-04-25 14:10:21.267 DEBUG 3911 --- [http-nio-8888-exec-7] com.abc.dao.PerformanceDao.selectOne     : <==      Total: 0
+2021-04-25 14:10:33.909  INFO 3911 --- [Thread-31] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@4f37908: startup date [Sun Apr 25 14:06:27 CST 2021]; root of context hierarchy
+2021-04-25 14:10:33.931  INFO 3911 --- [Thread-31] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2021-04-25 14:10:33.940  INFO 3911 --- [Thread-31] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2021-04-25 14:10:33.941  INFO 3911 --- [Thread-31] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2021-04-25 14:10:33.956  INFO 3911 --- [Thread-31] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'asyncPromiseExecutor'
+2021-04-25 14:10:33.970  INFO 3911 --- [Thread-31] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
