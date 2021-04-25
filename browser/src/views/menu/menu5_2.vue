@@ -116,7 +116,7 @@ export default {
           label: "Time",
         },
         {
-          prop: "className",
+          prop: "cid",
           label: "Class Name",
         },
         {

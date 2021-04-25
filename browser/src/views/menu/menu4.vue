@@ -117,11 +117,11 @@ export default {
           label: "Time",
         },
         {
-          prop: "studentName",
+          prop: "sid",
           label: "Student Name",
         },
         {
-          prop: "className",
+          prop: "cid",
           label: "Class Name",
         },
         {
