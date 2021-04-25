@@ -29,7 +29,11 @@
           :picker-options="{
             start: '08:00',
             step: '00:45',
+<<<<<<< HEAD
+            end: '17:00',
+=======
             end: '24:00',
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           }"
         >
         </el-time-select>
@@ -39,7 +43,11 @@
           :picker-options="{
             start: '08:45',
             step: '00:45',
+<<<<<<< HEAD
+            end: '17:00',
+=======
             end: '24:00',
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
             minTime: startTime,
           }"
         >
@@ -69,7 +77,10 @@
 import echarts from "echarts";
 import axios from "axios";
 import analysisApi from "@/api/analysis";
+<<<<<<< HEAD
+=======
 import dataApi from "@/api/data";
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 import { mapGetters } from "vuex";
 import exportExcel from "@/components/ExportExcel/index";
 
@@ -118,7 +129,11 @@ export default {
 
       exportExcelArr: [
         {
+<<<<<<< HEAD
+          prop: "time",
+=======
           prop: "timeOffset",
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           label: "Time",
         },
         {
@@ -130,6 +145,11 @@ export default {
           label: "Class Name",
         },
         {
+<<<<<<< HEAD
+          prop: "score",
+          label: "Concenstration Score",
+        },
+=======
           prop: "attention_value",
           label: "Concenstration Score",
         },
@@ -137,10 +157,52 @@ export default {
           prop: "expression_value",
           label: "Emotion",
         },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       ],
       //导出excel表格id及excel名称
       exportExcelInfo: {
         excelId: "record-table",
+<<<<<<< HEAD
+        excelName: "Concenstration Score.xlsx",
+      },
+      //需要导出的table数据
+      tableData: [
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+        {
+          time: "2016-05-02",
+          studentName: "王小虎",
+          className: "上海市普陀区金沙江路 1518 弄",
+          score: "111",
+        },
+      ],
+    };
+  },
+  components: {
+    exportExcel
+=======
         excelName: "Student Performance data.xlsx",
       },
       //需要导出的table数据
@@ -149,6 +211,7 @@ export default {
   },
   components: {
     exportExcel,
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   },
   computed: {
     ...mapGetters(["name"]),
@@ -228,24 +291,38 @@ export default {
     //调用接口方法
     queryData() {
       //查询单个学生对应课程专注度
+<<<<<<< HEAD
+      analysisApi
+        .queryStudentConcentration(
+=======
       dataApi
         .queryStudent(
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           this.studentName,
           this.course,
           this.date + " " + this.startTime,
           this.date + " " + this.endTime
         )
+<<<<<<< HEAD
+        .then((res) => {});
+=======
         .then((res) => {
           this.tableData = res.data.performanceList;
         });
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     },
 
     exportExcel() {
       this.$refs.myChild.exportExcel();
     },
     clearData() {
+<<<<<<< HEAD
+      this.tableData=[];
+    }
+=======
       this.tableData = [];
     },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   },
 };
 </script>

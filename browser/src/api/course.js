@@ -8,6 +8,12 @@ export default {
     // 查询所有课程和时间
     queryCourse() {
         return request({
+<<<<<<< HEAD
+            url: '',
+            method: 'post',
+            data: {
+                
+=======
             url: '/select_all_courses',
             method: 'post',
             data: {
@@ -92,6 +98,7 @@ export default {
             data: {
                 sid: studentName,
                 cidArry: courses
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
             }
         })
     },

@@ -33,4 +33,35 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+<<<<<<< HEAD
+    @Override
+    public String selectSidByPidService(String pid) {
+        return studentDao.selectSidByPid(pid);
+    }
+
+    @Override
+    public Double countAverageAttentionValue(String cid) {
+        Integer countStu = studentDao.countStudentNumber(cid);
+        Double countOfAllAV = studentDao.valueOfAllStu(cid);
+        Double Average = countOfAllAV/countStu/12;
+        return Average;
+    }
+
+    @Override
+    public List<String> selectAllSidService() {
+        return studentDao.selectAllSid();
+    }
+
+    @Override
+    public void clearCourseForStudentService(String sid) {
+        studentDao.clearCourseForStudent(sid);
+    }
+
+    @Override
+    public void addCourseForStudentService(String sid, String cid) {
+        studentDao.addCourseForStudent(sid,cid);
+    }
+
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 }

@@ -23,7 +23,10 @@ export default {
     return {
       pageName: "菜单3-3",
       myChart: null,
+<<<<<<< HEAD
+=======
       chartData: [],
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     };
   },
   computed: {
@@ -98,19 +101,44 @@ export default {
       let date = new Date();
       analysisApi.queryClassEmotion("class001", date).then((res) => {
         this.myChart.showLoading();
+<<<<<<< HEAD
+        let chartData = [];
+        let chartMap = res.data.emotion;
+        for (let key in chartMap) {
+          chartData.push({ name: key, value: chartMap[key] });
+=======
         let chartMap = res.data.emotion;
         for (let key in chartMap) {
           this.chartData.push({ name: key, value: chartMap[key] });
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         }
         this.myChart.setOption({
           series: [
             {
+<<<<<<< HEAD
+              data: chartData
+=======
               data: this.chartData,
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
             },
           ],
         });
         this.myChart.hideLoading();
       });
+<<<<<<< HEAD
+      this.tip();
+    },
+    tip() {
+      this.$message({
+        message: "Now the students emotions are poor, please make adjustment!",
+        type: "warning",
+        duration: 5000,
+        showClose: true,
+      });
+      this.$notify({
+        title: "Notice",
+        message: "Now the students emotions are poor, please make adjustment!",
+=======
       this.checkEmotion();
     },
     checkEmotion() {
@@ -136,6 +164,7 @@ export default {
       this.$notify({
         title: "Notice",
         message: "Now the students emotions are poor!",
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         type: "warning",
         duration: 5000,
         offset: 100,

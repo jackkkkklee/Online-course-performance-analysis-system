@@ -31,7 +31,14 @@
     <select id="selectCourseByTeacher" parameterType="String" resultType="String">
         select distinct cid from sys_course c,sys_teacher t where c.tid=#{tid} and t.tid=c.tid;
     </select>
+<<<<<<< HEAD
+    <!-- 查所有老师tid-->
+    <select id="selectAllTid" resultType="String">
+        select tid from sys_teacher
+    </select>
+=======
 
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 
 
 </mapper>
