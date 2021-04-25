@@ -94,4 +94,14 @@ public class TeacherServiceImpl implements TeacherService {
 
         return studentIdList;
     }
+<<<<<<< HEAD
+
+    @Override
+    public List<String> queryAllTeachersTid() {
+        return teacherDao.selectAllTid();
+    }
+
+
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 }

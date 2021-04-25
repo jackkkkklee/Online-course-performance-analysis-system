@@ -187,6 +187,15 @@ public class AttentionServiceImpl  implements AttentionService {
             performancedao.add(cid,sid,attention_value,date);
     }
 
+<<<<<<< HEAD
+    @Override
+    public List<Integer> selectAllAttentionValueOfOneCourseService(String sid, String cid) {
+        List<Integer> list = performancedao.selectOne11(sid, cid);
+        System.out.println(list);
+        return list;
+    }
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 
 
     //@Async("asyncPromiseExecutor")

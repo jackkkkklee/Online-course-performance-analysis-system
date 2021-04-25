@@ -33,4 +33,36 @@
         and #{date} between c.startTime and c.endTime
     </select>
 
+<<<<<<< HEAD
+    <!--根据家长pid来查询学生id-->
+    <select id="selectSidByPid" parameterType="String" resultType="String">
+        select sid from sys_parent where pid=#{pid}
+    </select>
+
+    <!--计算同一门课的学生数量-->
+    <select id="countStudentNumber" parameterType="String" resultType="Integer">
+        select count(DISTINCT sid) from sys_performance where cid=#{cid}
+    </select>
+
+    <!--求所有学生一节课的专注度值之和-->
+    <select id="valueOfAllStu" parameterType="String" resultType="Double">
+        select sum(attention_value) from sys_performance where cid=#{cid}
+    </select>
+
+    <!-- 查所有学生sid-->
+    <select id="selectAllSid" resultType="String">
+        select sid from sys_student
+    </select>
+
+    <!--清空某个学生的课程-->
+    <delete id="clearCourseForStudent" parameterType="String">
+        delete from sys_course_student where sid=#{sid}
+    </delete>
+
+    <!--为某个学生添加课程-->
+    <insert id="addCourseForStudent" parameterType="String">
+        insert into sys_course_student (sid,cid) values (#{sid},#{cid})
+    </insert>
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 </mapper>
