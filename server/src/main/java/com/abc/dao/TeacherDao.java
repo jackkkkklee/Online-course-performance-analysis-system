@@ -25,6 +25,8 @@ public interface TeacherDao
     //查询老师上的每一节课
     List<Course> selectEveryCourseByTeacher(String tid);
 
+
     //查所有老师的tid
     public List<String> selectAllTid();
+
 }

@@ -12,7 +12,11 @@
     </resultMap>
 
     <!--添加课程-->
+<<<<<<< HEAD
     <insert id="addCourse" parameterType="com.abc.entity.Course">
+=======
+    <insert id="add" parameterType="com.abc.entity.Course">
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         insert into sys_course (tid,course,cid,startTime,endTime) values (#{tid},#{course},#{cid},#{startTime},#{endTime})
     </insert>
     <!--删除课程-->
@@ -21,11 +25,15 @@
     </delete>
     <!-- 修改课程   -->
     <update id="update" parameterType="com.abc.entity.Course">
+<<<<<<< HEAD
         update sys_course set startTime=#{startTime},endTime=#{endTime} where cid=#{cid}
     </update>
     <!-- 为课程修改授课老师   -->
     <update id="updateTeacherForCourse" parameterType="String">
         update sys_course set tid=#{tid} where cid=#{cid}
+=======
+        update sys_course set course=#{course},startTime=#{startTime},endTime=#{endTime} where tid=#{tid} and cid=#{cid} and startTime=#{startTime} and endTime=#{endTime}
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     </update>
     <!-- 查单个课程   -->
     <select id="selectOne" parameterType="String" resultType="com.abc.entity.Course">
@@ -40,6 +48,7 @@
         select * from sys_course c,sys_course_student cs,sys_student s where c.cid=#{cid} and cs.cid=c.cid and cs.sid=s.sid
     </select>
 
+<<<<<<< HEAD
     <!--根据cid删除课程-->
     <delete id="deleteCourseByCid" parameterType="String">
         delete from sys_course where cid=#{cid}
@@ -54,5 +63,9 @@
     <delete id="clearTeacherCourse" parameterType="String">
         delete from sys_course where tid=#{tid}
     </delete>
+=======
+
+
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 
 </mapper>

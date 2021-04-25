@@ -35,7 +35,11 @@
     select expression_value from sys_performance WHERE cid=#{cid} and sid=#{sid} and timeOffset >#{startDate} and #{endDate}>timeOffset  order by timeOffset desc limit 0,1
     </select>
     <!-- 查单个学生某种课的所有表现   -->
+<<<<<<< HEAD
     <select id="selectOne11"  resultType="int">
+=======
+    <select id="selectOne11"  resultType="Integer">
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         select attention_value from sys_performance where cid=#{cid} and sid=#{sid}
     </select>
 

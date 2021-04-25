@@ -1,14 +1,20 @@
 package com.abc.service;
 
+
 import com.abc.entity.Course;
 import com.abc.entity.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+
+import com.abc.entity.Student;
+
+
 import java.util.List;
 
 public interface CourseService {
     List<Student>  selectStudentByCourse(String cid);
+
     //根据课程cid删除课程服务
     void deleteCourseByCidService(String cid);
     void addCourseService(Course course);
@@ -21,4 +27,5 @@ public interface CourseService {
     void clearTeacherCourseService(String tid);
     //为课程修改授课老师
     void setNewTeacherForCourseService(String cid,String tid);
+
 }

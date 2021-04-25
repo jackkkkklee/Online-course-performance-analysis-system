@@ -29,7 +29,11 @@
           :picker-options="{
             start: '08:00',
             step: '00:45',
+<<<<<<< HEAD
             end: '17:00',
+=======
+            end: '24:00',
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
           }"
         >
         </el-time-select>
@@ -39,7 +43,11 @@
           :picker-options="{
             start: '08:45',
             step: '00:45',
+<<<<<<< HEAD
             end: '17:00',
+=======
+            end: '24:00',
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
             minTime: startTime,
           }"
         >

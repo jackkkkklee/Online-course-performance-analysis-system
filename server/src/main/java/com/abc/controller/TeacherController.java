@@ -5,14 +5,19 @@ import com.abc.dao.PerformanceDao;
 import com.abc.entity.Course;
 import com.abc.entity.Performance;
 import com.abc.service.AttentionService;
+
 import com.abc.service.CourseService;
 import com.abc.service.StudentService;
+
 import com.abc.service.TeacherService;
 import com.abc.util.MyTimeUtils;
 import com.abc.vo.ClassAttentionVo;
 import com.abc.vo.Json;
 import com.alibaba.fastjson.JSON;
+
 import com.alibaba.fastjson.JSONArray;
+
+
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -24,7 +29,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.Date;
+
 import java.util.HashMap;
+
 import java.util.List;
 
 @PermInfo(value = "老师模块", pval = "a:teacher")
@@ -36,10 +43,12 @@ public class TeacherController {
     TeacherService teacherService;
     @Autowired
     AttentionService attentionService;
+
     @Autowired
     CourseService courseService;
     @Autowired
     StudentService studentService;
+
     //queryStudentCourse()
 
     @PostMapping("/query_concentration")
@@ -64,6 +73,7 @@ public class TeacherController {
             }
         }
         Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
+
         System.out.println(json);
         return json;
     }
@@ -175,6 +185,12 @@ public class TeacherController {
 
 
 
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "cid",value = "课程id",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "startTime",value = "开始时间",paramType = "query",dataType = "Date",required = true),
+            @ApiImplicitParam(name = "endTime",value = "结束时间",paramType = "query",dataType = "Date",required = true)
+    })
+
     @PostMapping("/query_class_concentration")
     Json queryClassConcentration(@RequestBody String body) throws CloneNotSupportedException, ParseException {
         String oper = "queryStudentConcentration";
@@ -195,6 +211,7 @@ public class TeacherController {
             time[i] = MyTimeUtils.convertToHHmmFormat(classAttentionVos.get(i).getTimeOffset());
             attention_value[i] = classAttentionVos.get(i).getAttention_value();
         }
+
         Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
         System.out.println(json);
         return json;
@@ -222,6 +239,9 @@ public class TeacherController {
         }
 //        Json json=Json.succ(oper, "time", time).data("attention_value",attention_value);
         Json json=Json.succ(oper, "classAttentionVos", classAttentionVos);
+
+        json=Json.succ(oper, "time", time).data("attention_value",attention_value);
+
         System.out.println(json);
         return json;
     }

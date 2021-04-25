@@ -19,6 +19,8 @@ public interface TeacherService {
     List<Student> queryStudentByTeacher(String tid);
     //返回老师正在教的所有学生的Id
     List<String> queryStudentIdByTeacher(String tid);
+
     //查询出所有老师的tid
     List<String> queryAllTeachersTid();
+
 }

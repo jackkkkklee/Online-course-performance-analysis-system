@@ -13,7 +13,9 @@ public class Course
     private String course;
     private Date startTime;
     private Date endTime;
+
     public Course() {}
+
     public Course(String tid, String cid, String course, Date startTime, Date endTime) {
         this.tid = tid;
         this.cid = cid;

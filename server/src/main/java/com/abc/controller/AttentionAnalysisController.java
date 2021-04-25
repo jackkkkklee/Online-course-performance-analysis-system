@@ -6,6 +6,9 @@ import com.abc.entity.Course;
 import com.abc.service.AttentionService;
 import com.abc.service.EmotionService;
 import com.abc.service.StudentService;
+import com.abc.service.AttentionService;
+import com.abc.service.EmotionService;
+
 import com.abc.service.impl.AttentionServiceImpl;
 import com.abc.util.MyTimeUtils;
 import com.abc.vo.AttentionDetailVo;
@@ -19,9 +22,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import java.util.Date;
+import java.util.HashMap;
+
 
 @PermInfo(value = "注意力分析模块", pval = "a:analysis")
 @RestController
@@ -32,8 +40,10 @@ public class AttentionAnalysisController {
     AttentionService attentionService;
     @Autowired
     EmotionService emotionService;
+
     @Autowired
     StudentService studentService;
+
     @PostMapping
     public Json AttentionAnalysis(@RequestBody String body) {
         String oper = "AttentionAnalysis";
@@ -93,6 +103,7 @@ public class AttentionAnalysisController {
 //        return  null;
 //
 //    }
+
 
 
 
@@ -165,4 +176,5 @@ public class AttentionAnalysisController {
         Double average = studentService.countAverageAttentionValue(cid);
         return Json.succ(oper,"average_attention_value",average);
     }
+
 }

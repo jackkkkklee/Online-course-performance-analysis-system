@@ -94,6 +94,7 @@ public class TeacherServiceImpl implements TeacherService {
 
         return studentIdList;
     }
+<<<<<<< HEAD
 
     @Override
     public List<String> queryAllTeachersTid() {
@@ -101,4 +102,6 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
 
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 }

@@ -95,9 +95,13 @@
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
+<<<<<<< HEAD
         <el-button type="primary" @click="updateData"
           >Confirm</el-button
         >
+=======
+        <el-button type="primary" @click="updateData">Confirm</el-button>
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       </div>
     </el-dialog>
   </div>
@@ -112,6 +116,10 @@ export default {
 
   data() {
     return {
+<<<<<<< HEAD
+=======
+      currentRow: null,
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       studentData: [],
       pagedData: [],
       courseOptions: [],
@@ -207,7 +215,11 @@ export default {
   methods: {
     //全选
     handleCheckAllChange(val) {
+<<<<<<< HEAD
       this.checkedCourses  = val ? this.courseOptions : [];
+=======
+      this.checkedCourses = val ? this.courseOptions : [];
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       this.isIndeterminate = false;
     },
 
@@ -272,6 +284,7 @@ export default {
     // 查询
     fetchData() {
       this.tableLoading = true;
+<<<<<<< HEAD
       this.studentData = this.mockData;
       this.pageTable(this.studentData);
       this.tablePage.current = 1;
@@ -285,10 +298,58 @@ export default {
       //   this.pageTable(this.courseData);
       //   this.tableLoading = false;
       // });
+=======
+      // this.studentData = this.mockData;
+      // this.pageTable(this.studentData);
+      // this.tablePage.current = 1;
+      // this.tablePage.total = this.studentData.length;
+      // this.tableData = this.pagedData[0];
+      // this.courseOptions = this.courseMockData;
+      // this.tableLoading = false;
+
+      // 调用接口
+      courseApi.queryCourse().then((res) => {
+        let courseData = res.data.courses;
+        let courseArr = [];
+        for (let item of courseData) {
+          courseArr.push(item.course);
+        }
+        this.courseOptions = courseArr;
+      });
+      courseApi.queryStudentCourse().then((res) => {
+        let dataMap = res.data.SCM;
+        for (let key in dataMap) {
+          if (dataMap[key] == []) {
+            this.studentData.push({
+              teacherName: key,
+              courses: [],
+            });
+          } else {
+            let courseArr = [];
+            for (let item of dataMap) {
+              courseArr.push(item.course);
+            }
+            this.studentData.push({
+              studentName: key,
+              courses: courseArr,
+            });
+          }
+        }
+        this.pageTable(this.studentData);
+        this.tablePage.current = 1;
+        this.tablePage.total = this.studentData.length;
+        this.tableData = this.pagedData[0];
+        this.tableLoading = false;
+      });
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     },
 
     // 修改课程
     handleUpdate(idx, row) {
+<<<<<<< HEAD
+=======
+      this.currentRow = row;
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       this.temp.idx = idx;
       this.temp.sname = row.studentName;
       this.temp.course = row.course;
@@ -297,6 +358,7 @@ export default {
       this.dialogFormVisible = true;
     },
     updateData() {
+<<<<<<< HEAD
       this.studentData[
         (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
       ] = {
@@ -309,6 +371,25 @@ export default {
       this.$message.success("Update successfully");
     },
 
+=======
+      // this.studentData[
+      //   (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
+      // ] = {
+      //   studentName: this.temp.sname,
+      //   course: this.checkedCourses,
+      // };
+      // this.pageTable(this.studentData);
+      // this.tableData = this.pagedData[this.tablePage.current - 1];
+
+      courseApi.updateStudentCourse(
+        this.currentRow.studentName,
+        this.checkedCourses
+      );
+      this.fetchData();
+      this.dialogFormVisible = false;
+      this.$message.success("Update successfully");
+    },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   },
 };
 </script>

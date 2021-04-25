@@ -23,7 +23,12 @@ function hasPermission(userPerms, routerPerm) {
 }
 
 const loginRoute = "/login"
+<<<<<<< HEAD
 const whiteList = new Set([loginRoute,'/authredirect'])// no redirect whitelist
+=======
+const indexRoute = "/index"
+const whiteList = new Set([indexRoute,loginRoute,'/authredirect'])// no redirect whitelist
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 
 router.beforeEach((to, from, next) => {
 
@@ -70,7 +75,11 @@ router.beforeEach((to, from, next) => {
   } else {
     // 2.没有token
     // 如果要访问的路由在白名单中，直接进入；否则，重定向到登录页面
+<<<<<<< HEAD
     whiteList.has(to.path) ? next() : next(loginRoute);
+=======
+    whiteList.has(to.path) ? next() : next(indexRoute);
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     NProgress.done();
   }
 })

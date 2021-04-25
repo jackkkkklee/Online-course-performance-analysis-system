@@ -21,7 +21,11 @@
           <svg-icon icon-class="eye"/>
         </span>
       </el-form-item>
+<<<<<<< HEAD
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading"
+=======
+      <el-button class="btn" type="primary" style="width:100%;margin-bottom:30px;" :loading="loading"
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
                  @click.native.prevent="handleLogin">Login
       </el-button>
       <div class="tips">
@@ -115,12 +119,18 @@
       height: 47px;
       width: 85%;
       input {
+<<<<<<< HEAD
         background: transparent;
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         border: 0px;
         -webkit-appearance: none;
         border-radius: 0px;
         padding: 12px 5px 12px 15px;
+<<<<<<< HEAD
         color: $light_gray;
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         height: 47px;
         &:-webkit-autofill {
           -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
@@ -129,10 +139,16 @@
       }
     }
     .el-form-item {
+<<<<<<< HEAD
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
+=======
+      background-color:  rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     }
   }
 </style>
@@ -143,15 +159,24 @@
   $light_gray: #eee;
 
   .login-container {
+<<<<<<< HEAD
     position: fixed;
     height: 100%;
     width: 100%;
     background-color: $bg;
+=======
+    background: url(../../../static/image/login_background.png) no-repeat;
+    background-size:100% 100%;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     .login-form {
       position: absolute;
       left: 0;
       right: 0;
       width: 520px;
+<<<<<<< HEAD
       padding: 35px 35px 15px 35px;
       margin: 120px auto;
     }
@@ -159,6 +184,21 @@
       font-size: 14px;
       color: #fff;
       margin-bottom: 10px;
+=======
+      background-color:  rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      padding: 35px 35px 15px 35px;
+      margin: 120px auto;
+    }
+    .btn {
+      font-weight: bold;
+    }
+    .tips {
+      font-size: 14px;
+      margin-bottom: 10px;
+      font-weight: bold;
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       span {
         &:first-of-type {
           margin-right: 16px;
@@ -180,7 +220,10 @@
       .title {
         font-size: 26px;
         font-weight: 400;
+<<<<<<< HEAD
         color: $light_gray;
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
         margin: 0px auto 40px auto;
         text-align: center;
         font-weight: bold;

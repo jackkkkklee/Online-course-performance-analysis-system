@@ -33,6 +33,7 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+<<<<<<< HEAD
     @Override
     public String selectSidByPidService(String pid) {
         return studentDao.selectSidByPid(pid);
@@ -61,4 +62,6 @@ public class StudentServiceImpl implements StudentService {
         studentDao.addCourseForStudent(sid,cid);
     }
 
+=======
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
 }

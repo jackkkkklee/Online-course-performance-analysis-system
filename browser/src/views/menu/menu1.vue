@@ -286,7 +286,11 @@ export default {
 }
 
 .video {
+<<<<<<< HEAD
   width: 600px;
+=======
+  width: 650px;
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   height: 300px;
   margin: auto;
 }

@@ -28,6 +28,10 @@ import Layout from '../views/layout/Layout'
   }
 **/
 export const constantRouterMap = [
+<<<<<<< HEAD
+=======
+  { path: '/index', component: _import('index/index'), hidden: true },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
   { path: '/login', component: _import('login/index'), hidden: true },
   { path: '/authredirect', component: _import('login/authredirect'), hidden: true },
   { path: '/404', component: _import('errorPage/404'), hidden: true },
@@ -56,7 +60,11 @@ export const asyncRouterMap = [
   {
     path: '/system',
     component: Layout,
+<<<<<<< HEAD
     meta: { perm:'m:sys', title: 'System Management', icon: 'component' },
+=======
+    meta: { perm: 'm:sys', title: 'System Management', icon: 'component' },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     children: [
       {
         path: 'user_manage',
@@ -75,7 +83,11 @@ export const asyncRouterMap = [
         path: 'role_manage/:roleId/assign_perm',
         name: 'role_manage_assign_perm',
         component: _import('_system/role/assign_perm'),
+<<<<<<< HEAD
         meta: { hiddenTag: true , title: 'Role Permission'},
+=======
+        meta: { hiddenTag: true, title: 'Role Permission' },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       },
       {
         path: 'perm_manage',
@@ -88,13 +100,35 @@ export const asyncRouterMap = [
   },
 
   {
+<<<<<<< HEAD
+=======
+    path: '/menu6',
+    component: Layout,
+    meta: {
+      perm: 'm:menu6',
+      title: 'Course Management',
+      icon: 'component'
+    },
+    children: [
+      { path: 'menu6_1', component: _import('menu/menu6_1'), name: 'menu6_1', meta: { perm: 'm:menu6:1', title: 'Course', icon: 'component', noCache: true } },
+      { path: 'menu6_2', component: _import('menu/menu6_2'), name: 'menu6_2', meta: { perm: 'm:menu6:2', title: 'Teacher Course', icon: 'component', noCache: true } },
+      { path: 'menu6_3', component: _import('menu/menu6_3'), name: 'menu6_3', meta: { perm: 'm:menu6:3', title: 'Student Course', icon: 'component', noCache: true } }
+    ]
+  },
+
+  {
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     path: '/menu1',
     component: Layout,
     children: [{
       path: 'index',
       name: 'menu1',
       component: _import('menu/menu1'),
+<<<<<<< HEAD
       meta: { perm:'m:menu1', title: 'Start Online Course', icon: 'peoples' }
+=======
+      meta: { perm: 'm:menu1', title: 'Start Online Course', icon: 'peoples' }
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     }]
   },
 
@@ -105,7 +139,11 @@ export const asyncRouterMap = [
       path: 'index',
       name: 'menu2',
       component: _import('menu/menu2'),
+<<<<<<< HEAD
       meta: { perm:'m:menu2', title: 'Personal Attention Analysis', icon: 'chart' }
+=======
+      meta: { perm: 'm:menu2', title: 'Personal Attention Analysis', icon: 'chart' }
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     }]
   },
 
@@ -113,14 +151,24 @@ export const asyncRouterMap = [
     path: '/menu3',
     component: Layout,
     meta: {
+<<<<<<< HEAD
       perm:'m:menu3',
+=======
+      perm: 'm:menu3',
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       title: 'Attention Analysis',
       icon: 'chart'
     },
     children: [
+<<<<<<< HEAD
       { path: 'menu3_1', component: _import('menu/menu3_1'), name: 'menu3_1', meta: { perm:'m:menu3:1', title: 'Student Attention Analysis', icon: 'chart', noCache: true }},
       { path: 'menu3_2', component: _import('menu/menu3_2'), name: 'menu3_2', meta: { perm:'m:menu3:2', title: 'Class Attention Analysis', icon: 'chart', noCache: true }},
       { path: 'menu3_3', component: _import('menu/menu3_3'), name: 'menu3_3', meta: { perm:'m:menu3:3', title: 'Class Emotion', icon: 'chart', noCache: true }}
+=======
+      { path: 'menu3_1', component: _import('menu/menu3_1'), name: 'menu3_1', meta: { perm: 'm:menu3:1', title: 'Student Attention Analysis', icon: 'chart', noCache: true } },
+      { path: 'menu3_2', component: _import('menu/menu3_2'), name: 'menu3_2', meta: { perm: 'm:menu3:2', title: 'Class Attention Analysis', icon: 'chart', noCache: true } },
+      { path: 'menu3_3', component: _import('menu/menu3_3'), name: 'menu3_3', meta: { perm: 'm:menu3:3', title: 'Class Emotion', icon: 'chart', noCache: true } }
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     ]
   },
 
@@ -131,7 +179,11 @@ export const asyncRouterMap = [
       path: 'index',
       name: 'menu4',
       component: _import('menu/menu4'),
+<<<<<<< HEAD
       meta: { perm:'m:menu4', title: 'Data Export', icon: 'clipboard' }
+=======
+      meta: { perm: 'm:menu4', title: 'Data Export', icon: 'clipboard' }
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     }]
   },
 
@@ -139,11 +191,16 @@ export const asyncRouterMap = [
     path: '/menu5',
     component: Layout,
     meta: {
+<<<<<<< HEAD
       perm:'m:menu5',
+=======
+      perm: 'm:menu5',
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
       title: 'Data Export',
       icon: 'clipboard'
     },
     children: [
+<<<<<<< HEAD
       { path: 'menu5_1', component: _import('menu/menu5_1'), name: 'menu5_1', meta: { perm:'m:menu5:1', title: 'Student Analysis Export', icon: 'clipboard', noCache: true }},
       { path: 'menu5_2', component: _import('menu/menu5_2'), name: 'menu5_2', meta: { perm:'m:menu5:2', title: 'Class Analysis Export', icon: 'clipboard', noCache: true }},
     ]
@@ -161,6 +218,10 @@ export const asyncRouterMap = [
       { path: 'menu6_1', component: _import('menu/menu6_1'), name: 'menu6_1', meta: { perm:'m:menu6:1', title: 'Course', icon: 'component', noCache: true }},
       { path: 'menu6_2', component: _import('menu/menu6_2'), name: 'menu6_2', meta: { perm:'m:menu6:2', title: 'Teacher Course', icon: 'component', noCache: true }},
       { path: 'menu6_3', component: _import('menu/menu6_3'), name: 'menu6_3', meta: { perm:'m:menu6:3', title: 'Student Course', icon: 'component', noCache: true }}
+=======
+      { path: 'menu5_1', component: _import('menu/menu5_1'), name: 'menu5_1', meta: { perm: 'm:menu5:1', title: 'Student Analysis Export', icon: 'clipboard', noCache: true } },
+      { path: 'menu5_2', component: _import('menu/menu5_2'), name: 'menu5_2', meta: { perm: 'm:menu5:2', title: 'Class Analysis Export', icon: 'clipboard', noCache: true } },
+>>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
     ]
   },
 

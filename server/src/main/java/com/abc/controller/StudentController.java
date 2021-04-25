@@ -6,7 +6,9 @@ import com.abc.service.StudentService;
 import com.abc.vo.Json;
 import com.abc.vo.StudentClassVo;
 import com.alibaba.fastjson.JSON;
+
 import com.alibaba.fastjson.JSONArray;
+
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import java.util.HashMap;
+
 import java.util.List;
 
 @PermInfo(value = "学生模块", pval = "a:student")
@@ -25,8 +29,12 @@ import java.util.List;
 public class StudentController {
     private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
+
     @Autowired
     StudentService studentService;
+
+
+
 
     @PostMapping("/has_course")
     public Json queryOngoingStudentCourse(@RequestBody String body){
@@ -38,6 +46,8 @@ public class StudentController {
         return Json.succ(oper,"result",studentClassVo);
     }
 
+
+
     @PostMapping("/query_all_course")
     public Json queryStudentAllCourse(@RequestBody String body){
         String oper = "queryStudentAllCourse";
@@ -47,6 +57,7 @@ public class StudentController {
         List<Course> courseList=studentService.queryAllCourse(sid);
         return Json.succ(oper,"courses",courseList);
     }
+
 
     @PostMapping("/query_all_student")
     public Json queryAllStudent(@RequestBody String body){
