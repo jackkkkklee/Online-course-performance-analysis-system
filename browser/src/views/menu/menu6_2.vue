@@ -110,6 +110,7 @@ export default {
 
   data() {
     return {
+      currentRow: null,
       teacherData: [],
       pagedData: [],
       courseOptions: [],
@@ -270,23 +271,53 @@ export default {
     // 查询
     fetchData() {
       this.tableLoading = true;
-      this.teacherData = this.mockData;
-      this.pageTable(this.teacherData);
-      this.tablePage.current = 1;
-      this.tablePage.total = this.teacherData.length;
-      this.tableData = this.pagedData[0];
-      this.courseOptions = this.courseMockData;
-      this.tableLoading = false;
+      // this.teacherData = this.mockData;
+      // this.pageTable(this.teacherData);
+      // this.tablePage.current = 1;
+      // this.tablePage.total = this.teacherData.length;
+      // this.tableData = this.pagedData[0];
+      // this.courseOptions = this.courseMockData;
+      // this.tableLoading = false;
+
       // 调用接口
-      // courseApi.queryCourse(this.tableQuery).then((res) => {
-      //   this.courseData = res.data;
-      //   this.pageTable(this.courseData);
-      //   this.tableLoading = false;
-      // });
+      courseApi.queryCourse().then((res) => {
+        let courseData = res.data.courses;
+        let courseArr = [];
+        for (let item of courseData) {
+          courseArr.push(item.course);
+        }
+        this.courseOptions = courseArr;
+      });
+      courseApi.queryTeacherCourse().then((res) => {
+        let dataMap = res.data.TCM;
+        for (let key in dataMap) {
+          if (dataMap[key] == []) {
+            this.teacherData.push({
+              teacherName: key,
+              courses: [],
+            });
+          } else {
+            let courseArr = [];
+            for (let item of dataMap) {
+              courseArr.push(item.course);
+            }
+            this.teacherData.push({
+              teacherName: key,
+              courses: courseArr,
+            });
+          }
+        }
+        this.pageTable(this.teacherData);
+        this.tablePage.current = 1;
+        this.tablePage.total = this.teacherData.length;
+        this.tableData = this.pagedData[0];
+        this.tableLoading = false;
+      });
     },
 
     // 修改课程
     handleUpdate(idx, row) {
+      this.currentRow = row;
       this.temp.idx = idx;
       this.temp.tname = row.teacherName;
       this.temp.course = row.course;
@@ -295,14 +326,19 @@ export default {
       this.dialogFormVisible = true;
     },
     updateData() {
-      this.teacherData[
-        (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
-      ] = {
-        teacherName: this.temp.tname,
-        course: this.checkedCourses,
-      };
-      this.pageTable(this.teacherData);
-      this.tableData = this.pagedData[this.tablePage.current - 1];
+      // this.teacherData[
+      //   (this.tablePage.current - 1) * this.tablePage.size + this.temp.idx
+      // ] = {
+      //   teacherName: this.temp.tname,
+      //   course: this.checkedCourses,
+      // };
+      // this.pageTable(this.teacherData);
+      // this.tableData = this.pagedData[this.tablePage.current - 1];
+      courseApi.updateTeacherCourse(
+        this.currentRow.teacherName,
+        this.checkedCourses
+      );
+      this.fetchData();
       this.dialogFormVisible = false;
       this.$message.success("Update successfully");
     },

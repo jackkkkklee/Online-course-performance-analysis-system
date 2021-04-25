@@ -286,7 +286,7 @@ export default {
 }
 
 .video {
-  width: 600px;
+  width: 650px;
   height: 300px;
   margin: auto;
 }

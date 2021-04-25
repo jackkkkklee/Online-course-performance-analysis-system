@@ -29,7 +29,7 @@
           :picker-options="{
             start: '08:00',
             step: '00:45',
-            end: '17:00',
+            end: '24:00',
           }"
         >
         </el-time-select>
@@ -39,7 +39,7 @@
           :picker-options="{
             start: '08:45',
             step: '00:45',
-            end: '17:00',
+            end: '24:00',
             minTime: startTime,
           }"
         >
@@ -69,6 +69,7 @@
 import echarts from "echarts";
 import axios from "axios";
 import analysisApi from "@/api/analysis";
+import dataApi from "@/api/data";
 import { mapGetters } from "vuex";
 import exportExcel from "@/components/ExportExcel/index";
 
@@ -117,7 +118,7 @@ export default {
 
       exportExcelArr: [
         {
-          prop: "time",
+          prop: "timeOffset",
           label: "Time",
         },
         {
@@ -129,52 +130,25 @@ export default {
           label: "Class Name",
         },
         {
-          prop: "score",
+          prop: "attention_value",
           label: "Concenstration Score",
+        },
+        {
+          prop: "expression_value",
+          label: "Emotion",
         },
       ],
       //导出excel表格id及excel名称
       exportExcelInfo: {
         excelId: "record-table",
-        excelName: "Concenstration Score.xlsx",
+        excelName: "Student Performance data.xlsx",
       },
       //需要导出的table数据
-      tableData: [
-        {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-        {
-          time: "2016-05-02",
-          studentName: "王小虎",
-          className: "上海市普陀区金沙江路 1518 弄",
-          score: "111",
-        },
-      ],
+      tableData: [],
     };
   },
   components: {
-    exportExcel
+    exportExcel,
   },
   computed: {
     ...mapGetters(["name"]),
@@ -254,22 +228,24 @@ export default {
     //调用接口方法
     queryData() {
       //查询单个学生对应课程专注度
-      analysisApi
-        .queryStudentConcentration(
+      dataApi
+        .queryStudent(
           this.studentName,
           this.course,
           this.date + " " + this.startTime,
           this.date + " " + this.endTime
         )
-        .then((res) => {});
+        .then((res) => {
+          this.tableData = res.data.performanceList;
+        });
     },
 
     exportExcel() {
       this.$refs.myChild.exportExcel();
     },
     clearData() {
-      this.tableData=[];
-    }
+      this.tableData = [];
+    },
   },
 };
 </script>
