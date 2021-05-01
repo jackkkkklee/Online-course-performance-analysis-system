@@ -19,15 +19,15 @@ public class ClassAttentionVo implements Cloneable {
         this.attention_value = attention_value;
     }
 
-<<<<<<< HEAD
+
 
 
 
 
     private Date timeOffset;
 
-=======
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
+
+
     public Date getTimeOffset() {
         return timeOffset;
     }
@@ -36,7 +36,7 @@ public class ClassAttentionVo implements Cloneable {
         this.timeOffset = timeOffset;
     }
 
-<<<<<<< HEAD
+
 
 
 
@@ -44,8 +44,7 @@ public class ClassAttentionVo implements Cloneable {
 
     private String cid;
 
-=======
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
+
     public String getCid() {
         return cid;
     }
@@ -54,12 +53,11 @@ public class ClassAttentionVo implements Cloneable {
         this.cid = cid;
     }
 
-<<<<<<< HEAD
 
-=======
-    private Date timeOffset;
-    private String cid;
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
+
+
+
+
 
     public ClassAttentionVo() {
         this.timeOffset=new Date();

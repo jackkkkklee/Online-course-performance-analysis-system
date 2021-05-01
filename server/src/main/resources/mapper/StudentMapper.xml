@@ -33,7 +33,7 @@
         and #{date} between c.startTime and c.endTime
     </select>
 
-<<<<<<< HEAD
+
     <!--根据家长pid来查询学生id-->
     <select id="selectSidByPid" parameterType="String" resultType="String">
         select sid from sys_parent where pid=#{pid}
@@ -63,6 +63,5 @@
     <insert id="addCourseForStudent" parameterType="String">
         insert into sys_course_student (sid,cid) values (#{sid},#{cid})
     </insert>
-=======
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
+
 </mapper>

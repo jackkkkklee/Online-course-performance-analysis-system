@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@NoArgsConstructor
+
 public class Course
 {
     private String tid;
