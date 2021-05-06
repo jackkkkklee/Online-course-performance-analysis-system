@@ -29,4 +29,6 @@ public interface TeacherDao
     //查所有老师的tid
     public List<String> selectAllTid();
 
+
+
 }

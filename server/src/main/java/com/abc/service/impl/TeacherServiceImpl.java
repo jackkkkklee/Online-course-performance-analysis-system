@@ -103,6 +103,20 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherDao.selectAllTid();
     }
 
+    @Override
+    public String queryRealTimeCourseByTeacherId(String tid) {
+        List<Course> courseList = teacherDao.selectEveryCourseByTeacher(tid);
+        Long dateNow=new Date().getTime();
+        String ongoingCourse=null;
+        for(Course course:courseList){
+            if(course.getStartTime().getTime()<=dateNow&&dateNow<=course.getEndTime().getTime()){
+                // course is ongoing
+                ongoingCourse= course.getCid();
+                break;
+            }
+        }
+        return ongoingCourse;
+    }
 
 
 }
