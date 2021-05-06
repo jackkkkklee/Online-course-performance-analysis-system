@@ -22,5 +22,7 @@ public interface TeacherService {
 
     //查询出所有老师的tid
     List<String> queryAllTeachersTid();
+    //查询出老师正在上课的课程id
+    String queryRealTimeCourseByTeacherId(String tid);
 
 }

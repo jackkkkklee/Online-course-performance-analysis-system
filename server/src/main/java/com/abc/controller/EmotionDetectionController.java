@@ -2,6 +2,7 @@ package com.abc.controller;
 
 import com.abc.annotation.PermInfo;
 import com.abc.service.EmotionService;
+import com.abc.service.TeacherService;
 import com.abc.vo.EmotionVo;
 import com.abc.vo.Json;
 import com.alibaba.fastjson.JSON;
@@ -22,6 +23,8 @@ import java.util.Date;
 public class EmotionDetectionController {
     @Autowired
     EmotionService emotionService;
+    @Autowired
+    TeacherService teacherService;
 
     private static final Logger log = LoggerFactory.getLogger(EmotionDetectionController.class);
     @PostMapping("/query_class_emotion")
@@ -29,9 +32,13 @@ public class EmotionDetectionController {
         String oper = "queryRealTimeEmotionOfAllStu";
         log.info("{}, body: {}",oper,body);
         JSONObject jsonObj = JSON.parseObject(body);
-        String cid = jsonObj.getString("cid");
+        String tid = jsonObj.getString("tid");
         Date startDate= jsonObj.getDate("startDate");
         //更改为查询最新的
+        String cid = teacherService.queryRealTimeCourseByTeacherId(tid);
+        if(cid ==null){
+            return Json.fail("select ongoing course","no ongoing course");
+        }
         EmotionVo emotionVo=emotionService.queryAllEmotionByCourse(cid,startDate);
 
         return Json.succ(oper).data("emotion",emotionVo.getEmotionVoMap()).data("test","hello");

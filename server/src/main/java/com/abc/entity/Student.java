@@ -10,7 +10,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student implements  Comparable<Student>
+public class Student
 {
     private String sid;
     private String studentName;
@@ -62,7 +62,13 @@ public class Student implements  Comparable<Student>
 
 
     @Override
-    public int compareTo(Student o) {
-        return this.sid.compareTo(o.sid);
+    public int hashCode() {
+        return super.hashCode()+sid.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Student student=(Student)obj;
+        return this.sid==student.getSid();
     }
 }
