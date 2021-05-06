@@ -72,7 +72,9 @@ export default {
     //     ],
     //   });
     // });
+
     this.refreshData();
+    this.timer = setInterval(this.refreshData, 10000);
 
     // let chartData = new Array();
     // let chartMap = new Map();
@@ -96,9 +98,11 @@ export default {
     //调用接口方法
     refreshData() {
       let date = new Date();
-      analysisApi.queryClassEmotion("class001", date).then((res) => {
+      analysisApi.queryClassEmotion("science", date).then((res) => {
+        this.chartData = [];
         this.myChart.showLoading();
         let chartMap = res.data.emotion;
+        console.log(res.data.emotion);
         for (let key in chartMap) {
           this.chartData.push({ name: key, value: chartMap[key] });
         }

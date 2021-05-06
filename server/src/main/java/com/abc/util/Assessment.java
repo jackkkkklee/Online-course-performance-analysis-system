@@ -64,7 +64,7 @@ public class Assessment {
 
 
     public  String storeImage(String base64, String sid, Date image_date) throws IOException {
-        System.out.println(base64);
+
         base64 = base64.substring(22,base64.length());
         //System.out.println(base64);
         Long time=image_date.getTime();

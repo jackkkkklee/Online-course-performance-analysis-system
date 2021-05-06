@@ -212,8 +212,13 @@ export default {
     //需要调用接口
     queryCourse() {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
+        let courseSet = new Set();
         for (let item of res.data.courses) {
-          this.courses.push({ value: item.cid });
+          courseSet.add(item.cid);
+        }
+        console.log(courseSet);
+        for (let item of courseSet) {
+          this.courses.push({ value: item });
         }
       });
     },

@@ -32,6 +32,8 @@ public class TeacherServiceImpl implements TeacherService {
         List<Date> dateList=MyTimeUtils.getDateList(startTime,endTime,1);
         for(int i=0;i<dateList.size();i++){
             Performance performance =performanceDao.selectOne(cid,sid,dateList.get(i));
+            System.out.println("****************************");
+            System.out.println("dateList:"+dateList.get(i));
             //bug 可能是时间格式不对，时间没有时分
             if(performance!=null){
                 performance.setTimeOffset(dateList.get(i));
@@ -94,7 +96,7 @@ public class TeacherServiceImpl implements TeacherService {
 
         return studentIdList;
     }
-<<<<<<< HEAD
+
 
     @Override
     public List<String> queryAllTeachersTid() {
@@ -102,6 +104,5 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
 
-=======
->>>>>>> 94e9354fcaae95008cfd4b6ce723bde324ba883e
+
 }

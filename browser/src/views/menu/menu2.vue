@@ -226,7 +226,7 @@ export default {
     // 模拟数据
     // axios.get("/static/mock/data.json").then((res) => {
     //   // console.log(res.data);
-    
+
     //   this.myChart.setOption({
     //     xAxis: {
     //       data: res.data.time,
@@ -261,8 +261,13 @@ export default {
     },
     queryCourse() {
       analysisApi.queryStudentCourse(this.name).then((res) => {
+        let courseSet = new Set();
         for (let item of res.data.courses) {
-          this.courses.push({ value: item.cid });
+          courseSet.add(item.cid);
+        }
+        console.log(courseSet);
+        for (let item of courseSet) {
+          this.courses.push({ value: item });
         }
       });
     },

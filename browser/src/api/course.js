@@ -8,7 +8,7 @@ export default {
     // 查询所有课程和时间
     queryCourse() {
         return request({
-            url: '/select_all_courses',
+            url: '/course/select_all_courses',
             method: 'post',
             data: {
             }
@@ -18,7 +18,7 @@ export default {
     // 删除课程
     deleteCourse(course) {
         return request({
-            url: '/delete_course_by_cid',
+            url: '/course/delete_course_by_cid',
             method: 'post',
             data: {
                 cid: course,
@@ -29,7 +29,7 @@ export default {
     // 添加课程
     addCourse(course, startTime, endTime) {
         return request({
-            url: '/add_course',
+            url: '/course/add_course',
             method: 'post',
             data: {
                 cid: course,
@@ -42,7 +42,7 @@ export default {
     // 修改课程
     updateCourse(course, startTime, endTime) {
         return request({
-            url: '/update_course_by_cid',
+            url: '/course/update_course_by_cid',
             method: 'post',
             data: {
                 cid: course,
@@ -55,7 +55,7 @@ export default {
     // 查询所有老师的课程
     queryTeacherCourse() {
         return request({
-            url: '/query_all_teachers',
+            url: '/course/query_all_teachers',
             method: 'post',
             data: {
             }
@@ -65,7 +65,7 @@ export default {
     // 查询所有学生的课程
     queryStudentCourse() {
         return request({
-            url: '/query_all_student',
+            url: '/course/query_all_student',
             method: 'post',
             data: {
             }
@@ -75,7 +75,7 @@ export default {
     // 修改老师的课程
     updateTeacherCourse(teacherName, courses) {
         return request({
-            url: '/update_teacher_course',
+            url: '/course/update_teacher_course',
             method: 'post',
             data: {
                 tid: teacherName,
@@ -87,7 +87,7 @@ export default {
     // 修改学生的课程
     updateStudentCourse(studentName, courses) {
         return request({
-            url: '/update_student_course',
+            url: '/course/update_student_course',
             method: 'post',
             data: {
                 sid: studentName,

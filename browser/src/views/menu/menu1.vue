@@ -20,16 +20,16 @@
           ></canvas>
         </div>
         <div>
-          <p>Attention Value: {{ attentionValue }}</p>
-          <p>Yawn Status: {{ yawnStatus }}</p>
-          <p>Sleep Chance: {{ sleepChance }}</p>
-          <p>Has Face: {{ hasFace }}</p>
-          <p v-show="mode == '123'">Is Smoking: {{ isSmoking }}</p>
-          <p v-show="mode == '123'">Is using phone: {{ isUsingPhone }}</p>
-          <p v-show="mode == '123'">Non-learning item: {{ prohibitItem }}</p>
-          <p :class="emotionClass" v-show="mode.indexOf('4') != -1">
+          <el-tag>Attention Value: {{ attentionValue }}</el-tag>
+          <el-tag>Yawn Status: {{ yawnStatus }}</el-tag>
+          <el-tag>Sleep Chance: {{ sleepChance }}</el-tag>
+          <el-tag>Has Face: {{ hasFace }}</el-tag>
+          <el-tag v-show="mode == '123'">Is Smoking: {{ isSmoking }}</el-tag>
+          <el-tag v-show="mode == '123'">Is using phone: {{ isUsingPhone }}</el-tag>
+          <el-tag v-show="mode == '123'">Non-learning item: {{ prohibitItem }}</el-tag>
+          <el-tag :class="emotionClass" v-show="mode.indexOf('4') != -1">
             Emotion: {{ emotion }}
-          </p>
+          </el-tag>
         </div>
       </div>
       <div class="button_container">
@@ -60,9 +60,7 @@
           style="margin: auto"
           @click="emotionMode"
           :disabled="!onCourse"
-
           >Emotion Mode</el-button
-
         >
         <el-switch
           v-model="switchState"
@@ -177,7 +175,10 @@ export default {
         this.hasCourse = res.data.result.hasCourse;
         if (this.hasCourse) {
           this.course = res.data.result.courseName;
-          alert("You have " + this.course + " course right now!");
+          this.$notify.info({
+            title: "Notice",
+            message: "You have " + this.course + " course right now!",
+          });
         }
       });
     },
@@ -245,14 +246,12 @@ export default {
       // console.log(this.sendInterval);
     },
     emotionMode() {
-
       if (this.mode.indexOf("4") == -1) {
         this.mode += "4";
       } else {
         this.mode.replace("4", "");
       }
     },
-
   },
 };
 </script>
@@ -289,5 +288,12 @@ export default {
   width: 650px;
   height: 300px;
   margin: auto;
+}
+
+.el-tag {
+  display: block;
+  width: 180px;
+  margin: 10px;
+  font-size: 15px;
 }
 </style>

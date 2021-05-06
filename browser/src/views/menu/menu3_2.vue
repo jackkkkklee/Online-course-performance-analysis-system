@@ -257,7 +257,12 @@ export default {
 
     queryCourse() {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
+        let courseSet = new Set();
         for (let item of res.data.courses) {
+          courseSet.add(item.cid);
+        }
+        console.log(courseSet);
+        for (let item of courseSet) {
           this.courses.push({ value: item });
         }
       });

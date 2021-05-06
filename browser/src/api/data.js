@@ -8,7 +8,7 @@ export default {
     // 学生查询自己（老师/家长查询学生）
     queryStudent(studentName, course, startTime, endTime) {
         return request({
-            url: '/query_concentration2',
+            url: '/analysis/query_concentration2',
             method: 'post',
             data: {
                 xid: studentName,
@@ -22,7 +22,7 @@ export default {
     // 老师查询班级
     queryClass(course, startTime, endTime) {
         return request({
-            url: '/query_class_concentration2',
+            url: '/analysis/query_class_concentration2',
             method: 'post',
             data: {
                 cid: course,

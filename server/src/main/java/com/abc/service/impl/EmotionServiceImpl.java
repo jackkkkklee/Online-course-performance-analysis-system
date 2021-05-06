@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class EmotionServiceImpl implements EmotionService {
     @Autowired
@@ -24,6 +24,7 @@ public class EmotionServiceImpl implements EmotionService {
     Assessment assessment;
     @Value("${imageDir.path}")
     public  String IMAGE_PATH;
+
     @Override
     public EmotionVo queryAllEmotionByCourse(String cid, Date startTime) {
         EmotionVo emotionVo=new EmotionVo();
@@ -37,7 +38,11 @@ public class EmotionServiceImpl implements EmotionService {
         if (studentList==null){
             return emotionVo;
             }
-        for(Student s:studentList){
+        Set<Student> studentSet= new HashSet();
+        for (Student s:studentList){
+            studentSet.add(s);
+        }
+        for(Student s:studentSet){
             Integer res=performanceDao.selectNewestEmotionForSingleStu(cid,s.getSid(),forwardTime,startTime);
             if(res!=null)
                 emotionVo.add(res);

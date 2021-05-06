@@ -138,8 +138,7 @@
               transition: 'all 500ms ease 0s',
             }"
           >
-            Capture images of students and students can see their own
-            performance in the class
+            Easy to manage all kinds of users and their roles and permissions
           </div>
         </div>
       </div>
@@ -168,8 +167,7 @@
               transition: 'all 500ms ease 0s',
             }"
           >
-            Analyze students' attentiveness and emotion in class through the
-            processing of captured images
+            Convenient to manage the courses of students and teachers
           </div>
         </div>
         <img
@@ -216,8 +214,7 @@
               transition: 'all 500ms ease 0s',
             }"
           >
-            Capture images of students and students can see their own
-            performance in the class
+            Export the analyzed data in Excel format for users to view and store
           </div>
         </div>
       </div>

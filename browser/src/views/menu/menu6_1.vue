@@ -35,7 +35,7 @@
       fit
       highlight-current-row
     >
-      <el-table-column prop="courseName" label="Course Name"></el-table-column>
+      <el-table-column prop="course" label="Course Name"></el-table-column>
       <el-table-column prop="startTime" label="Start Time"></el-table-column>
       <el-table-column prop="endTime" label="End Time"></el-table-column>
       <el-table-column label="Operate">
@@ -324,6 +324,7 @@ export default {
 
       // 调用接口
       courseApi.queryCourse().then((res) => {
+        console.log(res.data);
         this.courseData = res.data.courses;
         this.pageTable(this.courseData);
         this.tablePage.current = 1;
@@ -367,11 +368,15 @@ export default {
           //   startTime: this.temp.startTime,
           //   endTime: this.temp.endTime,
           // });
+          console.log(this.temp.cname,
+            this.temp.startTime,
+            this.temp.endTime);
           courseApi.addCourse(
             this.temp.cname,
             this.temp.startTime,
             this.temp.endTime
           );
+          
           // this.pageTable(this.courseData);
           this.fetchData();
           this.dialogFormVisible = false;
