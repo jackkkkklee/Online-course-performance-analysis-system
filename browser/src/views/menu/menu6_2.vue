@@ -271,6 +271,7 @@ export default {
     // 查询
     fetchData() {
       this.tableLoading = true;
+      this.teacherData = [];
       // this.teacherData = this.mockData;
       // this.pageTable(this.teacherData);
       // this.tablePage.current = 1;
@@ -286,6 +287,8 @@ export default {
         for (let item of courseData) {
           courseArr.push(item.course);
         }
+        let courseSet = new Set(courseArr);
+        courseArr = Array.from(courseSet);
         this.courseOptions = courseArr;
       });
       courseApi.queryTeacherCourse().then((res) => {
@@ -294,16 +297,18 @@ export default {
           if (dataMap[key] == []) {
             this.teacherData.push({
               teacherName: key,
-              courses: [],
+              course: [],
             });
           } else {
             let courseArr = [];
-            for (let item of dataMap) {
-              courseArr.push(item.course);
+            for (let item of dataMap[key]) {
+              courseArr.push(item.cid);
             }
+            let courseSet = new Set(courseArr);
+            courseArr = Array.from(courseSet);
             this.teacherData.push({
               teacherName: key,
-              courses: courseArr,
+              course: courseArr,
             });
           }
         }
@@ -334,6 +339,7 @@ export default {
       // };
       // this.pageTable(this.teacherData);
       // this.tableData = this.pagedData[this.tablePage.current - 1];
+      console.log(this.checkedCourses);
       courseApi.updateTeacherCourse(
         this.currentRow.teacherName,
         this.checkedCourses

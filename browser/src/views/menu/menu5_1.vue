@@ -44,6 +44,9 @@
           }"
         >
         </el-time-select>
+        <el-button type="primary" style="margin: auto" @click="queryData"
+          >Search</el-button
+        >
         <el-button type="primary" style="margin: auto" @click="clearData"
           >Clear</el-button
         >
@@ -260,7 +263,7 @@ export default {
   margin: 15px;
 }
 .selector {
-  width: 1150px;
+  width: 1250px;
   margin: auto;
 }
 </style>

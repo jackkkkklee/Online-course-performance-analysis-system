@@ -191,6 +191,7 @@ export default {
           this.date + " " + this.endTime
         )
         .then((res) => {
+          console.log(res.data.performanceList);
           this.tableData = res.data.performanceList;
         });
     },

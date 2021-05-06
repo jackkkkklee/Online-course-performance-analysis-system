@@ -4,6 +4,8 @@ import com.abc.annotation.PermInfo;
 import com.abc.entity.Course;
 import com.abc.service.CourseService;
 import com.abc.service.StudentService;
+import com.abc.util.MyTimeUtils;
+import com.abc.vo.CourseVO;
 import com.abc.vo.Json;
 import com.abc.vo.StudentClassVo;
 import com.alibaba.fastjson.JSON;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @PermInfo(value = "课程模块", pval = "a:course")
@@ -46,14 +49,13 @@ public class CourseController {
         JSONObject jsonObj = JSON.parseObject(body);
 
         String cid  = jsonObj.getString("cid");
-        String tid  = jsonObj.getString("tid");
-        String course  = jsonObj.getString("course");
+        String course  = jsonObj.getString("cid");
         String startTime  = jsonObj.getString("startTime");
         String endTime  = jsonObj.getString("endTime");
 
         Course newCourse = new Course();
         newCourse.setCid(cid);
-        newCourse.setTid(tid);
+        newCourse.setTid("tea000");
         newCourse.setCourse(course);
 
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -73,7 +75,26 @@ public class CourseController {
         String oper = "select_all_courses";
         log.info("{}, body: {}",oper,body);
         List<Course> courses = courseService.selectAllCoursesService();
-        return Json.succ(oper,"courses",courses);
+        List<String> start=new LinkedList<>();
+        List<String> end=new LinkedList<>();
+        for (Course c:courses)
+        {
+            start.add(MyTimeUtils.convertToHHmmFormat(c.getStartTime()));
+            end.add(MyTimeUtils.convertToHHmmFormat(c.getEndTime()));
+        }
+        List<CourseVO> courseVOS=new LinkedList<>();
+        int index=0;
+        for (Course course:courses){
+            CourseVO courseVO=new CourseVO();
+            courseVO.setCourse(course.getCourse());
+            courseVO.setCid(course.getCid());
+            courseVO.setTid(course.getTid());
+            courseVO.setStartTime(start.get(index));
+            courseVO.setEndTime(end.get(index));
+            index++;
+            courseVOS.add(courseVO);
+        }
+        return Json.succ(oper,"courses",courseVOS);
     }
 
     //更新课程
@@ -85,16 +106,10 @@ public class CourseController {
         String cid  = jsonObj.getString("cid");
         String startTimeStr  = jsonObj.getString("startTime");
         String endTimeStr  = jsonObj.getString("endTime");
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date startTime = null;
-        Date endTime= null;
-        try{
-            startTime = formatter.parse(startTimeStr);
-            endTime = formatter.parse(endTimeStr);
-        }catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date startTime = MyTimeUtils.StringToDate(startTimeStr);
+        Date endTime= MyTimeUtils.StringToDate(endTimeStr);
+
         courseService.updateCourse(cid,startTime,endTime);
     }
 

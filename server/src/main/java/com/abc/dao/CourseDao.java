@@ -23,7 +23,6 @@ public interface CourseDao
     //为课程修改授课老师
     public void updateTeacherForCourse(@Param("cid") String cid,@Param("tid") String tid);
 
-
     //查单个课程
     public Course selectOne(String cid, String tid, Data startTime,Date endTime);
     //查所有课程

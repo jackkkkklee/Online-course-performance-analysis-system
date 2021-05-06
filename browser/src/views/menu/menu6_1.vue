@@ -324,7 +324,8 @@ export default {
 
       // 调用接口
       courseApi.queryCourse().then((res) => {
-        console.log(res.data);
+        console.log(res.data.courses);
+
         this.courseData = res.data.courses;
         this.pageTable(this.courseData);
         this.tablePage.current = 1;
@@ -368,15 +369,12 @@ export default {
           //   startTime: this.temp.startTime,
           //   endTime: this.temp.endTime,
           // });
-          console.log(this.temp.cname,
-            this.temp.startTime,
-            this.temp.endTime);
           courseApi.addCourse(
             this.temp.cname,
             this.temp.startTime,
             this.temp.endTime
           );
-          
+
           // this.pageTable(this.courseData);
           this.fetchData();
           this.dialogFormVisible = false;
@@ -388,7 +386,7 @@ export default {
     // 修改课程
     handleUpdate(idx, row) {
       this.temp.idx = idx;
-      this.temp.cname = row.courseName;
+      this.temp.cname = row.course;
       this.temp.startTime = row.endTime;
       this.temp.endTime = row.endTime;
       this.dialogStatus = "update";
@@ -396,6 +394,7 @@ export default {
       this.$nextTick(() => this.$refs["dataForm"].clearValidate());
     },
     updateData() {
+      console.log(this.temp.cname, this.temp.startTime, this.temp.endTime);
       this.$refs["dataForm"].validate((valid) => {
         if (!valid) return;
         // const tempData = Object.assign({}, this.temp); //copy obj
@@ -417,6 +416,12 @@ export default {
         // this.tableData = this.pagedData[this.tablePage.current - 1];
 
         // 调用接口
+        console.log(
+          this.temp.cname,
+          this.temp.startTime,
+          this.temp.endTime,
+          111
+        );
         courseApi.updateCourse(
           this.temp.cname,
           this.temp.startTime,
@@ -441,7 +446,7 @@ export default {
           //   this.$message.success("Delete successfully");
           // });
 
-          courseApi.deleteCourse(row.courseName);
+          courseApi.deleteCourse(row.course);
           this.fetchData();
           this.$message.success("Delete successfully");
         })

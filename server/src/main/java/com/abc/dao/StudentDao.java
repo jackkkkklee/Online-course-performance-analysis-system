@@ -46,6 +46,6 @@ public interface StudentDao
     //清空某个学生的课程
     void clearCourseForStudent(String sid);
     //为某个学生添加课程
-    void addCourseForStudent(String sid,String cid);
+    void addCourseForStudent(@Param("sid") String sid,@Param("cid") String cid);
 
 }

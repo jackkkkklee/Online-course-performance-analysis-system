@@ -286,6 +286,8 @@ export default {
         for (let item of courseData) {
           courseArr.push(item.course);
         }
+        let courseSet = new Set(courseArr);
+        courseArr = Array.from(courseSet);
         this.courseOptions = courseArr;
       });
       courseApi.queryStudentCourse().then((res) => {
@@ -293,17 +295,19 @@ export default {
         for (let key in dataMap) {
           if (dataMap[key] == []) {
             this.studentData.push({
-              teacherName: key,
-              courses: [],
+              studentName: key,
+              course: [],
             });
           } else {
             let courseArr = [];
-            for (let item of dataMap) {
-              courseArr.push(item.course);
+            for (let item of dataMap[key]) {
+              courseArr.push(item.cid);
             }
+            let courseSet = new Set(courseArr);
+            courseArr = Array.from(courseSet);
             this.studentData.push({
               studentName: key,
-              courses: courseArr,
+              course: courseArr,
             });
           }
         }
@@ -335,6 +339,7 @@ export default {
       // this.pageTable(this.studentData);
       // this.tableData = this.pagedData[this.tablePage.current - 1];
 
+      
       courseApi.updateStudentCourse(
         this.currentRow.studentName,
         this.checkedCourses

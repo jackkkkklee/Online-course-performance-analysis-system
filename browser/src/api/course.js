@@ -55,7 +55,7 @@ export default {
     // 查询所有老师的课程
     queryTeacherCourse() {
         return request({
-            url: '/course/query_all_teachers',
+            url: '/teacher/query_all_teachers',
             method: 'post',
             data: {
             }
@@ -65,7 +65,7 @@ export default {
     // 查询所有学生的课程
     queryStudentCourse() {
         return request({
-            url: '/course/query_all_student',
+            url: '/student/query_all_student',
             method: 'post',
             data: {
             }
@@ -75,11 +75,11 @@ export default {
     // 修改老师的课程
     updateTeacherCourse(teacherName, courses) {
         return request({
-            url: '/course/update_teacher_course',
+            url: '/teacher/update_teacher_course',
             method: 'post',
             data: {
                 tid: teacherName,
-                cidArry: courses
+                cidArray: courses
             }
         })
     },
@@ -87,11 +87,11 @@ export default {
     // 修改学生的课程
     updateStudentCourse(studentName, courses) {
         return request({
-            url: '/course/update_student_course',
+            url: '/student/update_student_course',
             method: 'post',
             data: {
                 sid: studentName,
-                cidArry: courses
+                cidArray: courses
             }
         })
     },

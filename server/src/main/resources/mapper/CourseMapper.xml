@@ -14,7 +14,7 @@
     <!--添加课程-->
 
 
-    <insert id="add" parameterType="com.abc.entity.Course">
+    <insert id="addCourse" parameterType="com.abc.entity.Course">
 
         insert into sys_course (tid,course,cid,startTime,endTime) values (#{tid},#{course},#{cid},#{startTime},#{endTime})
     </insert>
@@ -30,9 +30,6 @@
     <!-- 为课程修改授课老师   -->
     <update id="updateTeacherForCourse" parameterType="String">
         update sys_course set tid=#{tid} where cid=#{cid}
-
-        update sys_course set course=#{course},startTime=#{startTime},endTime=#{endTime} where tid=#{tid} and cid=#{cid} and startTime=#{startTime} and endTime=#{endTime}
-
     </update>
     <!-- 查单个课程   -->
     <select id="selectOne" parameterType="String" resultType="com.abc.entity.Course">
