@@ -78,6 +78,7 @@ export default {
       myChart: null,
       courses: [],
       course: "",
+      childName: "",
       date: "",
       startTime: "",
       endTime: "",
@@ -169,31 +170,65 @@ export default {
       };
     },
     queryCourse() {
-      analysisApi.queryStudentCourse(this.name).then((res) => {
-        let courseSet = new Set();
-        for (let item of res.data.courses) {
-          courseSet.add(item.cid);
-        }
-        console.log(courseSet);
-        for (let item of courseSet) {
-          this.courses.push({ value: item });
-        }
-      });
+      if (this.name.indexOf("stu") == 0) {
+        analysisApi.queryStudentCourse(this.name).then((res) => {
+          let courseSet = new Set();
+          for (let item of res.data.courses) {
+            courseSet.add(item.cid);
+          }
+          for (let item of courseSet) {
+            this.courses.push({ value: item });
+          }
+        });
+      } else {
+        analysisApi.queryStudentCourseByParent(this.name).then((res) => {
+          this.childName = res.data.sid;
+          for (let item of res.data.courseList) {
+            this.courses.push({ value: item.cid });
+          }
+        });
+      }
     },
     //调用接口方法
     queryData() {
       //查询本学生对应课程专注度
-      dataApi
-        .queryStudent(
-          this.name,
-          this.course,
-          this.date + " " + this.startTime,
-          this.date + " " + this.endTime
-        )
-        .then((res) => {
-          console.log(res.data.performanceList);
-          this.tableData = res.data.performanceList;
-        });
+      if (this.name.indexOf("stu") == 0) {
+        dataApi
+          .queryStudent(
+            this.name,
+            this.course,
+            this.date + " " + this.startTime,
+            this.date + " " + this.endTime
+          )
+          .then((res) => {
+            if (res.data.performanceList == []) {
+              this.$message({
+                message: "No data found",
+                type: "warning",
+              });
+            } else {
+              this.tableData = res.data.performanceList;
+            }
+          });
+      } else {
+        dataApi
+          .queryStudent(
+            this.childName,
+            this.course,
+            this.date + " " + this.startTime,
+            this.date + " " + this.endTime
+          )
+          .then((res) => {
+            if (res.data.performanceList == []) {
+              this.$message({
+                message: "No data found",
+                type: "warning",
+              });
+            } else {
+              this.tableData = res.data.performanceList;
+            }
+          });
+      }
     },
 
     exportExcel() {

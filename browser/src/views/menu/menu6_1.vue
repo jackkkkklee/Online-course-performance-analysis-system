@@ -324,8 +324,6 @@ export default {
 
       // 调用接口
       courseApi.queryCourse().then((res) => {
-        console.log(res.data.courses);
-
         this.courseData = res.data.courses;
         this.pageTable(this.courseData);
         this.tablePage.current = 1;
@@ -369,14 +367,11 @@ export default {
           //   startTime: this.temp.startTime,
           //   endTime: this.temp.endTime,
           // });
-          courseApi.addCourse(
-            this.temp.cname,
-            this.temp.startTime,
-            this.temp.endTime
-          );
-
-          // this.pageTable(this.courseData);
-          this.fetchData();
+          courseApi
+            .addCourse(this.temp.cname, this.temp.startTime, this.temp.endTime)
+            .then((res) => {
+              this.fetchData();
+            });
           this.dialogFormVisible = false;
           this.$message.success("Create successfully");
         }
@@ -394,7 +389,6 @@ export default {
       this.$nextTick(() => this.$refs["dataForm"].clearValidate());
     },
     updateData() {
-      console.log(this.temp.cname, this.temp.startTime, this.temp.endTime);
       this.$refs["dataForm"].validate((valid) => {
         if (!valid) return;
         // const tempData = Object.assign({}, this.temp); //copy obj
@@ -416,18 +410,11 @@ export default {
         // this.tableData = this.pagedData[this.tablePage.current - 1];
 
         // 调用接口
-        console.log(
-          this.temp.cname,
-          this.temp.startTime,
-          this.temp.endTime,
-          111
-        );
-        courseApi.updateCourse(
-          this.temp.cname,
-          this.temp.startTime,
-          this.temp.endTime
-        );
-        this.fetchData();
+        courseApi
+          .updateCourse(this.temp.cname, this.temp.startTime, this.temp.endTime)
+          .then((res) => {
+            this.fetchData();
+          });
         this.dialogFormVisible = false;
         this.$message.success("Update successfully");
       });
@@ -446,8 +433,9 @@ export default {
           //   this.$message.success("Delete successfully");
           // });
 
-          courseApi.deleteCourse(row.course);
-          this.fetchData();
+          courseApi.deleteCourse(row.course).then((res) => {
+            this.fetchData();
+          });
           this.$message.success("Delete successfully");
         })
         .catch(() => {

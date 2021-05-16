@@ -10,6 +10,7 @@ import com.abc.service.EmotionService;
 import com.abc.util.*;
 import com.abc.vo.AttentionDetailVo;
 import com.abc.vo.ClassAttentionVo;
+import jnr.ffi.annotations.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
@@ -39,6 +40,7 @@ public class AttentionServiceImpl  implements AttentionService {
 
     @Value("${imageDir.path}")
     public  String IMAGE_PATH;
+    public static  HashMap<String,List<Integer>> hashMap=new HashMap<>();
 
     public final static String BASIC_MODE="1";
     public final static String FULL_MODE="123";
@@ -79,6 +81,7 @@ public class AttentionServiceImpl  implements AttentionService {
         //mode 1
         Integer basicAttention=(int)Double.parseDouble(res[0]);
         String direction=res[1];
+
         String yawn=res[2];
         Boolean isSleep=assessment.sleepDetection(sid,res);
         if(isSleep){
@@ -182,9 +185,31 @@ public class AttentionServiceImpl  implements AttentionService {
     @APICallLimiter(limitTimes = 60)
     @Override
     public void add(String cid, String sid, int attention_value, Date startTime, Date endTime) {
+        //attention_value 不用了
         List<Date> dateList = MyTimeUtils.getDateListInHHmmAndDate(startTime,endTime,1);
+        List<Integer> list=hashMap.get(sid);
+        // get sum of attention value within one min
+        int sum=0;
+        int i=0;
+        for(Integer attention:list){
+            sum+=list.get(i);
+            i++;
+        }
+        int averageAttention=sum/list.size();
         for(Date date:dateList)
-            performancedao.add(cid,sid,attention_value,date);
+            performancedao.add(cid,sid,averageAttention,date);
+        //clear
+        hashMap.put(sid,new ArrayList<Integer>());
+    }
+
+    public void getAverage(String sid,int attention_value){
+        if(!hashMap.containsKey(sid)){
+            List<Integer> list =new ArrayList();
+            hashMap.put(sid,list);
+        }
+        List<Integer> list= hashMap.get(sid);
+        list.add(attention_value);
+
     }
 
 

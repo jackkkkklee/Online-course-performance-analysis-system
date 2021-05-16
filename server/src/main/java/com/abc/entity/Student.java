@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -63,12 +64,14 @@ public class Student
 
     @Override
     public int hashCode() {
-        return super.hashCode()+sid.hashCode();
+        return Objects.hash(sid, studentName);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Student student=(Student)obj;
-        return this.sid==student.getSid();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student2 = (Student) o;
+        return Objects.equals(sid, student2.sid);
     }
 }

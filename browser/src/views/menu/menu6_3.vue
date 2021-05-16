@@ -271,6 +271,7 @@ export default {
     // 查询
     fetchData() {
       this.tableLoading = true;
+      this.studentData = [];
       // this.studentData = this.mockData;
       // this.pageTable(this.studentData);
       // this.tablePage.current = 1;
@@ -292,6 +293,7 @@ export default {
       });
       courseApi.queryStudentCourse().then((res) => {
         let dataMap = res.data.SCM;
+        console.log(res.data.SCM);
         for (let key in dataMap) {
           if (dataMap[key] == []) {
             this.studentData.push({
@@ -339,12 +341,11 @@ export default {
       // this.pageTable(this.studentData);
       // this.tableData = this.pagedData[this.tablePage.current - 1];
 
-      
-      courseApi.updateStudentCourse(
-        this.currentRow.studentName,
-        this.checkedCourses
-      );
-      this.fetchData();
+      courseApi
+        .updateStudentCourse(this.currentRow.studentName, this.checkedCourses)
+        .then((res) => {
+          this.fetchData();
+        });
       this.dialogFormVisible = false;
       this.$message.success("Update successfully");
     },

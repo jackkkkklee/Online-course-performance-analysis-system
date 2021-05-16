@@ -27,6 +27,17 @@ export default {
         })
     },
 
+    //家长查询学生所有课程
+    queryStudentCourseByParent(parentName) {
+        return request({
+            url: '/course/select_course_by_pid',
+            method: 'post',
+            data: {
+                pid: parentName
+            }
+        })
+    },
+
     //老师查询课程
     queryTeacherCourse(teacherName) {
         return request({
@@ -77,13 +88,12 @@ export default {
     },
 
     //老师实时查询班级情绪
-    queryClassEmotion(teacherName, time) {
+    queryClassEmotion(teacherName) {
         return request({
             url: '/emotion/query_class_emotion',
             method: 'post',
             data: {
-                cid: teacherName,
-                startDate: time
+                tid: teacherName,
             }
         })
     },

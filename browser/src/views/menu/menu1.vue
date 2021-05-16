@@ -25,8 +25,12 @@
           <el-tag>Sleep Chance: {{ sleepChance }}</el-tag>
           <el-tag>Has Face: {{ hasFace }}</el-tag>
           <el-tag v-show="mode == '123'">Is Smoking: {{ isSmoking }}</el-tag>
-          <el-tag v-show="mode == '123'">Is using phone: {{ isUsingPhone }}</el-tag>
-          <el-tag v-show="mode == '123'">Non-learning item: {{ prohibitItem }}</el-tag>
+          <el-tag v-show="mode == '123'"
+            >Is using phone: {{ isUsingPhone }}</el-tag
+          >
+          <el-tag v-show="mode == '123'"
+            >Non-learning item: {{ prohibitItem }}</el-tag
+          >
           <el-tag :class="emotionClass" v-show="mode.indexOf('4') != -1">
             Emotion: {{ emotion }}
           </el-tag>
@@ -166,6 +170,14 @@ export default {
       video.srcObject.getTracks()[0].stop();
       this.hasCourse = !this.hasCourse;
       this.onCourse = !this.onCourse;
+      this.attentionValue = 0,
+      this.yawnStatus = "",
+      this.sleepChance = "",
+      this.isSmoking = "",
+      this.isUsingPhone = "",
+      this.prohibitItem = "",
+      this.hasFace = "",
+      this.emotion = ""
     },
 
     //调用接口方法
@@ -249,7 +261,7 @@ export default {
       if (this.mode.indexOf("4") == -1) {
         this.mode += "4";
       } else {
-        this.mode.replace("4", "");
+        this.mode = "1";
       }
     },
   },
@@ -266,7 +278,7 @@ export default {
   margin: auto;
 }
 .unsure {
-  color: blue;
+  color: black;
 }
 .listening {
   color: green;
@@ -278,7 +290,7 @@ export default {
   color: orange;
 }
 .disdain {
-  color: gold;
+  color: blue;
 }
 .resist {
   color: red;

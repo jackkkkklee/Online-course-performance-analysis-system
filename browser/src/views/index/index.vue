@@ -296,16 +296,18 @@ export default {
   },
   methods: {
     handleScroll() {
+      // console.log(this.$route);
       this.scroll = document.documentElement.scrollTop;
-      console.log(this.scroll);
+      // console.log(this.scroll);
       // console.log(this.$refs.top_menu.style.cssText);
-      if (this.scroll < 500) {
-        this.$refs.top_menu.style.cssText =
-          "background-color: rgba(255, 255, 255, 0.6);";
-      } else if (this.scroll >= 500 && this.scroll < 700) {
-        this.$refs.top_menu.style.cssText =
-          "box-shadow: 0px 1px 30px 0px #e5e5e5;background-color: rgba(255, 255, 255, 0.9);";
-      } else if (this.scroll >= 700 && this.scroll <= 1300) {
+      // if (this.scroll < 500) {
+      //   this.$refs.top_menu.style.cssText =
+      //     "background-color: rgba(255, 255, 255, 0.6);";
+      // } else if (this.scroll >= 500 && this.scroll < 700) {
+      //   this.$refs.top_menu.style.cssText =
+      //     "box-shadow: 0px 1px 30px 0px #e5e5e5;background-color: rgba(255, 255, 255, 0.9);";
+      // } else
+      if (this.scroll >= 700 && this.scroll <= 1300) {
         //课堂
         this.onlineScroll = (this.scroll - 700) / 600;
         this.onlineScrollText = this.onlineScroll * 100 - 100;
@@ -338,10 +340,10 @@ export default {
 <style scoped>
 .top_menu {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
   height: 60px;
   width: 100%;
-  /* box-shadow: 0px 1px 15px 0px #e5e5e5; */
+  box-shadow: 0px 1px 30px 0px #e5e5e5;
   z-index: 1;
 }
 .container {

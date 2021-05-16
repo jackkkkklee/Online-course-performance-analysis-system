@@ -59,6 +59,7 @@ export default {
       myChart: null,
       courses: [],
       course: "",
+      childName: "",
       date: "",
       startTime: "",
       endTime: "",
@@ -260,45 +261,95 @@ export default {
       };
     },
     queryCourse() {
-      analysisApi.queryStudentCourse(this.name).then((res) => {
-        let courseSet = new Set();
-        for (let item of res.data.courses) {
-          courseSet.add(item.cid);
-        }
-        console.log(courseSet);
-        for (let item of courseSet) {
-          this.courses.push({ value: item });
-        }
-      });
+      if (this.name.indexOf("stu") == 0) {
+        analysisApi.queryStudentCourse(this.name).then((res) => {
+          let courseSet = new Set();
+          for (let item of res.data.courses) {
+            courseSet.add(item.cid);
+          }
+          for (let item of courseSet) {
+            this.courses.push({ value: item });
+          }
+        });
+      } else {
+        analysisApi.queryStudentCourseByParent(this.name).then((res) => {
+          this.childName = res.data.sid;
+          for (let item of res.data.courseList) {
+            this.courses.push({ value: item.cid });
+          }
+        });
+      }
     },
     //调用接口方法
     queryData() {
       //查询本学生对应课程专注度
-      analysisApi
-        .queryStudentConcentration(
-          this.name,
-          this.course,
-          this.date + " " + this.startTime,
-          this.date + " " + this.endTime
-        )
-        .then((res) => {
-          this.myChart.showLoading();
-          this.myChart.setOption({
-            xAxis: {
-              data: res.data.time,
-            },
-            legend: {
-              data: this.name,
-            },
-            series: [
-              {
-                name: this.name,
-                data: res.data.attention_value,
-              },
-            ],
+      if (this.name.indexOf("stu") == 0) {
+        analysisApi
+          .queryStudentConcentration(
+            this.name,
+            this.course,
+            this.date + " " + this.startTime,
+            this.date + " " + this.endTime
+          )
+          .then((res) => {
+            if (res.data.attention_value == []) {
+              this.$message({
+                message: "No data found",
+                type: "warning",
+              });
+            } else {
+              this.myChart.showLoading();
+              this.myChart.setOption({
+                xAxis: {
+                  data: res.data.time,
+                },
+                legend: {
+                  data: this.name,
+                },
+                series: [
+                  {
+                    name: this.name,
+                    data: res.data.attention_value,
+                  },
+                ],
+              });
+              this.myChart.hideLoading();
+            }
           });
-          this.myChart.hideLoading();
-        });
+      } else {
+        analysisApi
+          .queryStudentConcentration(
+            this.childName,
+            this.course,
+            this.date + " " + this.startTime,
+            this.date + " " + this.endTime
+          )
+          .then((res) => {
+            if (res.data.attention_value == []) {
+              this.$message({
+                message: "No data found",
+                type: "warning",
+              });
+            } else {
+              this.myChart.showLoading();
+              this.myChart.setOption({
+                xAxis: {
+                  data: res.data.time,
+                },
+                legend: {
+                  data: this.childName,
+                },
+                series: [
+                  {
+                    name: this.childName,
+                    data: res.data.attention_value,
+                  },
+                ],
+              });
+              this.myChart.hideLoading();
+            }
+          });
+      }
     },
 
     //测试日期和时间

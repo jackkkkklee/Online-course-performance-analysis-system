@@ -1,5 +1,6 @@
 package com.abc.service.impl;
 
+import com.abc.annotation.APICallLimiter;
 import com.abc.dao.CourseDao;
 import com.abc.dao.PerformanceDao;
 import com.abc.entity.Student;
@@ -65,11 +66,14 @@ public class EmotionServiceImpl implements EmotionService {
         return emotionVo;
     }
 
+
+
     @Override
     public void addEmotion(String cid, String sid, int express_value, Date startTime) {
         performanceDao.addEmotion(cid,sid,express_value,startTime);
 
     }
+
     @Override
     public String detectEmotion(String sid,String imageName ){
         CallPythonByHTTP callPythonByHTTP=new CallPythonByHTTP();

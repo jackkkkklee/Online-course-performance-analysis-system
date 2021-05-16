@@ -121,7 +121,7 @@ export default {
         },
         {
           prop: "attention_value",
-          label: "Concenstration Score",
+          label: "Average Concenstration Score",
         },
       ],
       //导出excel表格id及excel名称
@@ -164,9 +164,8 @@ export default {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
         let courseSet = new Set();
         for (let item of res.data.courses) {
-          courseSet.add(item.cid);
+          courseSet.add(item);
         }
-        console.log(courseSet);
         for (let item of courseSet) {
           this.courses.push({ value: item });
         }
@@ -183,7 +182,20 @@ export default {
           this.date + " " + this.endTime
         )
         .then((res) => {
-          this.tableData = res.data.classAttentionVos;
+          if (res.data.classAttentionVos == []) {
+            this.$message({
+              message: "No data found",
+              type: "warning",
+            });
+          } else {
+            for (let i = 0; i < res.data.attention_value.length; i++) {
+              this.tableData.push({
+                attention_value: res.data.attention_value[i],
+                cid: this.course,
+                timeOffset: res.data.time[i],
+              });
+            }
+          }
         });
     },
 

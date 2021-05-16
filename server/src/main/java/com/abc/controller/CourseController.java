@@ -32,18 +32,21 @@ public class CourseController {
 
     @Autowired
     CourseService courseService;
+    @Autowired
+    StudentService studentService;
 
     @PostMapping("/delete_course_by_cid")
-    public void deleteCourseByCid(@RequestBody String body){
+    public Json deleteCourseByCid(@RequestBody String body){
         String oper = "delete course by cid";
         log.info("{}, body: {}",oper,body);
         JSONObject jsonObj = JSON.parseObject(body);
         String cid  = jsonObj.getString("cid");
         courseService.deleteCourseByCidService(cid);
+        return Json.succ();
     }
 
     @PostMapping("/add_course")
-    public void queryOngoingStudentCourse(@RequestBody String body){
+    public Json queryOngoingStudentCourse(@RequestBody String body){
         String oper = "delete course by cid";
         log.info("{}, body: {}",oper,body);
         JSONObject jsonObj = JSON.parseObject(body);
@@ -68,6 +71,7 @@ public class CourseController {
         }
 
         courseService.addCourseService(newCourse);
+        return Json.succ();
     }
     //查询所有课程
     @PostMapping("/select_all_courses")
@@ -99,7 +103,7 @@ public class CourseController {
 
     //更新课程
     @PostMapping("/update_course_by_cid")
-    public void UpdateCourseByCid(@RequestBody String body){
+    public Json UpdateCourseByCid(@RequestBody String body){
         String oper = "update_course_by_cid";
         log.info("{}, body: {}",oper,body);
         JSONObject jsonObj = JSON.parseObject(body);
@@ -111,6 +115,18 @@ public class CourseController {
         Date endTime= MyTimeUtils.StringToDate(endTimeStr);
 
         courseService.updateCourse(cid,startTime,endTime);
+
+        return Json.succ();
+    }
+    @PostMapping("/select_course_by_pid")
+    public Json selectCourseByPid(@RequestBody String body){
+        String oper = "select Course By Pid";
+        log.info("{}, body: {}",oper,body);
+        JSONObject jsonObj = JSON.parseObject(body);
+        String pid  = jsonObj.getString("pid");
+        String sid = studentService.selectSidByPidService(pid);
+        List<Course> courses = courseService.selectCoursesBySidService(sid);
+        return Json.succ(oper,"sid",sid).data("courseList",courses);
     }
 
 }

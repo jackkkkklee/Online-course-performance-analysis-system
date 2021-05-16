@@ -18,7 +18,7 @@ public interface AttentionService {
     //查询某节课所有学生的平均注意力
     List<ClassAttentionVo> selectAllAverageByCourseAndTime(String cid,  Date startTime,Date endTime) throws CloneNotSupportedException, ParseException;
     void add(String cid,String sid,int attention_value,  Date startTime,Date endTime);
-
+    void getAverage(String sid,int attention_value);
 
     //查询学生每个时刻的专注度值
     List<Integer> selectAllAttentionValueOfOneCourseService(String sid,String cid);

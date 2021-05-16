@@ -66,6 +66,7 @@ public class ItemRecognition {
 
                     //与非学习物品集合比较
                     if (nonClassItemsSet.contains(root)&&score>0.5){
+                        System.out.println("物品类型"+name);
                         resItemsSet.add(name);
                     }
 

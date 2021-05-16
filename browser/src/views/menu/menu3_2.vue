@@ -259,9 +259,8 @@ export default {
       analysisApi.queryTeacherCourse(this.name).then((res) => {
         let courseSet = new Set();
         for (let item of res.data.courses) {
-          courseSet.add(item.cid);
+          courseSet.add(item);
         }
-        console.log(courseSet);
         for (let item of courseSet) {
           this.courses.push({ value: item });
         }
@@ -278,22 +277,29 @@ export default {
           this.date + " " + this.endTime
         )
         .then((res) => {
-          this.myChart.showLoading();
-          this.myChart.setOption({
-            xAxis: {
-              data: res.data.time,
-            },
-            legend: {
-              data: this.course,
-            },
-            series: [
-              {
-                name: this.course,
-                data: res.data.attention_value,
+          if ((res.data.attention_value == [])) {
+            this.$message({
+              message: "No data found",
+              type: "warning",
+            });
+          } else {
+            this.myChart.showLoading();
+            this.myChart.setOption({
+              xAxis: {
+                data: res.data.time,
               },
-            ],
-          });
-          this.myChart.hideLoading();
+              legend: {
+                data: this.course,
+              },
+              series: [
+                {
+                  name: this.course,
+                  data: res.data.attention_value,
+                },
+              ],
+            });
+            this.myChart.hideLoading();
+          }
         });
     },
   },

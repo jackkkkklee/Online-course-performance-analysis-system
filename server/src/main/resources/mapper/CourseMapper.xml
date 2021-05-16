@@ -60,7 +60,10 @@
         delete from sys_course where tid=#{tid}
     </delete>
 
-
+    <!-- 根据sid查询学生课程  -->
+    <select id="selectCoursesBySid" parameterType="String" resultType="com.abc.entity.Course">
+        select * from sys_course_student where sid=#{sid}
+    </select>
 
 
 

@@ -36,6 +36,8 @@ public interface CourseDao
     public List<Course> selectCourseByTid(String tid);
     //根据tid清空老师课程
     void clearTeacherCourse(String tid);
+    //根据sid查询课程
+    public List<Course> selectCoursesBySid(String sid);
 
 
 }

@@ -76,7 +76,7 @@ public class StudentController {
 
     //修改学生课程
     @PostMapping("/update_student_course")
-    public void updateStudentCourse(@RequestBody String body){
+    public Json updateStudentCourse(@RequestBody String body){
         String oper = "updateStudentCourse";
         log.info("{}, body: {}",oper,body);
 
@@ -96,6 +96,8 @@ public class StudentController {
         }else {
             studentService.clearCourseForStudentService(sid);
         }
+
+        return Json.succ();
 
     }
 

@@ -3,6 +3,7 @@ package com.abc.controller;
 import com.abc.annotation.PermInfo;
 import com.abc.service.EmotionService;
 import com.abc.service.TeacherService;
+import com.abc.util.MyTimeUtils;
 import com.abc.vo.EmotionVo;
 import com.abc.vo.Json;
 import com.alibaba.fastjson.JSON;
@@ -33,7 +34,7 @@ public class EmotionDetectionController {
         log.info("{}, body: {}",oper,body);
         JSONObject jsonObj = JSON.parseObject(body);
         String tid = jsonObj.getString("tid");
-        Date startDate= jsonObj.getDate("startDate");
+        Date startDate= MyTimeUtils.convertToHHmmFormatInDate(new Date());
         //更改为查询最新的
         String cid = teacherService.queryRealTimeCourseByTeacherId(tid);
         if(cid ==null){

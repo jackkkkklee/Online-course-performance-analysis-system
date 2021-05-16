@@ -73,9 +73,10 @@ public class AttentionAnalysisController {
         System.out.println("专注度:"+attention);
         System.out.println("cid"+cid);
         // 将专注度存到数据库
+        attentionService.getAverage(sid,attention);//进行平均值处理
         attentionService.add(cid,sid,attention,image_date,image_date);
         //将表情存到数据库
-        if(attentionDetailVo.getExpressValue()!=null){
+        if(attentionDetailVo!=null&&attentionDetailVo.getExpressValue()!=null){
             EmotionVo emotionVo=new EmotionVo();
             System.out.println(attentionDetailVo.getExpressValue());
             emotionService.addEmotion(cid,sid, EmotionVo.convertToNumber(attentionDetailVo.getExpressValue()),image_date);

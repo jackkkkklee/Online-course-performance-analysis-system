@@ -339,12 +339,12 @@ export default {
       // };
       // this.pageTable(this.teacherData);
       // this.tableData = this.pagedData[this.tablePage.current - 1];
-      console.log(this.checkedCourses);
-      courseApi.updateTeacherCourse(
-        this.currentRow.teacherName,
-        this.checkedCourses
-      );
-      this.fetchData();
+
+      courseApi
+        .updateTeacherCourse(this.currentRow.teacherName, this.checkedCourses)
+        .then((res) => {
+          this.fetchData();
+        });
       this.dialogFormVisible = false;
       this.$message.success("Update successfully");
     },

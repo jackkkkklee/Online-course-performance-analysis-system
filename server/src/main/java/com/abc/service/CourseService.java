@@ -27,5 +27,7 @@ public interface CourseService {
     void clearTeacherCourseService(String tid);
     //为课程修改授课老师
     void setNewTeacherForCourseService(String cid,String tid);
+    //根据sid查询课程
+    List<Course> selectCoursesBySidService(String sid);
 
 }

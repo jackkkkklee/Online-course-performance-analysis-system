@@ -62,4 +62,10 @@ public class CourseServiceImpl implements com.abc.service.CourseService {
         courseDao.updateTeacherForCourse(cid,tid);
     }
 
+    @Override
+    public List<Course> selectCoursesBySidService(String sid) {
+        List<Course> courses = courseDao.selectCoursesBySid(sid);
+        return courses;
+    }
+
 }
