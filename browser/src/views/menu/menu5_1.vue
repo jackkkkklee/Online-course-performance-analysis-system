@@ -243,15 +243,13 @@ export default {
           this.date + " " + this.endTime
         )
         .then((res) => {
-          if (res.data.performanceList == []) {
+          if (res.data.performanceList.length == 0) {
             this.$message({
               message: "No data found",
               type: "warning",
             });
-          } else {
-            console.log(res.data.performanceList);
-            this.tableData = res.data.performanceList;
           }
+          this.tableData = res.data.performanceList;
         });
     },
 

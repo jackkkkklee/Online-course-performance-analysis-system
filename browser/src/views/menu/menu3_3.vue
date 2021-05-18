@@ -98,27 +98,26 @@ export default {
     //调用接口方法
     refreshData() {
       analysisApi.queryClassEmotion(this.name).then((res) => {
-        if (res.data.emotion == []) {
+        this.chartData = [];
+        this.myChart.showLoading();
+        let chartMap = res.data.emotion;
+        for (let key in chartMap) {
+          this.chartData.push({ name: key, value: chartMap[key] });
+        }
+        this.myChart.setOption({
+          series: [
+            {
+              data: this.chartData,
+            },
+          ],
+        });
+        if (this.chartData.length == 0) {
           this.$message({
             message: "No data found",
             type: "warning",
           });
-        } else {
-          this.chartData = [];
-          this.myChart.showLoading();
-          let chartMap = res.data.emotion;
-          for (let key in chartMap) {
-            this.chartData.push({ name: key, value: chartMap[key] });
-          }
-          this.myChart.setOption({
-            series: [
-              {
-                data: this.chartData,
-              },
-            ],
-          });
-          this.myChart.hideLoading();
         }
+        this.myChart.hideLoading();
       });
       this.checkEmotion();
     },

@@ -292,29 +292,28 @@ export default {
             this.date + " " + this.endTime
           )
           .then((res) => {
-            if (res.data.attention_value == []) {
+            if (res.data.attention_value.length == 0) {
               this.$message({
                 message: "No data found",
                 type: "warning",
               });
-            } else {
-              this.myChart.showLoading();
-              this.myChart.setOption({
-                xAxis: {
-                  data: res.data.time,
-                },
-                legend: {
-                  data: this.name,
-                },
-                series: [
-                  {
-                    name: this.name,
-                    data: res.data.attention_value,
-                  },
-                ],
-              });
-              this.myChart.hideLoading();
             }
+            this.myChart.showLoading();
+            this.myChart.setOption({
+              xAxis: {
+                data: res.data.time,
+              },
+              legend: {
+                data: this.name,
+              },
+              series: [
+                {
+                  name: this.name,
+                  data: res.data.attention_value,
+                },
+              ],
+            });
+            this.myChart.hideLoading();
           });
       } else {
         analysisApi
@@ -325,29 +324,28 @@ export default {
             this.date + " " + this.endTime
           )
           .then((res) => {
-            if (res.data.attention_value == []) {
+            if (res.data.attention_value.length == 0) {
               this.$message({
                 message: "No data found",
                 type: "warning",
               });
-            } else {
-              this.myChart.showLoading();
-              this.myChart.setOption({
-                xAxis: {
-                  data: res.data.time,
-                },
-                legend: {
-                  data: this.childName,
-                },
-                series: [
-                  {
-                    name: this.childName,
-                    data: res.data.attention_value,
-                  },
-                ],
-              });
-              this.myChart.hideLoading();
             }
+            this.myChart.showLoading();
+            this.myChart.setOption({
+              xAxis: {
+                data: res.data.time,
+              },
+              legend: {
+                data: this.childName,
+              },
+              series: [
+                {
+                  name: this.childName,
+                  data: res.data.attention_value,
+                },
+              ],
+            });
+            this.myChart.hideLoading();
           });
       }
     },

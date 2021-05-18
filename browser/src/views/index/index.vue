@@ -228,7 +228,7 @@
           <p style="font-weight: 700; font-size: 20px">
             Online Classroom Student Performance Analysis
           </p>
-          <p style="color: rgb(160, 160, 160)">©2021 CJLU R&D Team 7</p>
+          <p style="color: rgb(160, 160, 160)">©2021 CJLU R&D Team 3</p>
         </div>
         <div class="contact">
           <h3>Contact</h3>

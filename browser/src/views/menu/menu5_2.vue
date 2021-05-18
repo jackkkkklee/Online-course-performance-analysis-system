@@ -182,19 +182,18 @@ export default {
           this.date + " " + this.endTime
         )
         .then((res) => {
-          if (res.data.classAttentionVos == []) {
+          if (res.data.attention_value.length == 0) {
             this.$message({
               message: "No data found",
               type: "warning",
             });
-          } else {
-            for (let i = 0; i < res.data.attention_value.length; i++) {
-              this.tableData.push({
-                attention_value: res.data.attention_value[i],
-                cid: this.course,
-                timeOffset: res.data.time[i],
-              });
-            }
+          }
+          for (let i = 0; i < res.data.attention_value.length; i++) {
+            this.tableData.push({
+              attention_value: res.data.attention_value[i],
+              cid: this.course,
+              timeOffset: res.data.time[i],
+            });
           }
         });
     },

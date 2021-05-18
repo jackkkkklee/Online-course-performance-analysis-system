@@ -293,7 +293,6 @@ export default {
       });
       courseApi.queryStudentCourse().then((res) => {
         let dataMap = res.data.SCM;
-        console.log(res.data.SCM);
         for (let key in dataMap) {
           if (dataMap[key] == []) {
             this.studentData.push({
